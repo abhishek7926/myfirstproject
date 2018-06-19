@@ -1,0 +1,376 @@
+[janus-livefeed-server]
+52.59.218.73 ansible_user=ansible ansible_become=yes
+
+[question-service]
+question-service.xyzpvt ansible_user=ansible ansible_become=yes
+[question-event-service]
+question-event-service.xyzpvt ansible_user=ansible ansible_become=yes
+[chat-web-socket]
+chat-web-socket.xyzpvt ansible_user=ansible ansible_become=yes
+[proctoring-ui]
+proctoring-ui.xyzpvt  ansible_user=ansible ansible_become=yes
+[bulkpdf]
+bulkpdf.xyzpvt ansible_user=ansible ansible_become=yes
+[metrics]
+queue-metrics.xyzpvt ansible_user=ansible ansible_become=yes
+[activemq]
+activemq.xyzpvt ansible_user=ansible ansible_become=yes
+[redis]
+redis.xyzpvt ansible_user=ansible ansible_become=yes
+[nfs]
+nfs.xyzpvt ansible_user=ansible ansible_become=yes
+[admin-panel]
+adminpanel.xyzpvt ansible_user=ansible ansible_become=yes
+[igt]
+igt.xyzpvt ansible_user=ansible ansible_become=yes
+[redis]
+redis.xyzpvt ansible_user=ansible ansible_become=yes
+[prelogin]
+prelogin.xyzpvt ansible_user=ansible ansible_become=yes
+[dubaiway]
+dubaiway.xyzpvt ansible_user=ansible ansible_become=yes
+[corporate]
+corporate.xyzpvt ansible_user=ansible ansible_become=yes
+[shared-report-corporate]
+shared-report-corporate.xyzpvt ansible_user=ansible ansible_become=yes
+[hpe]
+hpe.xyzpvt ansible_user=ansible ansible_become=yes
+[proctoring]
+proctoring.xyzpvt ansible_user=ansible ansible_become=yes
+[pr]
+pr.xyzpvt ansible_user=ansible ansible_become=yes
+
+[360feedback]
+360feedback.xyzpvt ansible_user=ansible ansible_become=yes
+[proxy]
+proxy.xyzpvt ansible_user=ansible ansible_become=yes
+[bulkpdf]
+bulkpdf.xyzpvt ansible_user=ansible ansible_become=yes
+[static]
+static.xyzpvt ansible_user=ansible ansible_become=yes
+[mettl-apis]
+api.xyzpvt ansible_user=ansible ansible_become=yes
+[certification]
+certification.xyzpvt ansible_user=ansible ansible_become=yes
+[accenture]
+accenture.xyzpvt ansible_user=ansible ansible_become=yes
+[practice-test]
+practice-test.xyzpvt ansible_user=ansible ansible_become=yes
+[ndlm-info]
+ndlm-info.xyzpvt ansible_user=ansible ansible_become=yes
+[duo-lingo]
+duo-lingo.xyzpvt ansible_user=ansible ansible_become=yes
+[skill-master-special]
+skill-master-special.xyzpvt ansible_user=ansible ansible_become=yes
+[skill-master-general]
+skill-master-general.xyzpvt ansible_user=ansible ansible_become=yes
+[skill-master-admin]
+skill-master-admin.xyzpvt ansible_user=ansible ansible_become=yes
+
+[elk]
+elk.xyzpvt ansible_user=ansible ansible_become=yes
+[zabbix]
+zabbix.xyzpvt ansible_user=ansible ansible_become=yes
+[sonar]
+sonar.xyzpvt ansible_user=ansible ansible_become=yes
+[kafka]
+kafka.xyzpvt ansible_user=ansible ansible_become=yes
+[jenkins]
+jenkins.xyzpvt ansible_user=ansible ansible_become=yes
+###### Java services #######
+[fes]
+fes.xyzpvt ansible_user=ansible ansible_become=yes
+[report-service]
+report.xyzpvt ansible_user=ansible ansible_become=yes
+[java-codelysis]
+java-codelysis.xyzpvt ansible_user=ansible ansible_become=yes
+[typing-simulator]
+typing-simulator.xyzpvt ansible_user=ansible ansible_become=yes
+[dblysis]
+dblysis.xyzpvt ansible_user=ansible ansible_become=yes
+[grader]
+grader.xyzpvt ansible_user=ansible ansible_become=yes
+[htmltopdf]
+htmltopdf.xyzpvt ansible_user=ansible ansible_become=yes
+[excel]
+excel.xyzpvt ansible_user=ansible ansible_become=yes
+[large-excel]
+large-excel.xyzpvt ansible_user=ansible ansible_become=yes
+[scheduler]
+scheduler.xyzpvt ansible_user=ansible ansible_become=yes
+[contest]
+contest.xyzpvt ansible_user=ansible ansible_become=yes
+[api-demo]
+api-demo.xyzpvt ansible_user=ansible ansible_become=yes
+[lms]
+lms.xyzpvt ansible_user=ansible ansible_become=yes
+[schema]
+schema.xyzpvt ansible_user=ansible ansible_become=yes
+[biometric]
+biometric.xyzpvt ansible_user=ansible ansible_become=yes
+[biometric-admin]
+biometric-admin.xyzpvt ansible_user=ansible ansible_become=yes
+[streaming-server]
+streaming.xyzpvt ansible_user=ansible ansible_become=yes
+[chat-socket]
+chat-socket.xyzpvt ansible_user=ansible ansible_become=yes
+[chat-service]
+chat-service.xyzpvt ansible_user=ansible ansible_become=yes
+[notification-app]
+notification.xyzpvt ansible_user=ansible ansible_become=yes
+[livefeed-router]
+livefeed-router.xyzpvt ansible_user=ansible ansible_become=yes
+[chat-activemq]
+chat-activemq.xyzpvt ansible_user=ansible ansible_become=yes
+[offline-app]
+offline-app.xyzpvt ansible_user=ansible ansible_become=yes
+[fhgfs-ucl-code-project]
+fhgfs-ucl-code-project.xyzpvt ansible_user=ansible ansible_become=yes
+[english-simulator]
+english-simulator.xyzpvt ansible_user=ansible ansible_become=yes
+[intellisense]
+intellisense.xyzpvt ansible_user=ansible ansible_become=yes
+[intellisense-router]
+intellisense-router.xyzpvt ansible_user=ansible ansible_become=yes
+[intellisense-python]
+intellisense-python.xyzpvt ansible_user=ansible ansible_become=yes
+[intellisense-java]
+intellisense-java.xyzpvt ansible_user=ansible ansible_become=yes
+[intellisense-csharp]
+intellisense-csharp.xyzpvt ansible_user=ansible ansible_become=yes
+[client-api]
+client-api.xyzpvt ansible_user=ansible ansible_become=yes
+[proctoring-ui]
+proctoring-ui.xyzpvt  ansible_user=ansible ansible_become=yes
+[interviewApp-admin-frontend]
+interviewApp-admin-frontend.xyzpvt  ansible_user=ansible ansible_become=yes
+[interviewApp-admin-backend]
+interviewApp-admin-backend.xyzpvt  ansible_user=ansible ansible_become=yes
+[interviewApp-candidate-frontend]
+interviewApp-candidate-frontend.xyzpvt  ansible_user=ansible ansible_become=yes
+[interviewApp-candidate-backend]
+interviewApp-candidate-backend.xyzpvt  ansible_user=ansible ansible_become=yes
+[interviewApp-socket]
+interviewApp-socket.xyzpvt  ansible_user=ansible ansible_become=yes
+[status-mettl]
+status-mettl.xyzpvt  ansible_user=ansible ansible_become=yes
+
+
+[skill-master:children]
+skill-master-admin
+skill-master-general
+skill-master-special
+
+[xyz:children]
+janus-livefeed-server
+skill-master
+client-api
+metrics
+nfs
+proctoring-ui
+proxy
+360feedback  
+static
+mettl-apis
+corporate
+shared-report-corporate
+chat-web-socket
+hpe                
+bulkpdf
+admin-panel   
+certification
+prelogin
+dubaiway
+elk
+ndlm-info
+zabbix
+sonar
+kafka
+jenkins
+redis
+activemq
+igt
+accenture
+practice-test
+duo-lingo
+#### java services ####
+fes
+bulkpdf
+report-service
+java-codelysis
+typing-simulator
+dblysis
+grader
+htmltopdf
+excel
+large-excel
+scheduler
+contest
+api-demo
+lms
+schema
+biometric
+biometric-admin
+streaming-server
+chat-socket
+chat-service
+notification-app
+livefeed-router
+chat-activemq
+proctoring
+pr
+offline-app
+fhgfs-ucl-code-project
+english-simulator
+intellisense
+intellisense-router
+intellisense-python
+intellisense-java
+intellisense-csharp
+proctoring-ui
+question-service
+question-event-service
+interviewApp-admin-frontend
+interviewApp-admin-backend
+interviewApp-candidate-frontend
+interviewApp-candidate-backend
+interviewApp-socket
+status-mettl
+
+#[admin-panel:vars]
+#machine_specific_users= [{'username': 'jalaj-khanna', 'role': 'admin'}]
+#[igt:vars]
+#machine_specific_users= [{'username': 'shanky', 'role': 'admin'}]
+#[prelogin:vars]
+#machine_specific_users= [{'username': 'nevin-sunny', 'role': 'admin'}]
+#[dubaiway:vars]
+#machine_specific_users= [{'username': 'cfe-manish', 'role': 'admin'}]
+#[corporate:vars]
+#machine_specific_users= [{'username': 'kirandeep-kaur', 'role': 'admin'}]
+#[shared-report-corporate:vars]
+#machine_specific_users= [{'username': 'kirandeep-kaur', 'role': 'admin'}]
+#[hpe:vars]
+#machine_specific_users= [{'username': 'cfe-manish', 'role': 'admin'}]
+#
+#[360feedback:vars]
+#machine_specific_users= [{'username': 'tarun-yaduvanshi', 'role': 'admin'}]
+#[proxy:vars]
+#machine_specific_users= [{'username': 'shanky', 'role': 'admin'}]
+#[bulkpdf:vars]
+#machine_specific_users= [{'username': 'aatish-kumar', 'role': 'admin'}]
+#[static:vars]
+#machine_specific_users= [{'username': 'amarjeet-kaur', 'role': 'admin'}]
+#[mettl-apis:vars]
+#machine_specific_users= [{'username': 'ruchi-narula', 'role': 'admin'}]
+#[certification:vars]
+#machine_specific_users= [{'username': 'nevin-sunny', 'role': 'admin'}]
+#[accenture:vars]
+#machine_specific_users= [{'username': 'shipra', 'role': 'admin'}]
+#[practice-test:vars]
+#machine_specific_users= [{'username': 'shipra', 'role': 'admin'}]
+#[ndlm-info:vars]
+#machine_specific_users= [{'username': 'saurabh-goyal', 'role': 'admin'}]
+#[duo-lingo:vars]
+#machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'}]
+#[skill-master:vars]
+#machine_specific_users= [{'username': 'romil-goyal', 'role': 'admin'}]
+#
+####### Java services #######
+#[fes:vars]
+#machine_specific_users= [{'username': 'kapil-singhal', 'role': 'admin'}]
+#[report-service:vars]
+#machine_specific_users= [{'username': 'kirandeep-kaur', 'role': 'admin'}]
+#[java-codelysis:vars]
+#machine_specific_users= [{'username': 'cfe-vikas', 'role': 'admin'}]
+#[typing-simulator:vars]
+#machine_specific_users= [{'username': 'kirandeep-kaur', 'role': 'admin'}]
+#[dblysis:vars]
+#machine_specific_users= [{'username': 'manish-agrawal', 'role': 'admin'}]
+#[grader:vars]
+#machine_specific_users= [{'username': 'kirandeep-kaur', 'role': 'admin'}]
+#[htmltopdf:vars]
+#machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'}]
+#[excel:vars]
+#machine_specific_users= [{'username': 'jalaj-khanna', 'role': 'admin'}]
+#[large-excel:vars]
+#machine_specific_users= [{'username': 'jalaj-khanna', 'role': 'admin'}]
+#[scheduler:vars]
+#machine_specific_users= [{'username': 'kirandeep-kaur', 'role': 'admin'}]
+#[contest:vars]
+#machine_specific_users= [{'username': 'ruchi-narula', 'role': 'admin'}]
+#[api-demo:vars]
+#machine_specific_users= [{'username': 'tarun-yaduvanshi', 'role': 'admin'}]
+#[lms:vars]
+#machine_specific_users= [{'username': 'jalaj-khanna', 'role': 'admin'}]
+#[schema:vars]
+#machine_specific_users= [{'username': 'manish-agrawal', 'role': 'admin'}]
+#[biometric:vars]
+#machine_specific_users= [{'username': 'saurabh-goyal', 'role': 'admin'}]
+#[biometric-admin:vars]
+#machine_specific_users= [{'username': 'saurabh-goyal', 'role': 'admin'}]
+#[streaming-server:vars]
+#machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'}]
+#[chat-socket:vars]
+#machine_specific_users= [{'username': 'nishant-kumar', 'role': 'admin'}]
+#[chat-web-socket:vars]
+#machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'}, {'username': 'nishant-kumar', 'role': 'admin'}]
+#
+#[chat-service:vars]
+#machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'}]
+#[notification-app:vars]
+#machine_specific_users= [{'username': 'jalaj-khanna', 'role': 'admin'}]
+#[livefeed-router:vars]
+#machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'}, {'username': 'nishant-kumar', 'role': 'admin'}, {'username': 'kapil-singhal', 'role': 'admin'}]
+#[chat-activemq:vars]
+#machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'}, {'username': 'nishant-kumar', 'role': 'admin'}]
+#[proctoring:vars]
+#machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'}, {'username': 'nishant-kumar', 'role': 'admin'}]
+#[offline-app:vars]
+#machine_specific_users= [{'username': 'mayuresh-singh', 'role': 'admin'}]
+#[pr:vars]
+#machine_specific_users= [{'username': 'mayuresh-singh', 'role': 'admin'}]
+#[english-simulator:vars]
+#machine_specific_users= [{'username': 'jalaj-khanna', 'role': 'admin'}, {'username': 'kapil-singhal', 'role': 'admin'}]
+#[intellisense:vars]
+#machine_specific_users= [{'username': 'aatish-kumar', 'role': 'admin'}, {'username': 'manish-agrawal', 'role': 'admin'}]
+#[intellisense-router:vars]
+#machine_specific_users= [{'username': 'aatish-kumar', 'role': 'admin'}, {'username': 'manish-agrawal', 'role': 'admin'}]
+#[intellisense-python:vars]
+#machine_specific_users= [{'username': 'aatish-kumar', 'role': 'admin'}, {'username': 'manish-agrawal', 'role': 'admin'}]
+#[intellisense-java:vars]
+#machine_specific_users= [{'username': 'aatish-kumar', 'role': 'admin'}, {'username': 'manish-agrawal', 'role': 'admin'}]
+#[intellisense-csharp:vars]
+#machine_specific_users= [{'username': 'aatish-kumar', 'role': 'admin'}, {'username': 'manish-agrawal', 'role': 'admin'}]
+#[client-api:vars]
+#machine_specific_users= [{'username': 'manish-agrawal', 'role': 'admin'}]
+#
+#[proctoring-ui:vars]
+#machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'},{'username': 'kapil-singhal', 'role': 'admin'}]
+#
+#[interviewApp-admin-frontend:vars]
+#machine_specific_users= [{'username': 'mayuresh-singh', 'role': 'admin'},{'username': 'cfe-vikas', 'role': 'admin'}]
+#[interviewApp-admin-backend:vars]
+#machine_specific_users= [{'username': 'mayuresh-singh', 'role': 'admin'},{'username': 'cfe-vikas', 'role': 'admin'}]
+#[interviewApp-candidate-frontend:vars]
+#machine_specific_users= [{'username': 'mayuresh-singh', 'role': 'admin'},{'username': 'cfe-vikas', 'role': 'admin'}]
+#[interviewApp-candidate-backend:vars]
+#machine_specific_users= [{'username': 'mayuresh-singh', 'role': 'admin'},{'username': 'cfe-vikas', 'role': 'admin'}]
+#[interviewApp-socket:vars]
+#machine_specific_users= [{'username': 'mayuresh-singh', 'role': 'admin'},{'username': 'cfe-vikas', 'role': 'admin'}]
+#
+#[status-mettl:vars]
+#machine_specific_users= [{'username': 'aatish-kumar', 'role': 'admin'},{'username': 'guneet-sahai', 'role': 'admin'},{'username': 'amarnath-mishra', 'role': 'admin'}]
+#
+#
+#[bulkpdf:vars]
+#machine_specific_users= [{'username': 'amarjeet-kaur', 'role': 'admin'},{'username': 'ghanshyam-agrawal', 'role': 'admin'}]
+#
+#[proctoring-ui:vars]
+#machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'},{'username': 'kapil-singhal', 'role': 'admin'}]
+#
+#[question-service:vars]
+#machine_specific_users= [{'username': 'ruchi-narula', 'role': 'admin'},{'username': 'jalaj-khanna', 'role': 'admin'},{'username': 'kaushal-gupta', 'role': 'admin'},{'username': 'romil-goyal', 'role': 'admin'}]
+#
+#[question-event-service:vars]
+#machine_specific_users= [{'username': 'ruchi-narula', 'role': 'admin'},{'username': 'jalaj-khanna', 'role': 'admin'},{'username': 'kaushal-gupta', 'role': 'admin'},{'username': 'romil-goyal', 'role': 'admin'}]
+

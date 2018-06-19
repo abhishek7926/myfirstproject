@@ -1,0 +1,15 @@
+- name: Check if nodejs is installed
+  command: dpkg-query -l nodejs
+  register: node_check
+  ignore_errors: True
+
+- name: node js repo
+  shell: curl -sL https://deb.nodesource.com/setup_{{ node_version }}.x | sudo -E bash -
+  when: node_check.rc != 0
+
+- name: Install node
+  apt: name=nodejs state="{{ item }}" update_cache=yes
+  when: node_check.rc != 0
+  with_items:
+    - build-dep
+    - latest

@@ -1,0 +1,12 @@
+hostname: biometric-admin
+logfile_path:
+ - /var/log/*.log
+ - /home/mettl/*.log
+tomcat_folder: biometricAdmin
+tomcat_shutdown_port: 8031
+artifact_name: biometricAdmin
+ssl: true
+role: app-roles/biometric-admin
+java_version: 8
+tomcat_version: 8.0.35
+tomcat_release: 8

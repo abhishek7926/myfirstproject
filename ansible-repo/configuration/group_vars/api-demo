@@ -1,0 +1,9 @@
+hostname: api-demo
+tomcat_folder: mettl-api-demo
+tomcat_shutdown_port: 8011
+artifact_name: mettl-api-demo
+logfile_path:
+ - /var/log/*.log
+ - /home/mettl/mettl_logs/*.log
+ - /home/mettl/volume1/mettl-api-demo-tomcat/logs/*.log
+ - /home/mettl/volume1/mettl-api-demo-tomcat/logs/*.out

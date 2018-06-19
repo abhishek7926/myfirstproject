@@ -1,0 +1,14 @@
+role: app-roles/location-app
+hostname: prod-location.mettl.com
+site: location.mettl.com
+env: prod
+root_template: root.xml
+java_version: 8
+tomcat_version: 8.0.35
+app: location-server-app
+catalina_root: ROOT
+tomcat_release: 8
+volume: volume1
+config_ip: 20.0.1.55
+ssl: false
+setenv: false

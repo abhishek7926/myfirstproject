@@ -1,0 +1,23 @@
+---
+
+#Installing Check_MK Agent
+
+- name: Installing xinetd for check mk
+  apt: pkg=xinetd state=installed update_cache=true
+
+- name: Download check_mk_agent
+  get_url:
+     url: http://mathias-kettner.com/download/check-mk-agent_1.2.4p3-2_all.deb
+     dest: /tmp
+     mode: 0766
+
+- name: Installing the agent
+  apt:
+    deb: /tmp/check-mk-agent_1.2.4p3-2_all.deb
+
+- name: Starting the check_mk_agent
+  service: state=started name=xinetd
+
+- name: Enabling the agent on startup
+  service: name=xinetd enabled=yes
+

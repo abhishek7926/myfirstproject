@@ -1,0 +1,6 @@
+[jenkins-rerun]
+jenkins.onlinepvt ansible_user=ansible ansible_become=yes
+
+
+[disha-online:children]
+jenkins-rerun

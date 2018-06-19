@@ -1,0 +1,3 @@
+hostname: email-service
+autoscaling: "true"
+

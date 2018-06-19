@@ -1,0 +1,6 @@
+specific_host_name: true
+logfile_path:
+ - /var/log/*.log
+ - /home/mettl/*.log
+install_filebeat: false
+

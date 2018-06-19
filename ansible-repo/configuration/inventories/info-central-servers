@@ -1,0 +1,7 @@
+[fhgfs-ucl-code-project]
+fhgfs-ucl-code-project.infopvt ansible_user=ansible ansible_become=yes
+
+
+[info:children]
+fhgfs-ucl-code-project
+

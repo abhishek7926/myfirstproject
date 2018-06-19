@@ -1,0 +1,13 @@
+hostname: mongo-client-archival
+role: app-roles/mongo-client-archival
+tomcat_folder: mongo-client-archival
+tomcat_shutdown_port: 8062
+tomcat_connector_port: 8080
+tomcat_version: 8.0.35
+tomcat_release: 8
+artifact_name: mongo-api
+logfile_path:
+ - /var/log/*.log
+ - /home/mettl/*.log
+ssl: false
+

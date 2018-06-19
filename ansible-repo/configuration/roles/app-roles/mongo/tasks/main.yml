@@ -1,0 +1,21 @@
+---
+
+# Installing htop, xclip, unzip, awscli packages
+
+- name: Installing general apt-get debian packages
+  apt: name={{ item }} state=latest update_cache=yes
+  with_items:
+      - htop
+      - xclip
+      - unzip
+
+- name: Install pip and perl lib
+  apt: name={{ item }} state=installed
+  with_items:
+    - python-pip
+    - libwww-perl
+
+- name: install boto3
+  pip:
+    name: boto3
+    version: 1.4.0

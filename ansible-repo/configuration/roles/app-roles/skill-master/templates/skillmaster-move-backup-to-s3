@@ -1,0 +1,18 @@
+SHELL=/bin/bash
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+
+CURRENT_TIME=`date +%Y/%m/%d`
+FOLDER_PATH=$1
+S3_FOLDER=$2
+HOST_NAME=$3
+S3_BACKUP_FOLDER=s3://${S3_FOLDER}/${CURRENT_TIME}/${HOST_NAME}-`ec2metadata --instance-id`
+
+date
+echo "Compressing ${FOLDER_PATH}"
+tar -czf {{ skillmaster_backup_path }}/backup.tar.gz ${FOLDER_PATH}
+echo "Moving content  in ${FOLDER_PATH} to ${S3_BACKUP_FOLDER}"
+aws s3 mv {{ skillmaster_backup_path }}/backup.tar.gz ${S3_BACKUP_FOLDER}/backup.tar.gz-"`date`" --region {{ aws_region }}
+
+date
+echo "Copying done ${FOLDER_PATH} to ${S3_BACKUP_FOLDER}"
+rm -rf ${FOLDER_PATH}/*

@@ -1,0 +1,5 @@
+[jenkins-rerun]
+jenkins.depvt ansible_user=ansible ansible_become=yes
+
+[disha-de:children]
+jenkins-rerun

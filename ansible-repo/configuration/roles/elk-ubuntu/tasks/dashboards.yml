@@ -1,0 +1,31 @@
+
+
+- name: Install unzip
+  apt: name=unzip state=present
+
+- name: Checking beats-dashboards-1.1.0 is loaded or not
+  stat: path=/root/beats-dashboards-1.1.0.zip
+  register: beatsdashboards
+
+- name: Obtaining sample dashboards
+  unarchive:
+    src=https://download.elastic.co/beats/dashboards/beats-dashboards-1.1.0.zip
+    dest=/root
+    copy=no
+  when: beatsdashboards.stat.exists == False
+
+- name: Loading beats-dashboards-1.1.0 
+  command: bash load.sh
+  args:
+    chdir: /root/beats-dashboards-1.1.0
+  when: beatsdashboards.stat.exists == False
+
+- name: Download Filebeat index template
+  get_url:
+    url=https://gist.githubusercontent.com/thisismitch/3429023e8438cc25b86c/raw/d8c479e2a1adcea8b1fe86570e42abab0f10f364/filebeat-index-template.json
+    dest=/tmp
+
+- name: Loading Filebeat index template
+  shell: curl -XPUT 'http://localhost:9200/_template/filebeat?pretty' -d@filebeat-index-template.json warn=no
+  args:
+    chdir: /tmp/

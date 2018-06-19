@@ -1,0 +1,3 @@
+role: app-roles/uber
+tomcat_version: 8.0.35
+tomcat_release: 8

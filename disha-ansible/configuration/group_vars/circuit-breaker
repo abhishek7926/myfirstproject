@@ -1,0 +1,8 @@
+hostname: circuit-breaker
+logfile_path:
+ - /var/log/*.log
+ - /home/mettl/*.log
+artifact_name: disha-circuit-breaker
+ssl: true
+role: app-roles/circuit-breaker
+java_version: 8

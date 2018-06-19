@@ -1,0 +1,17 @@
+- name: Install angular cli
+  npm:
+      name: "{{ item }}"
+      global: yes
+  with_items:
+    - "@angular/cli"
+
+- name: Setting ulimit for all users
+  lineinfile: dest=/etc/security/limits.conf line={{item}}
+  with_items:
+       - "*            hard    nofile            {{ ulimit }}"
+       - "*            soft    nofile            {{ ulimit }}"
+
+- name: Ensuring ulimit
+  lineinfile: dest=/etc/pam.d/common-session line="session required pam_limits.so"
+- name: Ensuring ulimit
+  lineinfile: dest=/etc/pam.d/common-session-noninteractive line="session required pam_limits.so"

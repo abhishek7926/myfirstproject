@@ -1,0 +1,41 @@
+- name: "create skill master logs cleanup script"
+  template: src=cleanup.sh dest={{ log_cleanup_script_path }} owner=mettl group=mettl mode="755"
+
+- name: "create script to move skill master backup to s3"
+  template: src=skillmaster-move-backup-to-s3 dest={{ backup_s3_movement_script_path }} owner=mettl group=mettl mode="755"
+
+- name: run skill master health check
+  cron:
+    minute: 15
+    hour: 1
+    name: run skill master health check
+    user: mettl
+    state: present
+    job: "cd /home/mettl/{{ volume }}/serviceAssesmblies/skillmaster/current-installation;bin/healthcheck  > /home/mettl/mettl_logs/skillmaster-healthcheck.log 2>&1"
+
+- name: create a backup for skillmaster db
+  cron:
+    minute: 30
+    hour: 2
+    name: create a backup for skillmaster db
+    user: mettl
+    state: present
+    job: "cd /home/mettl/{{ volume }}/serviceAssesmblies/skillmaster/current-installation && chmod +x bin/* &&  bin/backup  > /home/mettl/mettl_logs/skillmaster-backup.log 2>&1"
+
+- name: move the backup to s3
+  cron:
+    minute: 30
+    hour: 22
+    name: move the backup to s3
+    user: mettl
+    state: present
+    job: "{{ backup_s3_movement_script_path }} {{ skillmaster_backup_path }}/ {{ skill_master_data_backup_s3_path }} {{ hostname }}"
+
+- name: cleanup skillmaster logs
+  cron:
+    minute: 30
+    hour: 0
+    name: cleanup skillmaster logs
+    user: mettl
+    state: present
+    job: "{{ log_cleanup_script_path }}"

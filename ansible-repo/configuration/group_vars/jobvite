@@ -1,0 +1,9 @@
+hostname: jobvite
+role: app-roles/jobvite
+logfile_path:
+ - /var/log/*.log
+ - /home/mettl/*.log
+artifact_name: jobvite
+java_version: 8
+jobvite_java_connector_port: 8080
+ssl: true

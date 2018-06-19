@@ -1,0 +1,12 @@
+hostname: assessment-service-api
+tomcat_folder: assessment-service-api
+logfile_path:
+ - /var/log/*.log
+ - /home/mettl/mettl_logs/*.log
+ - /home/mettl/volume1/assessment-service-api-tomcat/logs/*.log
+ - /home/mettl/volume1/assessment-service-api-tomcat/logs/*.out
+document_type: "assessment-service-api"
+artifact_name: assessment-service-api
+autoscaling: "true"
+tomcat_shutdown_port: 8051
+tomcat_connector_port: 8050

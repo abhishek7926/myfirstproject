@@ -1,0 +1,14 @@
+- set_fact:
+    user_list_to_delete_merged: []
+
+- set_fact:
+    user_list_to_delete_merged: "{{ user_list_to_delete_merged + global_users_to_delete }}"
+  when: global_users_to_delete is defined
+- set_fact:
+    user_list_to_delete_merged: "{{ user_list_to_delete_merged + machine_specific_users_to_delete }}"
+  when: machine_specific_users_to_delete is defined
+
+- name: deleting user {{ item.username }}
+  become: true
+  user: name={{ item.username }} state=absent remove=yes
+  with_items: "{{ user_list_to_delete_merged }}"

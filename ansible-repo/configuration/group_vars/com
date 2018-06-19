@@ -1,0 +1,127 @@
+env: com
+domain: mettl.com
+internal_domain: compvt
+kibana_user: kibana-admin
+kibana_password: mettlKib@123
+aws_region: ap-south-1
+jotform_mch: "52.74.26.237"
+wordpress_mch: "wordpress.{{ internal_domain }}"
+bulkpdf_mch: "bulkpdf.{{ internal_domain }}"
+fes_mch: "fes.{{ internal_domain }}"
+static_mch: "static.{{ internal_domain }}"
+corporate_mch: "corporate.{{ internal_domain }}"
+notification_mch: "notification.{{ internal_domain }}"
+contest_mch: "contest.{{ internal_domain }}"
+report_corporate_mch: "report-corporate.{{ internal_domain }}"
+corporate_shared_report_mch: "shared-report-corporate.{{ internal_domain }}"
+proctoring_mch: "proctoring.{{ internal_domain }}"
+turnURLIp: 52.77.142.113
+stunServerAddress: 52.77.142.113
+logs_bucket: mettl-logs-com
+jenkins_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDAFmHmYaVy+DGMJ7PE2x6SsnUry5BGWpI6vcab27DaZpZf6QibU+DW0hV/VOS1kNIO7Tg+NYh+/KU8agshnKdj5gij7D+RvnbPGcx3QCB0I220IS/uuoKT7dU9o0LGEKC/cEHfKbXV4TbgQoqh8odylFp+6yzQsnA+MFp31nYHEX37+KNHNxeXa/6UzrWDZMqsk81Ye8z41rz+kRnmhHMmt3H/1bKa5bAyNRzHw0Rkf3SAFFMQ+9a2iI2Q7BpxvJ6EEVBBuCeDNyFebErJBUz6ky8mbwgi4S8lQx9l42PSmHD8+pN4490/2RR6SQ/qgjU+tdaDy6s/euZeU6epMrx1 jenkins-com@mettl"
+fhgfs_server_host_name: "prod-usercodelibrary-centralserver.mettl.com"
+skill_master_data_backup_s3_path: skill-master-data-backup-com
+data_elasticsearch_heap_size: "2g"
+install_ldap_client: false
+ucl_codelysis_docker_all_version: 1.2
+ucl_codelysis_docker_swift_version: 1.1
+prelogin_access_tocken: 04853ec1e371e6c066d2a926741b9e93
+
+global_users:
+ - username: shanky
+   role: admin
+ - username: ghanshyam-agrawal
+   role: admin
+ - username: guneet
+   role: admin
+ - username: farman
+   role: admin
+
+ - username: aatish-kumar
+   role: readonly
+ - username: amarjeet-kaur
+   role: readonly
+ - username: jalaj-khanna
+   role: readonly
+ - username: kanhaya-yadav
+   role: readonly
+ - username: kapil-singhal
+   role: readonly
+ - username: mayuresh-singh
+   role: readonly
+ - username: nevin-sunny
+   role: readonly
+ - username: nishant-kumar
+   role: readonly
+ - username: ruchi-narula
+   role: readonly
+ - username: saurabh-goyal
+   role: readonly
+ - username: siddhant-khanna
+   role: readonly
+ - username: tarun-yaduvanshi
+   role: readonly
+ - username: aatish-kumar
+   role: readonly
+ - username: amit-singh
+   role: readonly
+ - username: amreek-panesar
+   role: readonly
+ - username: kritika-sharma
+   role: readonly
+ - username: aarushi-agarwal
+   role: readonly
+ - username: braj
+   role: readonly
+ - username: deepak.panwar
+   role: readonly
+ - username: divyank.sharma
+   role: readonly
+ - username: lavi.tyagi
+   role: readonly
+ - username: kavita.kumari
+   role: readonly
+ - username: jiya.dhasmana
+   role: readonly
+ - username: srishti-juneja
+   role: readonly
+ - username: kaushal-gupta
+   role: readonly
+ - username: gaurav-garg
+   role: readonly
+ - username: jatin-bansal
+   role: readonly
+ - username: nirmit-kumar
+   role: readonly
+ - username: tuhin-sharma
+   role: readonly
+ - username: kripansh
+   role: readonly
+ - username: amarnath-mishra
+   role: readonly
+ - username: cfe-vikas
+   role: readonly
+ - username: ritesh
+   role: readonly
+ - username: aayush-jain
+   role: readonly
+ - username: cfe-sitaram
+   role: readonly
+ - username: romil-goyal
+   role: readonly
+ - username: manish-agrawal
+   role: readonly
+ - username: shipra
+   role: readonly
+ - username: anuj-kumar
+   role: readonly
+ - username: hitesh
+   role: readonly
+
+global_users_to_delete:
+# - username: guneet-sahai
+# - username: nishant-kumar
+# - username: preeti-sharma
+# - username: shanky
+  - username: kirandeep-kaur
+  - username: preeti-sharma

@@ -1,0 +1,14 @@
+hostname: pmgdisha-info
+autoscaling: "true"
+logfile_path:
+ - /var/log/*.log
+ - /home/mettl/*.log
+tomcat_folder: pmg-disha
+tomcat_shutdown_port: 8051
+artifact_name: ndlm
+certName: INFO
+ssl: true
+role: app-roles/pmgdisha-info
+java_version: 8
+tomcat_version: 8.0.35
+tomcat_release: 8

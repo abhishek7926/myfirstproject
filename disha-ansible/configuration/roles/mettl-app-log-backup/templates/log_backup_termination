@@ -1,0 +1,23 @@
+#! /bin/bash
+invoke_script="/opt/mettl-scripts/log-backup/move-logs.sh"
+log_at="/var/log/logbackupTERMINATION.log"
+echo "starting log backup on linux shutdown/reboot" >> $log_at 2>&1
+echo `date` >> $log_at 2>&1
+
+### Mettl Logs ###
+bash $invoke_script /home/mettl/mettl_logs  *.log {{ logs_bucket }} {{ hostname }}/mettl_logs {{ aws_region }}  >> $log_at 2>&1
+bash $invoke_script /home/mettl/mettl_logs *.log.* {{ logs_bucket }} {{ hostname }}/mettl_logs {{ aws_region }} >> $log_at 2>&1
+
+### Apache ###
+bash $invoke_script /var/log/apache2 *.log {{ logs_bucket }} {{ hostname }}/apache-logs {{ aws_region }} >> $log_at 2>&1
+bash $invoke_script /var/log/apache2 *.gz {{ logs_bucket }} {{ hostname }}/apache-logs {{ aws_region }} >> $log_at 2>&1
+
+### Nginx ###
+bash $invoke_script /var/log/nginx *.log {{ logs_bucket }} {{ hostname }}/nginx-logs {{ aws_region }} >> $log_at 2>&1
+bash $invoke_script /var/log/nginx *.gz {{ logs_bucket }} {{ hostname }}/nginx-logs {{ aws_region }} >> $log_at 2>&1
+
+### Tomcat ###
+bash $invoke_script /home/mettl/{{ volume }}/*-tomcat/logs *.gz  {{ logs_bucket }} {{ hostname }}/tomcat-logs {{ aws_region }} >> $log_at 2>&1
+bash $invoke_script /home/mettl/{{ volume }}/*-tomcat/logs *.txt {{ logs_bucket }} {{ hostname }}/tomcat-logs {{ aws_region }} >> $log_at 2>&1
+bash $invoke_script /home/mettl/{{ volume }}/*-tomcat/logs *.log {{ logs_bucket }} {{ hostname }}/tomcat-logs {{ aws_region }} >> $log_at 2>&1
+bash $invoke_script /home/mettl/{{ volume }}/*-tomcat/logs *.out {{ logs_bucket }} {{ hostname }}/tomcat-logs {{ aws_region }} >> $log_at 2>&1

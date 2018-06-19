@@ -1,0 +1,15 @@
+[elk]
+elk.infopvt ansible_user=ansible ansible_become=yes
+[zabbix]
+zabbix.infopvt ansible_user=ansible ansible_become=yes
+[kafka]
+kafka.infopvt ansible_user=ansible ansible_become=yes
+[jenkins]
+jenkins.infopvt ansible_user=ansible ansible_become=yes
+
+
+[info:children]
+elk
+zabbix
+kafka
+jenkins

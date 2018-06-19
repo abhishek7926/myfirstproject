@@ -1,0 +1,37 @@
+web_urls:
+    - { url: 'https://{{ domain }}', response_code: '200'}
+    - { url: 'https://tests.{{ domain }}/ping', response_code: '200'}
+    - { url: 'https://{{ domain }}/corporate/login', response_code: '200'}
+    - { url: 'https://pr.{{ domain }}/ping', response_code: '200'}
+    - { url: 'https://pr.{{ domain }}/health', response_code: '200'}
+    - { url: 'https://admin.{{ domain }}/login', response_code: '200'}
+    - { url: 'https://{{ domain }}/notification', response_code: '401'}
+    - { url: 'https://{{ domain }}/resources/images/mettl-logo.png', response_code: '200'}
+    - { url: 'https://mobileapp.{{ domain }}/ping', response_code: '200'}
+    - { url: 'https://chat.{{ domain }}/ping', response_code: '200'}
+    - { url: 'https://chat.{{ domain }}/web-socket/ping', response_code: '200'}
+    - { url: 'https://tests.{{ domain }}/coding-simulators/version', response_code: '200'}
+    - { url: 'https://codingsimulators.{{ domain }}/version', response_code: '200'}
+    - { url: 'http://codingsimulators.{{ domain }}/version', response_code: '200'}
+    - { url: 'https://intellisense.{{ domain }}', response_code: '200'}
+    - { url: 'http://api-demo.{{ domain }}', response_code: '200'}
+    - { url: 'https://360feedback.{{ domain }}/login', response_code: '200'}
+    - { url: 'https://certification.{{ domain }}/systemAdmin/login', response_code: '200'}
+    - { url: 'https://{{ domain }}/contests/admin/login', response_code: '200'}
+    - { url: 'https://{{ domain }}', response_code: '200'}
+    - { url: 'https://zydusapi.{{ domain }}/v1', response_code: '200'}
+    - { url: 'https://wiproapi.{{ domain }}/v1', response_code: '200'}
+    - { url: 'https://lms.{{ domain }}/ping', response_code: '200'}
+    - { url: 'https://proctoringstation.{{ domain }}/login', response_code: '200'}
+    - { url: 'http://hpecoc.{{ domain }}/candidate/register', response_code: '200'}
+    - { url: 'https://register.{{ domain }}', response_code: '200'}
+    - { url: 'https://accenture.{{ domain }}', response_code: '302'}
+    - { url: 'http://igt-app.{{ domain }}/status', response_code: '200'}
+    - { url: 'https://feedback.{{ domain }}/admin/login', response_code: '200'}
+    - { url: 'https://test-notification-app.{{ domain }}', response_code: '200'}
+    - { url: 'https://api.{{ domain }}/v1', response_code: '200'}
+    - { url: 'https://{{ domain }}/interview/admin/api/ping', response_code: '200'}
+    - { url: 'https://{{ domain }}/interview/api/ping', response_code: '200'}
+    - { url: 'https://interview.{{ domain }}/admin/api/ping', response_code: '200'}
+    - { url: 'https://interview.{{ domain }}/api/ping', response_code: '200'}
+

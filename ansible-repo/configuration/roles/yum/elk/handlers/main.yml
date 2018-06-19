@@ -1,0 +1,11 @@
+---
+# handlers file for ansible-elk
+
+- name: Restart elasticsearch
+  service: name=elasticsearch state=restarted
+
+- name: Restart kibana
+  service: name=kibana state=restarted
+
+- name: Restart Nginx
+  service: name=nginx state=started

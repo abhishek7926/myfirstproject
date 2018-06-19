@@ -1,0 +1,26 @@
+---
+#- name: Install wget Package
+#  yum: name=wget state=present
+#
+#- name: Import Elasticsearch public GPG key into rpm
+#  get_url:
+#     url: http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm
+#     dest: /opt/
+#
+#- command: rpm -ivh /opt/epel-release-7-8.noarch.rpm
+
+- name: Copy Kibana repo
+  copy: 
+    src=kibana.repo.j2 dest=/etc/yum.repos.d/kibana.repo
+
+- name: Install Kibana
+  yum: name=kibana state=installed
+
+- name: Restrict hosts
+  lineinfile: 'dest=/opt/kibana/config/kibana.yml regexp=server.host line="server.host: localhost"'
+
+- name: Start Service
+  service: name=kibana enabled=yes state=restarted
+
+#  notify: Restart kibana
+  

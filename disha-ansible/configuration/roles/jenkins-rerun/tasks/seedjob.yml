@@ -1,0 +1,6 @@
+- name: mkdir jobdsl
+  file: state=directory path=/var/lib/jenkins/jobs/job-dsl owner=jenkins group=jenkins recurse=yes
+
+- name: copy seed job for jenkins
+  template: src=templates/seedjob.xml dest=/var/lib/jenkins/jobs/job-dsl/config.xml owner=jenkins group=jenkins mode=644
+  notify: restart jenkins

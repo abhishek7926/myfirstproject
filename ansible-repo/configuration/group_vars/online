@@ -1,0 +1,75 @@
+env: online
+domain: mettl.online
+internal_domain: onlinepvt
+kibana_user: kibana-admin
+kibana_password: mettlKib@123
+aws_region: ap-south-1
+wordpress_mch: "wordpress.{{ internal_domain }}"
+bulkpdf_mch: "bulkpdf.{{ internal_domain }}"
+fes_mch: "fes.{{ internal_domain }}"
+static_mch: "static.{{ internal_domain }}"
+corporate_mch: "corporate.{{ internal_domain }}"
+notification_mch: "notification.{{ internal_domain }}"
+contest_mch: "contest.{{ internal_domain }}"
+corporate_shared_report_mch: "shared-report-corporate.{{ internal_domain }}"
+proctoring_mch: "proctoring.{{ internal_domain }}"
+turnURLIp: 52.77.142.113
+stunServerAddress: 52.77.142.113
+logs_bucket: mettl-logs-online
+jenkins_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrqMaWkl99OW6lVvQSF4CWBJCtf5qqxiyY0jrdhjr8Qp2DKIXwXqj0b5DdWCGG/Nn7GJYQQfbrkomJCmhjTQFX/nD+HTcis+q7pJg8tSp92HfgAekN2grsxGo9UD6yXtA+ehcRciWC74PA4wCf43VnZwRTtY/ad/x2K4mtJal9LnI/e9XgWRbnZGlrB4HKeGPVb4OVFcW8LHS+DmEBxNKI0Ddr+kpf4bjOR9aktYH2wp6zTLnO0ptLjLrnbogc1fcPxa/v8pEe3xMA0s1cTork4iUTFD4t4PRSklrtFlAYkOGNSLYJNO3lHlUSVNR+prZM8HZ3Kcd8vQ20Mp6sGXJb preeti@mettl299"
+fhgfs_server_host_name: "prod-usercodelibrary-centralserver.mettl.com"
+skill_master_data_backup_s3_path: skill-master-data-backup-online
+jotform_mch: "jotform-drive.{{ internal_domain }}"
+
+global_users:
+ - username: shanky
+   role: admin
+ - username: preeti-sharma
+   role: admin
+ - username: ghanshyam-agrawal
+   role: admin
+
+ - username: farman
+   role: readonly
+ - username: aatish-kumar
+   role: readonly
+ - username: amarjeet-kaur
+   role: readonly
+ - username: guneet
+   role: readonly
+ - username: jalaj-khanna
+   role: readonly
+ - username: kanhaya-yadav
+   role: readonly
+ - username: kapil-singhal
+   role: readonly
+ - username: manish-agrawal
+   role: readonly
+ - username: mayuresh-singh
+   role: readonly
+ - username: nevin-sunny
+   role: readonly
+ - username: nishant-kumar
+   role: readonly
+ - username: ruchi-narula
+   role: readonly
+ - username: saurabh-goyal
+   role: readonly
+ - username: siddhant-khanna
+   role: readonly
+ - username: tarun-yaduvanshi
+   role: readonly
+ - username: aatish-kumar
+   role: readonly
+ - username: amit-singh
+   role: readonly
+ - username: amreek-panesar
+   role: readonly
+
+
+
+#global_users_to_delete:
+# - username: guneet-sahai
+# - username: nishant-kumar
+# - username: preeti-sharma
+# - username: shanky

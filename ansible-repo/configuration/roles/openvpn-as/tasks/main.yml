@@ -1,0 +1,14 @@
+- name: Check if openvpnas is installed
+  stat: path="/etc/init.d/openvpnas"
+  register: openvpn_service_present
+
+- name: Download specific openvpn access server version.
+  get_url:
+    url: "{{ open_vpn_access_server_download_url }}"
+    dest: "/tmp/openvpnas.deb"
+  when: openvpn_service_present.stat.exists == False
+
+- name: Install downloaded debian package
+  apt:
+    deb: /tmp/openvpnas.deb
+  when: openvpn_service_present.stat.exists == False

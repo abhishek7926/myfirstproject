@@ -1,0 +1,35 @@
+---
+
+#Deployment playbook
+
+- name: Fetch current time and date
+  command: "date +%y%m%d_%H%M%S"
+  register: date
+
+- name: Creating download directory for the artifact
+  file: path="{{ tomcat_base_path }}/{{ artifact_name }}/installers/{{ date.stdout }}" state=directory recurse=yes owner=mettl group=mettl mode=0755
+
+- name: Download latest app version
+  get_url: url="{{ nexus_common_url }}/{{ artifact_name }}/{{ release_num }}/{{ artifact_name }}-{{ release_num }}.war" url_username=deployment url_password=deployment123 dest="{{ tomcat_base_path }}/{{ artifact_name }}/installers/{{ date.stdout }}"
+
+- name: Explode the latest war
+  command: "jar -xf {{ artifact_name }}-{{ release_num }}.war"
+  args:
+      chdir: "{{ tomcat_base_path }}/{{ artifact_name }}/installers/{{ date.stdout }}"
+
+- name: Move component web archive to installer directory 
+  command: "mv {{ tomcat_base_path }}/{{ artifact_name }}/installers/{{ date.stdout }}/{{ artifact_name }}-{{ release_num }}.war {{ tomcat-base-path }}/{{ artifact_name }}/installers/{{ artifact_name }}_{{ release_num }}-{{ date.stdout }}.war"
+
+- name: Removing the earlier version
+  file: path="{{ tomcat_base_path }}/{{ artifact_name }}/www" state=absent
+
+- name: Deploying new version of application
+  file:
+    src: "{{ tomcat_base_path }}/{{ artifact_name }}/installers/{{ date.stdout }}"
+    dest: "{{ tomcat_base_path }}/{{ artifact_name }}/www"
+    state: link
+
+- name: Maintaining last 10 versions of artifacts at local
+  shell: "source /home/mettl/release/file_functions.sh && deleteOlderFiles {{ tomcat_base_path }}/{{ artifact_name }}/installers 10"
+  args:
+    executable: /bin/bash

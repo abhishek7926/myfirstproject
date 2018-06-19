@@ -1,0 +1,186 @@
+[labs-api]
+labs-api.propvt ansible_user=ansible ansible_become=yes
+[labs-1-backend]
+labs-1-backend.propvt ansible_user=ansible ansible_become=yes
+[labs-2-backend]
+labs-2-backend.propvt ansible_user=ansible ansible_become=yes
+[question-service]
+question-service.propvt ansible_user=ansible ansible_become=yes
+[question-event-service]
+question-event-service.propvt ansible_user=ansible ansible_become=yes
+[client-api]
+client-api.propvt ansible_user=ansible ansible_become=yes
+[admin-panel]
+adminpanel.propvt ansible_user=ansible ansible_become=yes
+[igt]
+igt.propvt ansible_user=ansible ansible_become=yes
+[prelogin]
+prelogin.propvt ansible_user=ansible ansible_become=yes
+[corporate]
+corporate.propvt ansible_user=ansible ansible_become=yes
+[report-corporate]
+report-corporate.propvt ansible_user=ansible ansible_become=yes
+[shared-report-corporate]
+shared-report-corporate.propvt ansible_user=ansible ansible_become=yes
+[hpe]
+hpe.propvt ansible_user=ansible ansible_become=yes
+[proctoring]
+proctoring.propvt ansible_user=ansible ansible_become=yes
+[pr]
+pr.propvt ansible_user=ansible ansible_become=yes
+
+[360feedback]
+360feedback.propvt ansible_user=ansible ansible_become=yes
+[uber]
+uber.propvt ansible_user=ansible ansible_become=yes
+[feedback]
+feedback.propvt ansible_user=ansible ansible_become=yes
+[test-notification]
+test-notification.propvt ansible_user=ansible ansible_become=yes
+[bulkpdf]
+bulkpdf.propvt ansible_user=ansible ansible_become=yes
+[static]
+static.propvt ansible_user=ansible ansible_become=yes
+[mettl-apis]
+api.propvt ansible_user=ansible ansible_become=yes
+[certification]
+certification.propvt ansible_user=ansible ansible_become=yes
+[accenture]
+accenture.propvt ansible_user=ansible ansible_become=yes
+[duo-lingo]
+duo-lingo.propvt ansible_user=ansible ansible_become=yes
+
+###### Java services #######
+[fes]
+fes.propvt ansible_user=ansible ansible_become=yes
+[report-service]
+report.propvt ansible_user=ansible ansible_become=yes
+[typing-simulator]
+typing-simulator.propvt ansible_user=ansible ansible_become=yes
+[dblysis]
+dblysis.propvt ansible_user=ansible ansible_become=yes
+[grader]
+grader.propvt ansible_user=ansible ansible_become=yes
+[htmltopdf]
+htmltopdf.propvt ansible_user=ansible ansible_become=yes
+[excel]
+excel.propvt ansible_user=ansible ansible_become=yes
+[large-excel]
+large-excel.propvt ansible_user=ansible ansible_become=yes
+[scheduler]
+scheduler.propvt ansible_user=ansible ansible_become=yes
+[contest]
+contest.propvt ansible_user=ansible ansible_become=yes
+[api-demo]
+api-demo.propvt ansible_user=ansible ansible_become=yes
+[lms]
+lms.propvt ansible_user=ansible ansible_become=yes
+[schema]
+schema.propvt ansible_user=ansible ansible_become=yes
+[streaming-server]
+streaming.propvt ansible_user=ansible ansible_become=yes
+[chat-socket]
+chat-socket.propvt ansible_user=ansible ansible_become=yes
+[chat-service]
+chat-service.propvt ansible_user=ansible ansible_become=yes
+[notification-app]
+notification.propvt ansible_user=ansible ansible_become=yes
+[livefeed-router]
+livefeed-router.propvt ansible_user=ansible ansible_become=yes
+[offline-app]
+offline-app.propvt ansible_user=ansible ansible_become=yes
+[intellisense]
+intellisense.propvt ansible_user=ansible ansible_become=yes
+[intellisense-router]
+intellisense-router.propvt ansible_user=ansible ansible_become=yes
+[intellisense-csharp]
+intellisense-csharp.propvt  ansible_user=ansible ansible_become=yes
+[intellisense-python]
+intellisense-python.propvt  ansible_user=ansible ansible_become=yes
+[intellisense-java]
+intellisense-java.propvt  ansible_user=ansible ansible_become=yes
+[proctoring-ui]
+proctoring-ui.propvt  ansible_user=ansible ansible_become=yes
+[metrics]
+metrics.propvt ansible_user=ansible ansible_become=yes
+[activemq]
+activemq.propvt ansible_user=ansible ansible_become=yes
+[redis]
+redis.propvt ansible_user=ansible ansible_become=yes
+[nfs]
+nfs.propvt ansible_user=ansible ansible_become=yes
+[chat-activemq]
+chat-activemq.propvt ansible_user=ansible ansible_become=yes
+[jenkins-rerun]
+jenkins.propvt ansible_user=ansible ansible_become=yes
+[chat-web-socket]
+chat-web-socket.propvt  ansible_user=ansible ansible_become=yes
+[r-simulators-router]
+r-simulators-router.propvt  ansible_user=ansible ansible_become=yes
+
+
+
+
+
+[pro:children]
+intellisense-router
+intellisense-csharp
+intellisense-python
+intellisense-java
+client-api
+360feedback
+uber
+feedback
+test-notification
+static
+mettl-apis
+corporate
+shared-report-corporate
+hpe                
+admin-panel   
+certification
+prelogin
+igt
+accenture
+duo-lingo
+#### java services ####
+fes
+bulkpdf
+report-service
+typing-simulator
+dblysis
+grader
+htmltopdf
+excel
+large-excel
+scheduler
+contest
+api-demo
+lms
+schema
+streaming-server
+chat-socket
+chat-service
+notification-app
+livefeed-router
+r-simulators-router
+proctoring
+pr
+offline-app
+intellisense
+proctoring-ui
+question-service
+question-event-service
+metrics
+activemq
+redis
+nfs
+chat-activemq
+jenkins-rerun
+report-corporate
+labs-api
+labs-1-backend
+labs-2-backend
+chat-web-socket
+
+

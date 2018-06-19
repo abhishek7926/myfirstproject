@@ -1,0 +1,19 @@
+- name: Check if mono-devel is installed
+  command: dpkg-query -l mono-devel
+  register: mono_check
+  ignore_errors: True
+
+- name: Add apt-key for mono
+  apt_key: keyserver=hkp://keyserver.ubuntu.com:80 id=3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF state=present
+  when: mono_check.rc != 0
+
+- name: Add apt-repository for mono
+  apt_repository: repo='deb http://download.mono-project.com/repo/ubuntu trusty main' state=present update_cache=yes
+  when: mono_check.rc != 0
+
+- name : Install mono
+  apt: name=mono-devel state="{{ item }}" update_cache=yes
+  when: mono_check.rc != 0
+  with_items:
+      - build-dep
+      - latest

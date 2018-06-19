@@ -1,0 +1,89 @@
+---
+################################# Maintenance ###############################################
+- hosts: all
+  roles:
+   - base-role
+
+- hosts: redis
+  roles:
+   - redis
+
+- hosts: nfs
+  roles:
+   - nfs-server
+
+- hosts: disha-cms
+  roles:
+   - disha-cms
+
+- hosts: disha-web-tc-map
+  roles:
+   - disha-web-tc-map
+
+- hosts: disha-web
+  roles:
+   - disha-web
+
+- hosts: jenkins
+  roles:
+    - jenkins
+
+- hosts: jenkins-rerun
+  roles:
+    - jenkins-rerun
+
+- hosts: username
+  roles:
+    - username
+
+- hosts: location
+  roles:
+    - location
+
+- hosts: ifsc
+  roles:
+    - ifsc
+
+- hosts: eligibility
+  roles:
+    - eligibility
+
+- hosts: pmgdisha-info
+  roles:
+    - pmgdisha-info
+
+- hosts: biometric
+  roles:
+    - biometric
+
+- hosts: biometric-admin
+  roles:
+    - biometric-admin        
+
+- hosts: certificate
+  roles:
+    - certificate
+
+- hosts: metabase
+  roles:
+    - metabase
+
+- hosts: practice
+  roles:
+    - practice
+
+- hosts: reporting-database-updator
+  roles:
+    - mettl-app
+
+- hosts: circuit-breaker
+  roles:
+    - circuit-breaker
+
+- hosts: data-processing-engine
+  roles:
+    - mettl-app
+
+
+- name: Include user-management
+  include: userManagement.yml

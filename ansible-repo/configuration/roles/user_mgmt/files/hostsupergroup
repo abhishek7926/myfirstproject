@@ -1,0 +1,1 @@
+%{{ hostname }}supergroup ALL=(ALL:ALL) NOPASSWD: /bin/su - mettl, /bin/su mettl

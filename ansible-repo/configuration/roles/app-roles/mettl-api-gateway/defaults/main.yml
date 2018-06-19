@@ -1,0 +1,7 @@
+tomcat_version: 7.0.40
+tomcat_release: 7
+ssl: true
+role: app-roles/mettl-api-gateway
+artifact_name: mettl-api-gateway
+tomcat_folder: mettl-api-gateway
+

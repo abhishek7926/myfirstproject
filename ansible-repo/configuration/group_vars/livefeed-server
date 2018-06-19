@@ -1,0 +1,3 @@
+hostname: livefeed-server
+autoscaling: "true"
+

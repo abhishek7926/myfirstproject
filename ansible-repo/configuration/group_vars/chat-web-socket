@@ -1,0 +1,5 @@
+hostname: chat-web-socket
+ulimit: 40240
+role: app-roles/chat-web-socket
+java_version: 8
+

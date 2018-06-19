@@ -1,0 +1,10 @@
+---
+  
+- name: restart fhgfs-mgmtd
+  service: name=fhgfs-mgmtd state=restarted
+- name: restart fhgfs-meta
+  service: name=fhgfs-meta state=restarted
+- name: restart fhgfs-admon
+  service: name=fhgfs-admon state=restarted
+- name: restart fhgfs-storage
+  service: name=fhgfs-storage state=restarted

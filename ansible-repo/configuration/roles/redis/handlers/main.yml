@@ -1,0 +1,8 @@
+---
+
+- name: stop redis
+  service: name=redis_6379 state=stop enabled=yes
+- name: start redis
+  service: name=redis_6379 state=start enabled=yes
+
+

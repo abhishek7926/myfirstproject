@@ -1,0 +1,48 @@
+---
+
+- name: Create Jenkins updates folder.
+  file:
+    path: "{{ jenkins_home }}/updates"
+    owner: jenkins
+    group: jenkins
+    mode: 0755
+    state: directory
+  register: jenkins_plugins_folder_create
+
+- name: Update Jenkins plugin data.
+  shell: curl -L https://updates.jenkins-ci.org/update-center.json | sed '1d;$d' > "{{ jenkins_home }}/updates/default.json" warn=no
+  args:
+    creates: "{{ jenkins_home }}/updates/default.json"
+
+- name: Permissions for default.json updates info.
+  file:
+    path: "{{ jenkins_home }}/updates/default.json"
+    owner: jenkins
+    group: jenkins1
+    mode: 0755
+  when: jenkins_plugins_folder_create.changed
+
+
+- name: List before sync
+  shell: "ls {{ jenkins_home }}/plugins/ > /tmp/beforesync"
+  register: before_sync
+  delegate_to: localhost
+
+- name: Sync jenkins plugins from s3
+  command: aws s3 sync s3://mettl-installers/jenkins-plugins/ {{ jenkins_home }}/plugins/ --delete --region {{ aws_region }}
+
+- name: List after sync
+  shell: "ls {{ jenkins_home }}/plugins/ > /tmp/aftersync"
+  register: after_sync
+  delegate_to: localhost
+
+- name: diff beforesync and aftersync files
+  shell: "diff /tmp/aftersync /tmp/beforesync;echo $?"
+  register: diff
+  delegate_to: localhost
+
+- debug: msg={{ diff.stdout }}
+- name: Restart jenkins if any new plugins are installed
+  service: name=jenkins state=restarted
+  when: diff.stdout != "0"
+

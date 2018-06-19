@@ -1,0 +1,13 @@
+hostname: client-api
+tomcat_folder: client-api
+artifact_name: clientApi
+ssl: true
+logfile_path:
+ - /var/log/*.log
+ - /home/mettl/*.log
+enable_any_specific_apache_module: true
+specific_apache_modules:
+ - proxy_ajp
+
+
+

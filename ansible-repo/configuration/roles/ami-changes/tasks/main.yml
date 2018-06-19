@@ -1,0 +1,49 @@
+- name: find user name occupied at 1001 uid 
+  shell: awk -F ":" '$3 == "1001" {print $1}' /etc/passwd
+  register: user_occupying_mettl_uid
+
+- debug: msg="{{ user_occupying_mettl_uid.stdout }}"
+
+- name: assigning 9990 to user_occupying_mettl_uid
+  user: name="{{ user_occupying_mettl_uid.stdout }}" uid=9990 
+  when: not(
+          (user_occupying_mettl_uid.stdout | trim == '')
+          or
+          (user_occupying_mettl_uid.stdout | trim == 'mettl')
+        )
+
+- name: assigning 9990 to group occupying mettl group
+  group:
+    name: "{{ user_occupying_mettl_uid.stdout }}"
+    gid: 9990
+  when: not(
+          (user_occupying_mettl_uid.stdout | trim == '')
+           or
+          (user_occupying_mettl_uid.stdout | trim == 'mettl')
+     )
+
+- name: assigning 1001 to mettl user 
+  user: name=mettl uid=1001 shell=/bin/bash
+
+- name: assigning 1001 to mettl group
+  group:
+    name: mettl
+    gid: 1001
+
+- name: "change nfs device name"
+  lineinfile:
+     dest: /etc/fstab
+     state: present
+     regexp: 'mettlconfig'
+     line:  ''
+
+- name: "include mettl-nfs-client role"
+  include_role:
+    name: mettl-nfs-client
+
+- name: "mettl user authorised key"
+  template: src=jenkins_public_key dest=/home/mettl/.ssh/authorized_keys owner=mettl group=mettl
+
+- name: "include mettl log backup role"
+  include_role:
+    name: mettl-app-log-backup

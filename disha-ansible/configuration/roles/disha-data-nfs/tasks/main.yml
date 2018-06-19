@@ -1,0 +1,12 @@
+- name: Ensure NFS common is installed.
+  apt: name=nfs-common state=installed update_cache=yes
+
+- name: Create mountable dir
+  file: path={{ item }} state=directory
+  with_items:
+    - "{{ disha_data_mount_point }}"
+
+- name: set mountpoints
+  mount: name={{ item.mount_point }} src={{ nfs_server_ip }}.{{ internal_domain }}:{{ item.mount_source }} fstype=nfs opts=auto dump=0 passno=0 state=mounted
+  with_items:
+   - { mount_source: "{{ disha_data_shared_dir }}" , mount_point: "{{ disha_data_mount_point }}" }

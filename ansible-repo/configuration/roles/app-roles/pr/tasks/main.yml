@@ -1,0 +1,6 @@
+---
+- name: ensure static folder present
+  file: state=directory path=/home/mettl/{{ volume }}/static owner=mettl group=mettl recurse=yes
+
+- name: Copying ping file
+  copy: src=ping dest=/home/mettl/{{ volume }}/static/ping owner=mettl group=mettl mode=744

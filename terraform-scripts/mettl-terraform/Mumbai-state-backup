@@ -1,0 +1,1927 @@
+{
+    "version": 3,
+    "terraform_version": "0.8.1",
+    "serial": 1,
+    "lineage": "fe0230dd-0447-48fb-94b3-cdad60ad5791",
+    "modules": [
+        {
+            "path": [
+                "root"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env"
+            ],
+            "outputs": {
+                "threesixtyfeedback_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "i-0ed5a8db2360dde73"
+                },
+                "vpc_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "vpc-a15181c9"
+                }
+            },
+            "resources": {
+                "aws_security_group.application_sg": {
+                    "type": "aws_security_group",
+                    "depends_on": [
+                        "module.vpc"
+                    ],
+                    "primary": {
+                        "id": "sg-fe949896",
+                        "attributes": {
+                            "description": "for zabbix and ssh",
+                            "egress.#": "1",
+                            "egress.482069346.cidr_blocks.#": "1",
+                            "egress.482069346.cidr_blocks.0": "0.0.0.0/0",
+                            "egress.482069346.from_port": "0",
+                            "egress.482069346.prefix_list_ids.#": "0",
+                            "egress.482069346.protocol": "-1",
+                            "egress.482069346.security_groups.#": "0",
+                            "egress.482069346.self": "false",
+                            "egress.482069346.to_port": "0",
+                            "id": "sg-fe949896",
+                            "ingress.#": "4",
+                            "ingress.2541437006.cidr_blocks.#": "1",
+                            "ingress.2541437006.cidr_blocks.0": "0.0.0.0/0",
+                            "ingress.2541437006.from_port": "22",
+                            "ingress.2541437006.protocol": "tcp",
+                            "ingress.2541437006.security_groups.#": "0",
+                            "ingress.2541437006.self": "false",
+                            "ingress.2541437006.to_port": "22",
+                            "ingress.3371188904.cidr_blocks.#": "1",
+                            "ingress.3371188904.cidr_blocks.0": "0.0.0.0/0",
+                            "ingress.3371188904.from_port": "10050",
+                            "ingress.3371188904.protocol": "tcp",
+                            "ingress.3371188904.security_groups.#": "0",
+                            "ingress.3371188904.self": "false",
+                            "ingress.3371188904.to_port": "10050",
+                            "ingress.3731741557.cidr_blocks.#": "1",
+                            "ingress.3731741557.cidr_blocks.0": "0.0.0.0/0",
+                            "ingress.3731741557.from_port": "10051",
+                            "ingress.3731741557.protocol": "tcp",
+                            "ingress.3731741557.security_groups.#": "0",
+                            "ingress.3731741557.self": "false",
+                            "ingress.3731741557.to_port": "10051",
+                            "ingress.3957729666.cidr_blocks.#": "1",
+                            "ingress.3957729666.cidr_blocks.0": "0.0.0.0/0",
+                            "ingress.3957729666.from_port": "2049",
+                            "ingress.3957729666.protocol": "tcp",
+                            "ingress.3957729666.security_groups.#": "0",
+                            "ingress.3957729666.self": "false",
+                            "ingress.3957729666.to_port": "2049",
+                            "name": "App_SG",
+                            "owner_id": "760572120597",
+                            "tags.%": "1",
+                            "tags.Name": "mum-de-application-sg",
+                            "vpc_id": "vpc-a15181c9"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                }
+            },
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "360feedback_instance"
+            ],
+            "outputs": {
+                "instance_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "i-0ed5a8db2360dde73"
+                }
+            },
+            "resources": {
+                "aws_instance.instance": {
+                    "type": "aws_instance",
+                    "depends_on": [
+                        "module.sg"
+                    ],
+                    "primary": {
+                        "id": "i-0ed5a8db2360dde73",
+                        "attributes": {
+                            "ami": "ami-c138f5ae",
+                            "associate_public_ip_address": "false",
+                            "availability_zone": "eu-central-1a",
+                            "disable_api_termination": "false",
+                            "ebs_block_device.#": "1",
+                            "ebs_block_device.952283162.delete_on_termination": "true",
+                            "ebs_block_device.952283162.device_name": "/dev/sdb",
+                            "ebs_block_device.952283162.encrypted": "false",
+                            "ebs_block_device.952283162.iops": "0",
+                            "ebs_block_device.952283162.snapshot_id": "snap-0d0dab06",
+                            "ebs_block_device.952283162.volume_size": "30",
+                            "ebs_block_device.952283162.volume_type": "standard",
+                            "ebs_optimized": "false",
+                            "ephemeral_block_device.#": "0",
+                            "iam_instance_profile": "",
+                            "id": "i-0ed5a8db2360dde73",
+                            "instance_state": "running",
+                            "instance_type": "t2.nano",
+                            "key_name": "mettl-key-try",
+                            "monitoring": "false",
+                            "network_interface_id": "eni-edd51e81",
+                            "private_dns": "ip-172-0-1-39.eu-central-1.compute.internal",
+                            "private_ip": "172.0.1.39",
+                            "public_dns": "",
+                            "public_ip": "",
+                            "root_block_device.#": "1",
+                            "root_block_device.0.delete_on_termination": "true",
+                            "root_block_device.0.iops": "100",
+                            "root_block_device.0.volume_size": "24",
+                            "root_block_device.0.volume_type": "gp2",
+                            "security_groups.#": "0",
+                            "source_dest_check": "true",
+                            "subnet_id": "subnet-7f36a717",
+                            "tags.%": "2",
+                            "tags.Environment": "mum-de",
+                            "tags.Name": "mum-de-360feedback.preeti",
+                            "tenancy": "default",
+                            "vpc_security_group_ids.#": "2",
+                            "vpc_security_group_ids.2164553200": "sg-f294989a",
+                            "vpc_security_group_ids.2457429662": "sg-fe949896"
+                        },
+                        "meta": {
+                            "schema_version": "1"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                }
+            },
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "adminpanel_instance"
+            ],
+            "outputs": {
+                "instance_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "i-01119bd88fbb7d7bc"
+                }
+            },
+            "resources": {
+                "aws_instance.instance": {
+                    "type": "aws_instance",
+                    "depends_on": [
+                        "module.sg"
+                    ],
+                    "primary": {
+                        "id": "i-01119bd88fbb7d7bc",
+                        "attributes": {
+                            "ami": "ami-c138f5ae",
+                            "associate_public_ip_address": "false",
+                            "availability_zone": "eu-central-1a",
+                            "disable_api_termination": "false",
+                            "ebs_block_device.#": "1",
+                            "ebs_block_device.952283162.delete_on_termination": "true",
+                            "ebs_block_device.952283162.device_name": "/dev/sdb",
+                            "ebs_block_device.952283162.encrypted": "false",
+                            "ebs_block_device.952283162.iops": "0",
+                            "ebs_block_device.952283162.snapshot_id": "snap-0d0dab06",
+                            "ebs_block_device.952283162.volume_size": "30",
+                            "ebs_block_device.952283162.volume_type": "standard",
+                            "ebs_optimized": "false",
+                            "ephemeral_block_device.#": "0",
+                            "iam_instance_profile": "",
+                            "id": "i-01119bd88fbb7d7bc",
+                            "instance_state": "running",
+                            "instance_type": "t2.nano",
+                            "key_name": "mettl-key-try",
+                            "monitoring": "false",
+                            "network_interface_id": "eni-e1d41f8d",
+                            "private_dns": "ip-172-0-1-191.eu-central-1.compute.internal",
+                            "private_ip": "172.0.1.191",
+                            "public_dns": "",
+                            "public_ip": "",
+                            "root_block_device.#": "1",
+                            "root_block_device.0.delete_on_termination": "true",
+                            "root_block_device.0.iops": "100",
+                            "root_block_device.0.volume_size": "24",
+                            "root_block_device.0.volume_type": "gp2",
+                            "security_groups.#": "0",
+                            "source_dest_check": "true",
+                            "subnet_id": "subnet-7f36a717",
+                            "tags.%": "2",
+                            "tags.Environment": "mum-de",
+                            "tags.Name": "mum-de-adminpanel.preeti",
+                            "tenancy": "default",
+                            "vpc_security_group_ids.#": "2",
+                            "vpc_security_group_ids.215622118": "sg-f494989c",
+                            "vpc_security_group_ids.2457429662": "sg-fe949896"
+                        },
+                        "meta": {
+                            "schema_version": "1"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                }
+            },
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "aui"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "aui-scaling"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "elb-http-sg"
+            ],
+            "outputs": {
+                "sg_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "sg-ff949897"
+                }
+            },
+            "resources": {
+                "aws_security_group.sg": {
+                    "type": "aws_security_group",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "sg-ff949897",
+                        "attributes": {
+                            "description": "Managed by Terraform",
+                            "egress.#": "1",
+                            "egress.482069346.cidr_blocks.#": "1",
+                            "egress.482069346.cidr_blocks.0": "0.0.0.0/0",
+                            "egress.482069346.from_port": "0",
+                            "egress.482069346.prefix_list_ids.#": "0",
+                            "egress.482069346.protocol": "-1",
+                            "egress.482069346.security_groups.#": "0",
+                            "egress.482069346.self": "false",
+                            "egress.482069346.to_port": "0",
+                            "id": "sg-ff949897",
+                            "ingress.#": "2",
+                            "ingress.2214680975.cidr_blocks.#": "1",
+                            "ingress.2214680975.cidr_blocks.0": "0.0.0.0/0",
+                            "ingress.2214680975.from_port": "80",
+                            "ingress.2214680975.protocol": "tcp",
+                            "ingress.2214680975.security_groups.#": "0",
+                            "ingress.2214680975.self": "false",
+                            "ingress.2214680975.to_port": "80",
+                            "ingress.2617001939.cidr_blocks.#": "1",
+                            "ingress.2617001939.cidr_blocks.0": "0.0.0.0/0",
+                            "ingress.2617001939.from_port": "443",
+                            "ingress.2617001939.protocol": "tcp",
+                            "ingress.2617001939.security_groups.#": "0",
+                            "ingress.2617001939.self": "false",
+                            "ingress.2617001939.to_port": "443",
+                            "name": "mum-de-elb-http-sg",
+                            "owner_id": "760572120597",
+                            "tags.%": "1",
+                            "tags.Name": "mum-de-elb-http-sg",
+                            "vpc_id": "vpc-a15181c9"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_security_group_rule.sg_rule.0": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.sg"
+                    ],
+                    "primary": {
+                        "id": "sgrule-567359344",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "0.0.0.0/0",
+                            "from_port": "80",
+                            "id": "sgrule-567359344",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-ff949897",
+                            "self": "false",
+                            "to_port": "80",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_security_group_rule.sg_rule.1": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.sg"
+                    ],
+                    "primary": {
+                        "id": "sgrule-832675802",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "0.0.0.0/0",
+                            "from_port": "443",
+                            "id": "sgrule-832675802",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-ff949897",
+                            "self": "false",
+                            "to_port": "443",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_security_group_rule.sg_rule.2": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.sg"
+                    ],
+                    "primary": {
+                        "id": "sgrule-1320413194",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "0.0.0.0/0",
+                            "from_port": "0",
+                            "id": "sgrule-1320413194",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "-1",
+                            "security_group_id": "sg-ff949897",
+                            "self": "false",
+                            "to_port": "0",
+                            "type": "egress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                }
+            },
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "elk_instance"
+            ],
+            "outputs": {
+                "instance_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "i-084520d04ab5fc827"
+                }
+            },
+            "resources": {
+                "aws_instance.instance": {
+                    "type": "aws_instance",
+                    "depends_on": [
+                        "module.sg"
+                    ],
+                    "primary": {
+                        "id": "i-084520d04ab5fc827",
+                        "attributes": {
+                            "ami": "ami-c33af7ac",
+                            "associate_public_ip_address": "false",
+                            "availability_zone": "eu-central-1a",
+                            "disable_api_termination": "false",
+                            "ebs_block_device.#": "0",
+                            "ebs_optimized": "false",
+                            "ephemeral_block_device.#": "0",
+                            "iam_instance_profile": "",
+                            "id": "i-084520d04ab5fc827",
+                            "instance_state": "running",
+                            "instance_type": "t2.nano",
+                            "key_name": "mettl-key-try",
+                            "monitoring": "false",
+                            "network_interface_id": "eni-d0d61dbc",
+                            "private_dns": "ip-172-0-3-208.eu-central-1.compute.internal",
+                            "private_ip": "172.0.3.208",
+                            "public_dns": "",
+                            "public_ip": "",
+                            "root_block_device.#": "1",
+                            "root_block_device.0.delete_on_termination": "true",
+                            "root_block_device.0.iops": "100",
+                            "root_block_device.0.volume_size": "24",
+                            "root_block_device.0.volume_type": "gp2",
+                            "security_groups.#": "0",
+                            "source_dest_check": "true",
+                            "subnet_id": "subnet-7036a718",
+                            "tags.%": "2",
+                            "tags.Environment": "mum-de",
+                            "tags.Name": "mum-de-elk.preeti",
+                            "tenancy": "default",
+                            "vpc_security_group_ids.#": "2",
+                            "vpc_security_group_ids.531051144": "sg-fc949894",
+                            "vpc_security_group_ids.885637105": "sg-f594989d"
+                        },
+                        "meta": {
+                            "schema_version": "1"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                }
+            },
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "jenkins_instance"
+            ],
+            "outputs": {
+                "instance_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "i-0a35d3267c9f164d5"
+                }
+            },
+            "resources": {
+                "aws_instance.instance": {
+                    "type": "aws_instance",
+                    "depends_on": [
+                        "module.sg"
+                    ],
+                    "primary": {
+                        "id": "i-0a35d3267c9f164d5",
+                        "attributes": {
+                            "ami": "ami-c33af7ac",
+                            "associate_public_ip_address": "false",
+                            "availability_zone": "eu-central-1a",
+                            "disable_api_termination": "false",
+                            "ebs_block_device.#": "0",
+                            "ebs_optimized": "false",
+                            "ephemeral_block_device.#": "0",
+                            "iam_instance_profile": "",
+                            "id": "i-0a35d3267c9f164d5",
+                            "instance_state": "running",
+                            "instance_type": "t2.nano",
+                            "key_name": "mettl-key-try",
+                            "monitoring": "false",
+                            "network_interface_id": "eni-5cd41f30",
+                            "private_dns": "ip-172-0-3-16.eu-central-1.compute.internal",
+                            "private_ip": "172.0.3.16",
+                            "public_dns": "",
+                            "public_ip": "",
+                            "root_block_device.#": "1",
+                            "root_block_device.0.delete_on_termination": "true",
+                            "root_block_device.0.iops": "100",
+                            "root_block_device.0.volume_size": "24",
+                            "root_block_device.0.volume_type": "gp2",
+                            "security_groups.#": "0",
+                            "source_dest_check": "true",
+                            "subnet_id": "subnet-7036a718",
+                            "tags.%": "2",
+                            "tags.Environment": "mum-de",
+                            "tags.Name": "mum-de-jenkins.preeti",
+                            "tenancy": "default",
+                            "vpc_security_group_ids.#": "2",
+                            "vpc_security_group_ids.3579623083": "sg-f1949899",
+                            "vpc_security_group_ids.531051144": "sg-fc949894"
+                        },
+                        "meta": {
+                            "schema_version": "1"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                }
+            },
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "kafka_instance"
+            ],
+            "outputs": {
+                "instance_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "i-053cdeb3e48c20105"
+                }
+            },
+            "resources": {
+                "aws_instance.instance": {
+                    "type": "aws_instance",
+                    "depends_on": [
+                        "module.sg"
+                    ],
+                    "primary": {
+                        "id": "i-053cdeb3e48c20105",
+                        "attributes": {
+                            "ami": "ami-c33af7ac",
+                            "associate_public_ip_address": "false",
+                            "availability_zone": "eu-central-1a",
+                            "disable_api_termination": "false",
+                            "ebs_block_device.#": "0",
+                            "ebs_optimized": "false",
+                            "ephemeral_block_device.#": "0",
+                            "iam_instance_profile": "",
+                            "id": "i-053cdeb3e48c20105",
+                            "instance_state": "running",
+                            "instance_type": "t2.small",
+                            "key_name": "mettl-key-try",
+                            "monitoring": "false",
+                            "network_interface_id": "eni-ecd51e80",
+                            "private_dns": "ip-172-0-3-4.eu-central-1.compute.internal",
+                            "private_ip": "172.0.3.4",
+                            "public_dns": "",
+                            "public_ip": "",
+                            "root_block_device.#": "1",
+                            "root_block_device.0.delete_on_termination": "true",
+                            "root_block_device.0.iops": "100",
+                            "root_block_device.0.volume_size": "24",
+                            "root_block_device.0.volume_type": "gp2",
+                            "security_groups.#": "0",
+                            "source_dest_check": "true",
+                            "subnet_id": "subnet-7036a718",
+                            "tags.%": "2",
+                            "tags.Environment": "mum-de",
+                            "tags.Name": "mum-de-kafka.preeti",
+                            "tenancy": "default",
+                            "vpc_security_group_ids.#": "2",
+                            "vpc_security_group_ids.2902932624": "sg-fd949895",
+                            "vpc_security_group_ids.531051144": "sg-fc949894"
+                        },
+                        "meta": {
+                            "schema_version": "1"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                }
+            },
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "pr-lb"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "vpc"
+            ],
+            "outputs": {
+                "application_subnet_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "subnet-7f36a717"
+                },
+                "auth_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "mettl-key-try"
+                },
+                "default_sg_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "sg-fc949894"
+                },
+                "maintenance_subnet_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "subnet-7036a718"
+                },
+                "public_subnet_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "subnet-7d36a715"
+                },
+                "vpc_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "vpc-a15181c9"
+                }
+            },
+            "resources": {
+                "aws_internet_gateway.igw": {
+                    "type": "aws_internet_gateway",
+                    "depends_on": [
+                        "aws_vpc.vpc"
+                    ],
+                    "primary": {
+                        "id": "igw-9a9fc4f3",
+                        "attributes": {
+                            "id": "igw-9a9fc4f3",
+                            "tags.%": "1",
+                            "tags.Name": "mum-de-igw",
+                            "vpc_id": "vpc-a15181c9"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_key_pair.auth": {
+                    "type": "aws_key_pair",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "mettl-key-try",
+                        "attributes": {
+                            "fingerprint": "66:5a:f7:87:53:25:3d:cc:1d:0a:50:fb:b0:61:04:12",
+                            "id": "mettl-key-try",
+                            "key_name": "mettl-key-try",
+                            "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCkRhmtw56Z/AGwLMe6uE9BUbpNhrsMZdx7pEwocIpQSaEL71pdRLB22lzjxMz9S6uvTTKPH7jFDwg0vN+3xMJms1S+5Xx3ca1yuLLrY4G286PDo8QzAjKS5+tGShdPaR28aHzwXpB3ECm67izQF4J9bin5oXcT5+rCDk6TQw7yzXp2xmcoKKNrps9uL87HrYFYehJeW7s/QBAgQ6ymGHVhEbR0zhByYjLMJWw72Q8kOOzbSYyprxhb6klNB/Rl+2lssFvtpYCRi0VjD94icKAVcZCoCjGeR6jrU2XyhHgX/VAQwG4T1GSsivV9b8ipxUAhKvV+hVwtyUQsyXXzWxil shanky@ip-172-16-0-178.ap-southeast-1.compute.internal"
+                        },
+                        "meta": {
+                            "schema_version": "1"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_route_table.public_subnet_route": {
+                    "type": "aws_route_table",
+                    "depends_on": [
+                        "aws_internet_gateway.igw",
+                        "aws_vpc.vpc"
+                    ],
+                    "primary": {
+                        "id": "rtb-909921f8",
+                        "attributes": {
+                            "id": "rtb-909921f8",
+                            "propagating_vgws.#": "0",
+                            "route.#": "1",
+                            "route.3047244229.cidr_block": "0.0.0.0/0",
+                            "route.3047244229.gateway_id": "igw-9a9fc4f3",
+                            "route.3047244229.instance_id": "",
+                            "route.3047244229.nat_gateway_id": "",
+                            "route.3047244229.network_interface_id": "",
+                            "route.3047244229.vpc_peering_connection_id": "",
+                            "tags.%": "1",
+                            "tags.Name": "public_subnet_route",
+                            "vpc_id": "vpc-a15181c9"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_route_table_association.public_subnet_route": {
+                    "type": "aws_route_table_association",
+                    "depends_on": [
+                        "aws_route_table.public_subnet_route",
+                        "aws_subnet.public_subnet"
+                    ],
+                    "primary": {
+                        "id": "rtbassoc-1dadf775",
+                        "attributes": {
+                            "id": "rtbassoc-1dadf775",
+                            "route_table_id": "rtb-909921f8",
+                            "subnet_id": "subnet-7d36a715"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_security_group.default-sg": {
+                    "type": "aws_security_group",
+                    "depends_on": [
+                        "aws_vpc.vpc"
+                    ],
+                    "primary": {
+                        "id": "sg-fc949894",
+                        "attributes": {
+                            "description": "Added as it is mandatory for instance module to have 2 sgs",
+                            "egress.#": "0",
+                            "id": "sg-fc949894",
+                            "ingress.#": "0",
+                            "name": "mum-de-default-sg",
+                            "owner_id": "760572120597",
+                            "tags.%": "0",
+                            "vpc_id": "vpc-a15181c9"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_subnet.application_subnet": {
+                    "type": "aws_subnet",
+                    "depends_on": [
+                        "aws_vpc.vpc"
+                    ],
+                    "primary": {
+                        "id": "subnet-7f36a717",
+                        "attributes": {
+                            "availability_zone": "eu-central-1a",
+                            "cidr_block": "172.0.1.0/24",
+                            "id": "subnet-7f36a717",
+                            "map_public_ip_on_launch": "false",
+                            "tags.%": "1",
+                            "tags.Name": "mum-de-private_application_subnet",
+                            "vpc_id": "vpc-a15181c9"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_subnet.maintenance_subnet": {
+                    "type": "aws_subnet",
+                    "depends_on": [
+                        "aws_vpc.vpc"
+                    ],
+                    "primary": {
+                        "id": "subnet-7036a718",
+                        "attributes": {
+                            "availability_zone": "eu-central-1a",
+                            "cidr_block": "172.0.3.0/24",
+                            "id": "subnet-7036a718",
+                            "map_public_ip_on_launch": "false",
+                            "tags.%": "1",
+                            "tags.Name": "mum-de-private_maintenance_subnet",
+                            "vpc_id": "vpc-a15181c9"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_subnet.public_subnet": {
+                    "type": "aws_subnet",
+                    "depends_on": [
+                        "aws_vpc.vpc"
+                    ],
+                    "primary": {
+                        "id": "subnet-7d36a715",
+                        "attributes": {
+                            "availability_zone": "eu-central-1a",
+                            "cidr_block": "172.0.2.0/24",
+                            "id": "subnet-7d36a715",
+                            "map_public_ip_on_launch": "false",
+                            "tags.%": "1",
+                            "tags.Name": "mum-de-public-subnet",
+                            "vpc_id": "vpc-a15181c9"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_vpc.vpc": {
+                    "type": "aws_vpc",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "vpc-a15181c9",
+                        "attributes": {
+                            "cidr_block": "172.0.0.0/16",
+                            "default_network_acl_id": "acl-613c8f09",
+                            "default_route_table_id": "rtb-9c9921f4",
+                            "default_security_group_id": "sg-e694988e",
+                            "dhcp_options_id": "dopt-be8561d7",
+                            "enable_dns_hostnames": "true",
+                            "enable_dns_support": "true",
+                            "id": "vpc-a15181c9",
+                            "instance_tenancy": "default",
+                            "main_route_table_id": "rtb-9c9921f4",
+                            "tags.%": "1",
+                            "tags.Name": "preeti-vpc-try"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                }
+            },
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "zabbix_instance"
+            ],
+            "outputs": {
+                "instance_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "i-0065a5a9dcb002aec"
+                }
+            },
+            "resources": {
+                "aws_instance.instance": {
+                    "type": "aws_instance",
+                    "depends_on": [
+                        "module.sg"
+                    ],
+                    "primary": {
+                        "id": "i-0065a5a9dcb002aec",
+                        "attributes": {
+                            "ami": "ami-c33af7ac",
+                            "associate_public_ip_address": "false",
+                            "availability_zone": "eu-central-1a",
+                            "disable_api_termination": "false",
+                            "ebs_block_device.#": "0",
+                            "ebs_optimized": "false",
+                            "ephemeral_block_device.#": "0",
+                            "iam_instance_profile": "",
+                            "id": "i-0065a5a9dcb002aec",
+                            "instance_state": "running",
+                            "instance_type": "t2.nano",
+                            "key_name": "mettl-key-try",
+                            "monitoring": "false",
+                            "network_interface_id": "eni-39d61d55",
+                            "private_dns": "ip-172-0-3-182.eu-central-1.compute.internal",
+                            "private_ip": "172.0.3.182",
+                            "public_dns": "",
+                            "public_ip": "",
+                            "root_block_device.#": "1",
+                            "root_block_device.0.delete_on_termination": "true",
+                            "root_block_device.0.iops": "100",
+                            "root_block_device.0.volume_size": "24",
+                            "root_block_device.0.volume_type": "gp2",
+                            "security_groups.#": "0",
+                            "source_dest_check": "true",
+                            "subnet_id": "subnet-7036a718",
+                            "tags.%": "2",
+                            "tags.Environment": "mum-de",
+                            "tags.Name": "mum-de-zabbix.preeti",
+                            "tenancy": "default",
+                            "vpc_security_group_ids.#": "2",
+                            "vpc_security_group_ids.531051144": "sg-fc949894",
+                            "vpc_security_group_ids.666152095": "sg-fb949893"
+                        },
+                        "meta": {
+                            "schema_version": "1"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                }
+            },
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "360feedback_instance",
+                "sg"
+            ],
+            "outputs": {
+                "sg_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "sg-f294989a"
+                }
+            },
+            "resources": {
+                "aws_security_group.sg": {
+                    "type": "aws_security_group",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "sg-f294989a",
+                        "attributes": {
+                            "description": "Managed by Terraform",
+                            "egress.#": "1",
+                            "egress.482069346.cidr_blocks.#": "1",
+                            "egress.482069346.cidr_blocks.0": "0.0.0.0/0",
+                            "egress.482069346.from_port": "0",
+                            "egress.482069346.prefix_list_ids.#": "0",
+                            "egress.482069346.protocol": "-1",
+                            "egress.482069346.security_groups.#": "0",
+                            "egress.482069346.self": "false",
+                            "egress.482069346.to_port": "0",
+                            "id": "sg-f294989a",
+                            "ingress.#": "1",
+                            "ingress.1753897522.cidr_blocks.#": "1",
+                            "ingress.1753897522.cidr_blocks.0": "172.0.1.0/24",
+                            "ingress.1753897522.from_port": "8030",
+                            "ingress.1753897522.protocol": "tcp",
+                            "ingress.1753897522.security_groups.#": "0",
+                            "ingress.1753897522.self": "false",
+                            "ingress.1753897522.to_port": "8030",
+                            "name": "mum-de-360feedback-sg",
+                            "owner_id": "760572120597",
+                            "tags.%": "1",
+                            "tags.Name": "mum-de-360feedback-sg",
+                            "vpc_id": "vpc-a15181c9"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_security_group_rule.sg_rule.0": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.sg"
+                    ],
+                    "primary": {
+                        "id": "sgrule-3525848409",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "172.0.1.0/24",
+                            "from_port": "8030",
+                            "id": "sgrule-3525848409",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-f294989a",
+                            "self": "false",
+                            "to_port": "8030",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_security_group_rule.sg_rule.1": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.sg"
+                    ],
+                    "primary": {
+                        "id": "sgrule-789363176",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "0.0.0.0/0",
+                            "from_port": "0",
+                            "id": "sgrule-789363176",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "-1",
+                            "security_group_id": "sg-f294989a",
+                            "self": "false",
+                            "to_port": "0",
+                            "type": "egress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                }
+            },
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "adminpanel_instance",
+                "sg"
+            ],
+            "outputs": {
+                "sg_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "sg-f494989c"
+                }
+            },
+            "resources": {
+                "aws_security_group.sg": {
+                    "type": "aws_security_group",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "sg-f494989c",
+                        "attributes": {
+                            "description": "Managed by Terraform",
+                            "egress.#": "1",
+                            "egress.482069346.cidr_blocks.#": "1",
+                            "egress.482069346.cidr_blocks.0": "0.0.0.0/0",
+                            "egress.482069346.from_port": "0",
+                            "egress.482069346.prefix_list_ids.#": "0",
+                            "egress.482069346.protocol": "-1",
+                            "egress.482069346.security_groups.#": "0",
+                            "egress.482069346.self": "false",
+                            "egress.482069346.to_port": "0",
+                            "id": "sg-f494989c",
+                            "ingress.#": "1",
+                            "ingress.1753897522.cidr_blocks.#": "1",
+                            "ingress.1753897522.cidr_blocks.0": "172.0.1.0/24",
+                            "ingress.1753897522.from_port": "8030",
+                            "ingress.1753897522.protocol": "tcp",
+                            "ingress.1753897522.security_groups.#": "0",
+                            "ingress.1753897522.self": "false",
+                            "ingress.1753897522.to_port": "8030",
+                            "name": "mum-de-adminpanel-sg",
+                            "owner_id": "760572120597",
+                            "tags.%": "1",
+                            "tags.Name": "mum-de-adminpanel-sg",
+                            "vpc_id": "vpc-a15181c9"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_security_group_rule.sg_rule.0": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.sg"
+                    ],
+                    "primary": {
+                        "id": "sgrule-1101018493",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "172.0.1.0/24",
+                            "from_port": "8030",
+                            "id": "sgrule-1101018493",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-f494989c",
+                            "self": "false",
+                            "to_port": "8030",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_security_group_rule.sg_rule.1": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.sg"
+                    ],
+                    "primary": {
+                        "id": "sgrule-81821222",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "0.0.0.0/0",
+                            "from_port": "0",
+                            "id": "sgrule-81821222",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "-1",
+                            "security_group_id": "sg-f494989c",
+                            "self": "false",
+                            "to_port": "0",
+                            "type": "egress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                }
+            },
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "aui",
+                "as-lb-http"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "aui",
+                "as-with-lb-http"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "elk_instance",
+                "sg"
+            ],
+            "outputs": {
+                "sg_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "sg-f594989d"
+                }
+            },
+            "resources": {
+                "aws_security_group.sg": {
+                    "type": "aws_security_group",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "sg-f594989d",
+                        "attributes": {
+                            "description": "Managed by Terraform",
+                            "egress.#": "1",
+                            "egress.482069346.cidr_blocks.#": "1",
+                            "egress.482069346.cidr_blocks.0": "0.0.0.0/0",
+                            "egress.482069346.from_port": "0",
+                            "egress.482069346.prefix_list_ids.#": "0",
+                            "egress.482069346.protocol": "-1",
+                            "egress.482069346.security_groups.#": "0",
+                            "egress.482069346.self": "false",
+                            "egress.482069346.to_port": "0",
+                            "id": "sg-f594989d",
+                            "ingress.#": "1",
+                            "ingress.1847067680.cidr_blocks.#": "1",
+                            "ingress.1847067680.cidr_blocks.0": "172.0.1.0/24",
+                            "ingress.1847067680.from_port": "5601",
+                            "ingress.1847067680.protocol": "tcp",
+                            "ingress.1847067680.security_groups.#": "0",
+                            "ingress.1847067680.self": "false",
+                            "ingress.1847067680.to_port": "5601",
+                            "name": "mum-de-elk-sg",
+                            "owner_id": "760572120597",
+                            "tags.%": "1",
+                            "tags.Name": "mum-de-elk-sg",
+                            "vpc_id": "vpc-a15181c9"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_security_group_rule.sg_rule.0": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.sg"
+                    ],
+                    "primary": {
+                        "id": "sgrule-3332808939",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "172.0.1.0/24",
+                            "from_port": "5601",
+                            "id": "sgrule-3332808939",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-f594989d",
+                            "self": "false",
+                            "to_port": "5601",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_security_group_rule.sg_rule.1": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.sg"
+                    ],
+                    "primary": {
+                        "id": "sgrule-1619836283",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "0.0.0.0/0",
+                            "from_port": "0",
+                            "id": "sgrule-1619836283",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "-1",
+                            "security_group_id": "sg-f594989d",
+                            "self": "false",
+                            "to_port": "0",
+                            "type": "egress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                }
+            },
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "jenkins_instance",
+                "sg"
+            ],
+            "outputs": {
+                "sg_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "sg-f1949899"
+                }
+            },
+            "resources": {
+                "aws_security_group.sg": {
+                    "type": "aws_security_group",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "sg-f1949899",
+                        "attributes": {
+                            "description": "Managed by Terraform",
+                            "egress.#": "1",
+                            "egress.482069346.cidr_blocks.#": "1",
+                            "egress.482069346.cidr_blocks.0": "0.0.0.0/0",
+                            "egress.482069346.from_port": "0",
+                            "egress.482069346.prefix_list_ids.#": "0",
+                            "egress.482069346.protocol": "-1",
+                            "egress.482069346.security_groups.#": "0",
+                            "egress.482069346.self": "false",
+                            "egress.482069346.to_port": "0",
+                            "id": "sg-f1949899",
+                            "ingress.#": "1",
+                            "ingress.2883839373.cidr_blocks.#": "1",
+                            "ingress.2883839373.cidr_blocks.0": "172.0.1.0/24",
+                            "ingress.2883839373.from_port": "8080",
+                            "ingress.2883839373.protocol": "tcp",
+                            "ingress.2883839373.security_groups.#": "0",
+                            "ingress.2883839373.self": "false",
+                            "ingress.2883839373.to_port": "8080",
+                            "name": "mum-de-jenkins-sg",
+                            "owner_id": "760572120597",
+                            "tags.%": "1",
+                            "tags.Name": "mum-de-jenkins-sg",
+                            "vpc_id": "vpc-a15181c9"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_security_group_rule.sg_rule.0": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.sg"
+                    ],
+                    "primary": {
+                        "id": "sgrule-3464850465",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "172.0.1.0/24",
+                            "from_port": "8080",
+                            "id": "sgrule-3464850465",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-f1949899",
+                            "self": "false",
+                            "to_port": "8080",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_security_group_rule.sg_rule.1": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.sg"
+                    ],
+                    "primary": {
+                        "id": "sgrule-4146655561",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "0.0.0.0/0",
+                            "from_port": "0",
+                            "id": "sgrule-4146655561",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "-1",
+                            "security_group_id": "sg-f1949899",
+                            "self": "false",
+                            "to_port": "0",
+                            "type": "egress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                }
+            },
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "kafka_instance",
+                "sg"
+            ],
+            "outputs": {
+                "sg_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "sg-fd949895"
+                }
+            },
+            "resources": {
+                "aws_security_group.sg": {
+                    "type": "aws_security_group",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "sg-fd949895",
+                        "attributes": {
+                            "description": "Managed by Terraform",
+                            "egress.#": "1",
+                            "egress.482069346.cidr_blocks.#": "1",
+                            "egress.482069346.cidr_blocks.0": "0.0.0.0/0",
+                            "egress.482069346.from_port": "0",
+                            "egress.482069346.prefix_list_ids.#": "0",
+                            "egress.482069346.protocol": "-1",
+                            "egress.482069346.security_groups.#": "0",
+                            "egress.482069346.self": "false",
+                            "egress.482069346.to_port": "0",
+                            "id": "sg-fd949895",
+                            "ingress.#": "1",
+                            "ingress.2650351208.cidr_blocks.#": "1",
+                            "ingress.2650351208.cidr_blocks.0": "172.0.1.0/24",
+                            "ingress.2650351208.from_port": "9092",
+                            "ingress.2650351208.protocol": "tcp",
+                            "ingress.2650351208.security_groups.#": "0",
+                            "ingress.2650351208.self": "false",
+                            "ingress.2650351208.to_port": "9092",
+                            "name": "mum-de-kafka-sg",
+                            "owner_id": "760572120597",
+                            "tags.%": "1",
+                            "tags.Name": "mum-de-kafka-sg",
+                            "vpc_id": "vpc-a15181c9"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_security_group_rule.sg_rule.0": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.sg"
+                    ],
+                    "primary": {
+                        "id": "sgrule-3000403490",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "172.0.1.0/24",
+                            "from_port": "9092",
+                            "id": "sgrule-3000403490",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-fd949895",
+                            "self": "false",
+                            "to_port": "9092",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_security_group_rule.sg_rule.1": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.sg"
+                    ],
+                    "primary": {
+                        "id": "sgrule-1669913520",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "0.0.0.0/0",
+                            "from_port": "0",
+                            "id": "sgrule-1669913520",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "-1",
+                            "security_group_id": "sg-fd949895",
+                            "self": "false",
+                            "to_port": "0",
+                            "type": "egress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                }
+            },
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "vpc",
+                "nat_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "zabbix_instance",
+                "sg"
+            ],
+            "outputs": {
+                "sg_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "sg-fb949893"
+                }
+            },
+            "resources": {
+                "aws_security_group.sg": {
+                    "type": "aws_security_group",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "sg-fb949893",
+                        "attributes": {
+                            "description": "Managed by Terraform",
+                            "egress.#": "1",
+                            "egress.482069346.cidr_blocks.#": "1",
+                            "egress.482069346.cidr_blocks.0": "0.0.0.0/0",
+                            "egress.482069346.from_port": "0",
+                            "egress.482069346.prefix_list_ids.#": "0",
+                            "egress.482069346.protocol": "-1",
+                            "egress.482069346.security_groups.#": "0",
+                            "egress.482069346.self": "false",
+                            "egress.482069346.to_port": "0",
+                            "id": "sg-fb949893",
+                            "ingress.#": "2",
+                            "ingress.1571500886.cidr_blocks.#": "1",
+                            "ingress.1571500886.cidr_blocks.0": "172.0.1.0/24",
+                            "ingress.1571500886.from_port": "10050",
+                            "ingress.1571500886.protocol": "tcp",
+                            "ingress.1571500886.security_groups.#": "0",
+                            "ingress.1571500886.self": "false",
+                            "ingress.1571500886.to_port": "10050",
+                            "ingress.4140256137.cidr_blocks.#": "1",
+                            "ingress.4140256137.cidr_blocks.0": "172.0.1.0/24",
+                            "ingress.4140256137.from_port": "10051",
+                            "ingress.4140256137.protocol": "tcp",
+                            "ingress.4140256137.security_groups.#": "0",
+                            "ingress.4140256137.self": "false",
+                            "ingress.4140256137.to_port": "10051",
+                            "name": "mum-de-zabbix-sg",
+                            "owner_id": "760572120597",
+                            "tags.%": "1",
+                            "tags.Name": "mum-de-zabbix-sg",
+                            "vpc_id": "vpc-a15181c9"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_security_group_rule.sg_rule.0": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.sg"
+                    ],
+                    "primary": {
+                        "id": "sgrule-632923668",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "172.0.1.0/24",
+                            "from_port": "10051",
+                            "id": "sgrule-632923668",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-fb949893",
+                            "self": "false",
+                            "to_port": "10051",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_security_group_rule.sg_rule.1": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.sg"
+                    ],
+                    "primary": {
+                        "id": "sgrule-2110205350",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "172.0.1.0/24",
+                            "from_port": "10050",
+                            "id": "sgrule-2110205350",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-fb949893",
+                            "self": "false",
+                            "to_port": "10050",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_security_group_rule.sg_rule.2": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.sg"
+                    ],
+                    "primary": {
+                        "id": "sgrule-348491646",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "0.0.0.0/0",
+                            "from_port": "0",
+                            "id": "sgrule-348491646",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "-1",
+                            "security_group_id": "sg-fb949893",
+                            "self": "false",
+                            "to_port": "0",
+                            "type": "egress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                }
+            },
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "vpc",
+                "nat_instance",
+                "sg"
+            ],
+            "outputs": {
+                "sg_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "sg-f394989b"
+                }
+            },
+            "resources": {
+                "aws_security_group.sg": {
+                    "type": "aws_security_group",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "sg-f394989b",
+                        "attributes": {
+                            "description": "Managed by Terraform",
+                            "egress.#": "1",
+                            "egress.482069346.cidr_blocks.#": "1",
+                            "egress.482069346.cidr_blocks.0": "0.0.0.0/0",
+                            "egress.482069346.from_port": "0",
+                            "egress.482069346.prefix_list_ids.#": "0",
+                            "egress.482069346.protocol": "-1",
+                            "egress.482069346.security_groups.#": "0",
+                            "egress.482069346.self": "false",
+                            "egress.482069346.to_port": "0",
+                            "id": "sg-f394989b",
+                            "ingress.#": "6",
+                            "ingress.188677667.cidr_blocks.#": "1",
+                            "ingress.188677667.cidr_blocks.0": "172.0.1.0/24",
+                            "ingress.188677667.from_port": "587",
+                            "ingress.188677667.protocol": "tcp",
+                            "ingress.188677667.security_groups.#": "0",
+                            "ingress.188677667.self": "false",
+                            "ingress.188677667.to_port": "587",
+                            "ingress.1909329114.cidr_blocks.#": "1",
+                            "ingress.1909329114.cidr_blocks.0": "172.0.1.0/24",
+                            "ingress.1909329114.from_port": "443",
+                            "ingress.1909329114.protocol": "tcp",
+                            "ingress.1909329114.security_groups.#": "0",
+                            "ingress.1909329114.self": "false",
+                            "ingress.1909329114.to_port": "443",
+                            "ingress.3097012017.cidr_blocks.#": "1",
+                            "ingress.3097012017.cidr_blocks.0": "172.0.1.0/24",
+                            "ingress.3097012017.from_port": "22",
+                            "ingress.3097012017.protocol": "tcp",
+                            "ingress.3097012017.security_groups.#": "0",
+                            "ingress.3097012017.self": "false",
+                            "ingress.3097012017.to_port": "22",
+                            "ingress.3875487130.cidr_blocks.#": "1",
+                            "ingress.3875487130.cidr_blocks.0": "172.0.1.0/24",
+                            "ingress.3875487130.from_port": "465",
+                            "ingress.3875487130.protocol": "tcp",
+                            "ingress.3875487130.security_groups.#": "0",
+                            "ingress.3875487130.self": "false",
+                            "ingress.3875487130.to_port": "465",
+                            "ingress.506125395.cidr_blocks.#": "1",
+                            "ingress.506125395.cidr_blocks.0": "172.0.1.0/24",
+                            "ingress.506125395.from_port": "29418",
+                            "ingress.506125395.protocol": "tcp",
+                            "ingress.506125395.security_groups.#": "0",
+                            "ingress.506125395.self": "false",
+                            "ingress.506125395.to_port": "29418",
+                            "ingress.52783727.cidr_blocks.#": "1",
+                            "ingress.52783727.cidr_blocks.0": "172.0.1.0/24",
+                            "ingress.52783727.from_port": "80",
+                            "ingress.52783727.protocol": "tcp",
+                            "ingress.52783727.security_groups.#": "0",
+                            "ingress.52783727.self": "false",
+                            "ingress.52783727.to_port": "80",
+                            "name": "mum-de-nat-sg",
+                            "owner_id": "760572120597",
+                            "tags.%": "1",
+                            "tags.Name": "mum-de-nat-sg",
+                            "vpc_id": "vpc-a15181c9"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_security_group_rule.sg_rule.0": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.sg"
+                    ],
+                    "primary": {
+                        "id": "sgrule-3060817269",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "172.0.1.0/24",
+                            "from_port": "22",
+                            "id": "sgrule-3060817269",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-f394989b",
+                            "self": "false",
+                            "to_port": "22",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_security_group_rule.sg_rule.1": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.sg"
+                    ],
+                    "primary": {
+                        "id": "sgrule-2006788127",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "172.0.1.0/24",
+                            "from_port": "80",
+                            "id": "sgrule-2006788127",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-f394989b",
+                            "self": "false",
+                            "to_port": "80",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_security_group_rule.sg_rule.2": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.sg"
+                    ],
+                    "primary": {
+                        "id": "sgrule-3668787827",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "172.0.1.0/24",
+                            "from_port": "443",
+                            "id": "sgrule-3668787827",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-f394989b",
+                            "self": "false",
+                            "to_port": "443",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_security_group_rule.sg_rule.3": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.sg"
+                    ],
+                    "primary": {
+                        "id": "sgrule-2064292477",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "172.0.1.0/24",
+                            "from_port": "465",
+                            "id": "sgrule-2064292477",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-f394989b",
+                            "self": "false",
+                            "to_port": "465",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_security_group_rule.sg_rule.4": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.sg"
+                    ],
+                    "primary": {
+                        "id": "sgrule-1281421639",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "172.0.1.0/24",
+                            "from_port": "587",
+                            "id": "sgrule-1281421639",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-f394989b",
+                            "self": "false",
+                            "to_port": "587",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_security_group_rule.sg_rule.5": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.sg"
+                    ],
+                    "primary": {
+                        "id": "sgrule-4270357334",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "172.0.1.0/24",
+                            "from_port": "29418",
+                            "id": "sgrule-4270357334",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-f394989b",
+                            "self": "false",
+                            "to_port": "29418",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_security_group_rule.sg_rule.6": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.sg"
+                    ],
+                    "primary": {
+                        "id": "sgrule-398584245",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "0.0.0.0/0",
+                            "from_port": "0",
+                            "id": "sgrule-398584245",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "-1",
+                            "security_group_id": "sg-f394989b",
+                            "self": "false",
+                            "to_port": "0",
+                            "type": "egress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                }
+            },
+            "depends_on": []
+        }
+    ]
+}

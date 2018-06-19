@@ -1,0 +1,87 @@
+  - name: default site enabled
+    stat: path=/etc/apache2/sites-enabled/000-default.conf
+    register: default_site
+
+  - name: ssl site existence state
+    stat: path=/home/ubuntu/configuration/roles/{{ role }}/files/{{ env }}/vhost/*ssl.conf
+    register: ssl_site
+
+  - name: our {{ site }} enabled
+    stat: path=/etc/apache2/sites-enabled/{{ site }}.conf
+    register: our_site
+
+  - name: our {{ site }}-ssl enabled
+    stat: path=/etc/apache2/sites-enabled/{{ site }}-ssl.conf
+    register: our_site_ssl
+
+  - name: Change hostname
+    become: true
+    hostname: name={{ hostname }} 
+
+  - name: install apache2 latest
+    become: true
+    apt: name=apache2 update_cache=yes state=latest 
+
+  - name: create virtual host file for http
+    become: true
+    template: src=/home/ubuntu/configuration/roles/{{ role }}/files/{{ env }}/vhost/{{ site }}.conf dest=/etc/apache2/sites-available/{{ site }}.conf         
+
+  - name: create virtual host for https
+    become: true    
+    template: src=/home/ubuntu/configuration/roles/{{ role }}/files/{{env}}/vhost/{{ site }}-ssl.conf dest=/etc/apache2/sites-available/{{ site }}-ssl.conf
+    when: ssl_site.stat.exists
+
+  - name: a2ensite http
+    become: true
+    command: a2ensite {{ site }}.conf
+    when: not our_site.stat.exists
+
+  - name: a2ensite https
+    become: true    
+    command: a2ensite {{ site }}-ssl.conf
+    when: not our_site_ssl.stat.exists and ssl_site.stat.exists
+
+  - name: a2dissite default site
+    become: true    
+    command: a2dissite 000*.conf
+    when: default_site.stat.exists
+    
+  - name: copy server.crt
+    become: true
+    template: src=/home/ubuntu/configuration/roles/apache/files/{{ server_crt }} dest=/etc/ssl/certs/server.crt
+
+  - name: copy server.key
+    become: true    
+    template: src=/home/ubuntu/configuration/roles/apache/files/{{ server_key }} dest=/etc/ssl/private/server.key
+
+  - name: copy server_bundle.crt
+    become: true    
+    template: src=/home/ubuntu/configuration/roles/apache/files/{{ server_bundle }} dest=/etc/ssl/certs/server_bundle.crt
+
+  - name: enable apache module ssl
+    become: true
+    apache2_module: name=ssl state=present
+
+  - name: enable apache module ssl
+    become: true
+    apache2_module: name=rewrite state=present
+
+  - name: enable apache module ssl
+    become: true
+    apache2_module: name=proxy state=present
+
+  - name: enable apache module ssl
+    become: true
+    apache2_module: name=proxy_http state=present
+
+  - name: enable apache module ssl
+    become: true
+    apache2_module: name=headers state=present
+
+  - name: enable apache module ssl
+    become: true
+    apache2_module: name=speling state=present
+
+  - name: ensure apache is running
+    service: name=apache2 state=started enabled=yes
+

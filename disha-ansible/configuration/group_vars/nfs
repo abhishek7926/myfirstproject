@@ -1,0 +1,2 @@
+hostname: nfs
+is_nfs_itself: true

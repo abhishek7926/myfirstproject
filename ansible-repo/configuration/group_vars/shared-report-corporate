@@ -1,0 +1,6 @@
+hostname: shared-report-corporate
+tomcat_folder: shared-report-corporate
+logfile_path:
+ - /var/log/*.log
+ - /home/mettl/*.log
+artifact_name: mettl-ui

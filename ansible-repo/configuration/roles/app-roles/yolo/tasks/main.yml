@@ -1,0 +1,20 @@
+- name: run mip java service check
+  cron:
+    minute: "*"
+    name: "run mip java service check sleep{{ item }}"
+    user: root
+    state: present
+    job: "(sleep {{ item }}; /opt/mettl-scripts/custom-cloudwatch-metrics/service_monitoring_without_port.sh custom-ec2-{{ env }} mettlImageProcessing {{ autoscaling }} {{ aws_region }}) >> /var/log/service-monitoring.log 2>&1"
+  with_items:
+       - [ '0', '20', '40' ]
+
+- name: add .bash_profile file
+  command: touch /home/mettl/.bash_profile
+
+- name: bashrc changes for cuda
+  become: yes
+  lineinfile: dest=/home/mettl/.bash_profile line={{ item }}
+  with_items:
+      - "export PATH=/usr/local/cuda/bin:/usr/local/bin:/opt/aws/bin:/home/ubuntu/src/cntk/bin:/usr/local/mpi/bin:$PATH"
+      - "export LD_LIBRARY_PATH=/home/ubuntu/src/cntk/bindings/python/cntk/libs:/usr/local/cuda/lib64:/usr/local/lib:/usr/lib:/usr/local/cuda/extras/CUPTI/lib64:/usr/local/mpi/lib:$LD_LIBRARY_PATH"
+      - "export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"

@@ -1,0 +1,21 @@
+---
+  - name: copy termination backup script
+    template: src=log_backup_termination dest=/etc/init.d/logbackupTermination.sh mode=0777 owner=root group=root
+
+
+  - name: Set log backup for termination in runlevels
+    file:
+       src: "/etc/init.d/logbackupTermination.sh"
+       dest: "{{ item }}/K01logbackup.sh"
+       state: link
+    with_items:
+      - /etc/rc0.d/
+      - /etc/rc6.d/
+
+  - name: setup cronjob to send mettl_logs to s3
+    cron:
+      minute: 0
+      name: mettl-logs-backup
+      user: mettl
+      state: present
+      job: "/opt/mettl-scripts/log-backup/move-logs.sh /home/mettl/mettl_logs *.log.* {{ logs_bucket }} {{ hostname }}/mettl_logs {{ aws_region }} >> /home/mettl/mettl_logs/mettl-logs-backup.log 2>&1"

@@ -1,0 +1,11 @@
+hostname: static
+apache_server_name: static.mettl.de
+ssl: true
+logfile_path:
+ - /var/log/*.log
+ - /home/mettl/*.log
+specific_apache_modules:
+ - expires
+enable_any_specific_apache_module: true
+
+

@@ -1,0 +1,23 @@
+[metrics]
+metrics.compvt ansible_user=ansible ansible_become=yes
+[activemq]
+activemq.compvt ansible_user=ansible ansible_become=yes
+[redis]
+redis.compvt ansible_user=ansible ansible_become=yes
+[nfs]
+nfs.compvt ansible_user=ansible ansible_become=yes
+[fhgfs-ucl-code-project]
+fhgfs-ucl-code-project.compvt ansible_user=ansible ansible_become=yes
+[chat-activemq]
+chat-activemq.compvt ansible_user=ansible ansible_become=yes
+
+
+[com:children]
+metrics
+activemq
+redis
+nfs
+fhgfs-ucl-code-project
+chat-activemq
+
+

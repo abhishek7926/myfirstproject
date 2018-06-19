@@ -1,0 +1,29 @@
+env: xyz
+domain: mettl.xyz
+internal_domain: xyzpvt
+kibana_user: kibana-admin
+kibana_password: mettlKib@123
+aws_region: eu-central-1
+wordpress_mch: "wordpress.{{ internal_domain }}"
+bulkpdf_mch: "bulkpdf.{{ internal_domain }}"
+fes_mch: "fes.{{ internal_domain }}"
+static_mch: "static.{{ internal_domain }}"
+corporate_mch: "corporate.{{ internal_domain }}"
+notification_mch: "notification.{{ internal_domain }}"
+contest_mch: "contest.{{ internal_domain }}"
+report_corporate_mch: "report-corporate.{{ internal_domain }}"
+corporate_shared_report_mch: "shared-report-corporate.{{ internal_domain }}"
+proctoring_mch: "proctoring.{{ internal_domain }}"
+turnURLIp: 52.76.96.71
+stunServerAddress: 173.194.71.127
+logs_bucket: mettl-logs-xyz
+jotform_mch: "jotform-drive.{{ internal_domain }}"
+jenkins_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC8+JwVorhhFEFxFMDVlihSXS31z3evEJccadY2Nc9E4J6R8jO86WPCQHOon3THmEBeLEAjguwic+kwgndapOKX9s8aPyrYOyGU7Sj2qZ6XeJN98zp/VfJgfbOqUPEwvN10Pv8jTWzNGSsTkIH/6uPSHOI9Cwk0ypEIx/UdsNljQyrmUx8/mhfO5Fl0pJfH5LiYZuuhyoO4ydh5m7/NgX9GeBC3uE0CgTEN9/R2sFVFiIdOzDtI16wzArzBziH9KKhvwsFGaF++VDZ7XjrI21Q7QLBCHU9+b0MOAXz42+dK1INFWzeLiJEEQvCuhWJzTcfMBok37NQgKDD3Svv2LErl shanky@ip-192-168-0-100.us-east-2.compute.internal"
+fhgfs_server_host_name: "usercodelibrary-centralserver.mettl.de"
+data_elasticsearch_heap_size: "500m"
+skill_master_data_backup_s3_path: skill-master-data-backup-xyz
+install_ldap_client: true
+ucl_codelysis_docker_all_version: 1.1
+ucl_codelysis_docker_swift_version: 1.1
+prelogin_access_tocken: 6e732e5febc014385068a7a3a7c1960f
+

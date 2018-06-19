@@ -1,0 +1,4 @@
+ES_STARTUP_SLEEP_TIME=5
+MAX_OPEN_FILES=500000
+MAX_LOCKED_MEMORY=unlimited
+ES_JAVA_OPTS="-Xms{{ data_elasticsearch_heap_size }} -Xmx{{ data_elasticsearch_heap_size }}"

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+wget http://swupdate.openvpn.org/as/openvpn-as-2.1.4-Ubuntu14.amd_64.deb
+sudo dpkg -i openvpn-as-2.1.4-Ubuntu14.amd_64.deb

@@ -1,0 +1,28 @@
+[master-1-elasticsearch]
+master-1-elasticsearch.propvt ansible_user=ansible ansible_become=yes
+[master-2-elasticsearch]
+master-2-elasticsearch.propvt ansible_user=ansible ansible_become=yes
+[master-3-elasticsearch]
+master-3-elasticsearch.propvt ansible_user=ansible ansible_become=yes
+[data-1-elasticsearch]
+data-1-elasticsearch.propvt ansible_user=ansible ansible_become=yes
+[data-2-elasticsearch]
+data-2-elasticsearch.propvt ansible_user=ansible ansible_become=yes
+
+
+[master-elasticsearch-nodes:children]
+master-1-elasticsearch
+master-2-elasticsearch
+master-3-elasticsearch
+
+[data-elasticsearch-nodes:children]
+data-1-elasticsearch
+data-2-elasticsearch
+
+[pro:children]
+master-elasticsearch-nodes
+data-elasticsearch-nodes
+
+
+
+

@@ -1,0 +1,8 @@
+hostname: certification
+logfile_path:
+ - /var/log/*.log
+ - /home/mettl/*.log
+specific_apache_modules:
+ - proxy_ajp
+enable_any_specific_apache_module: true
+

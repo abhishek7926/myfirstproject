@@ -1,0 +1,4 @@
+- name: copy block_candidate_list
+  template: src=files/apache-files/block_candidates_list dest=/etc/apache2/block_candidates_list
+  become: true
+  notify: reload apache

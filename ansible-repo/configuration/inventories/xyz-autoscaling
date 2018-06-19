@@ -1,0 +1,35 @@
+[xyz:children]
+aui
+chat-web-socket
+coding-simulator
+scheduler-candidate-event
+ucl-codelysis-android
+ucl-code-project
+ucl-codelysis
+livefeed-server
+proctoring-ui
+application-grader
+
+
+[proctoring-ui:vars]
+machine_specific_users= [  {'username': 'kapil-singhal', 'role': 'admin'}]
+
+[aui:vars]
+machine_specific_users= [{'username': 'ruchi-narula', 'role': 'admin'}]
+[chat-web-socket:vars]
+machine_specific_users= [  {'username': 'kapil-singhal', 'role': 'admin'}]
+[coding-simulator:vars]
+machine_specific_users= [{'username': 'cfe-vikas', 'role': 'admin'}]
+[livefeed-server:vars]
+machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'},  {'username': 'kapil-singhal', 'role': 'admin'},{'username': 'gaurav-garg', 'role': 'admin'}]
+[scheduler-candidate-event:vars]
+machine_specific_users= [{'username': 'guneet', 'role': 'admin'}]
+[ucl-code-project:vars]
+machine_specific_users= [{'username': 'cfe-vikas', 'role': 'admin'}], {'username': 'manish-agrawal', 'role': 'admin'}
+[ucl-codelysis-android:vars]
+machine_specific_users= [{'username': 'cfe-vikas', 'role': 'admin'}], {'username': 'manish-agrawal', 'role': 'admin'}
+[ucl-codelysis:vars]
+machine_specific_users= [{'username': 'cfe-vikas', 'role': 'admin'}], {'username': 'manish-agrawal', 'role': 'admin'}
+[application-grader:vars]
+machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'},{'username': 'manish-agrawal', 'role': 'admin'}]
+

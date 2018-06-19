@@ -1,0 +1,25 @@
+---
+
+- name: Copying logstash repo
+  copy: src=logstash.repo.j2 dest=/etc/yum.repos.d/logstash.repo
+
+- name: Copying Openssl.cnf file
+  copy: src=openssl.cnf dest=/etc/pki/tls/openssl.cnf
+
+- name: Install Logstash
+  yum: name=logstash state=installed
+
+- name: Generate SSL certificates
+  include: generate-ssl.yml
+
+- name: Configure Logstash input
+  copy: src=02-beats-input.conf dest=/etc/logstash/conf.d/02-beats-input.conf
+
+- name: Configure Logstash syslog filter
+  copy: src=10-syslog-filter.conf dest=/etc/logstash/conf.d/10-syslog-filter.conf
+
+- name: Configure Logstash ouput
+  copy: src=30-elasticsearch-output.conf dest=/etc/logstash/conf.d/30-elasticsearch-output.conf
+
+- name: Restart Logstash
+  service: name=logstash state=restarted

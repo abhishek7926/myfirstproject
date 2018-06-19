@@ -1,0 +1,3 @@
+hostname: streaming-server
+ulimit: 50000
+role: app-roles/streaming-server

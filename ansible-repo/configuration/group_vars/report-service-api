@@ -1,0 +1,10 @@
+hostname: report-service-api
+tomcat_folder: report-service-api
+logfile_path:
+ - /var/log/*.log
+ - /home/mettl/*.log
+document_type: "report-service-api"
+artifact_name: report-service-api
+autoscaling: "true"
+tomcat_shutdown_port: 8051
+tomcat_connector_port: 8050

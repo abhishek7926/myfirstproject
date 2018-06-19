@@ -1,0 +1,9 @@
+---
+
+- name: Adding private IP in openssl.cnf
+  lineinfile: 'dest=/etc/ssl/openssl.cnf insertbefore="^subjectKeyIdentifier=hash" regexp=subjectAltName line="subjectAltName = IP: {{ ansible_eth0["ipv4"]["address"] }}"'
+
+- name: Generating certificates
+  shell: openssl req -config /etc/ssl/openssl.cnf -x509 -days 3650 -batch -nodes -newkey rsa:2048 -keyout private/logstash-forwarder.key -out certs/logstash-forwarder.crt
+  args:
+    chdir: /etc/pki/tls

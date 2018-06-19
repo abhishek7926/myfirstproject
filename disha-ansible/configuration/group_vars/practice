@@ -1,0 +1,12 @@
+hostname: practice
+logfile_path:
+ - /var/log/*.log
+ - /home/mettl/*.log
+tomcat_folder: practice-test
+tomcat_shutdown_port: 8041
+artifact_name: practice-test-web
+ssl: true
+role: app-roles/practice
+java_version: 8
+tomcat_version: 8.0.35
+tomcat_release: 8

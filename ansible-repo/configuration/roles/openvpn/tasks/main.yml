@@ -1,0 +1,23 @@
+---
+
+- name: Installing openvpn & requirements ...
+  apt: name={{item}} force=yes
+  with_items:
+      - openvpn
+      - udev
+      - openssl
+
+- name: Installing dependencies ...
+  apt: name={{item}} force=yes
+  with_items: 
+      - libpam-pwdfile
+      - python-passlib
+
+#- name: Install LDAP dependencies (Debian)
+#  apt: name=openvpn-auth-ldap force=yes
+#  when: openvpn_use_ldap
+
+- include: configure.yml
+
+- name: Ensure OpenVPN is started
+  service: name=openvpn state=started enabled=yes

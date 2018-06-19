@@ -1,0 +1,51 @@
+env: co.in
+domain: mettl.co.in
+internal_domain: coinpvt
+
+chat_web_socket_elb_endpoint: internal-chatweb-socket-lb-coinpvt-1924263060.us-east-2.elb.amazonaws.com
+wordpress_mch: "wordpress.{{ internal_domain }}"
+bulkpdf_mch: "bulkpdf.{{ internal_domain }}"
+fes_mch: "fes.{{ internal_domain }}"
+static_mch: "static.{{ internal_domain }}"
+corporate_mch: "corporate.{{ internal_domain }}"
+notification_mch: "notification.{{ internal_domain }}"
+contest_mch: "contest.{{ internal_domain }}"
+corporate_shared_report_mch: "shared-report-corporate.{{ internal_domain }}"
+proctoring_mch: "proctoring.{{ internal_domain }}"
+turnURLIp: 52.76.96.71
+stunServerAddress: 173.194.71.127
+
+jenkins_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC7udKwHAduzGmL+lhqfnhaY7e4DLLhDSf1ZNa93GAZarQ/h9MPwFWqZ+vXNP+RBDxnqC6zNfR3+lkunxvVaR6t5QC02Qu8fXCd0VWWgK97LX6/wFVrXPlpZ5bs42rLkNy39G7tqHtC+baVuw154MA5VD6yV6QPpaEyyfRANZJ0tOi47h4EidVBQPyVJKpAJOf06biW2lnVJfpV4zmyidOaZP0H1jpXGzj514gOqSQjpNKkV/XcKAESs12t8GYu70vClk88Wnz0ZN93C25qix5MUNhd23unuT8OrBBN2Ijopg//orsA6MZSCKpfMC//XevofYSPwNHyHLKpo1eVXFNF preeti@mettl299"
+fhgfs_server_host_name: "usercodelibrary-centralserver.mettl.de"
+
+global_users:
+ - username: preeti-sharma
+   role: admin
+ - username: shanky
+   role: admin
+ - username: kapil-singhal
+   role: readonly
+ - username: jalaj-khanna
+   role: readonly
+ - username: kirandeep-kaur
+   role: readonly
+ - username: manish-agrawal
+   role: readonly
+ - username: mayuresh-singh
+   role: readonly
+ - username: nishant-kumar
+   role: readonly
+ - username: ruchi-narula
+   role: readonly
+ - username: siddhant-khanna
+   role: readonly
+ - username: tarun-yaduvanshi
+   role: readonly
+
+
+
+#global_users_to_delete:
+# - username: guneet-sahai
+# - username: nishant-kumar
+# - username: preeti-sharma
+# - username: shanky

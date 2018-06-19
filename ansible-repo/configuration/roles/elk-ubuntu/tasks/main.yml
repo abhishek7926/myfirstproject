@@ -1,0 +1,23 @@
+---
+# tasks file for ansible-elk
+
+- name: Change hostname
+  hostname: name=elk 
+
+- name: Including Elasticsearch playbook
+  include: elasticsearch.yml
+
+- name: Including Kibana playbook
+  include: kibana.yml
+
+- name: Including Logstash playbook
+  include: logstash.yml
+
+- name: Including Certificates playbook
+  include: generate.yml
+
+- name: Including Kibana dashboards playbook
+  include: dashboards.yml 
+
+- name: Including Curator playbook
+  include: curator.yml

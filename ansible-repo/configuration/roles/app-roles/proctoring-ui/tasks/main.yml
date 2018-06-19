@@ -1,0 +1,9 @@
+- name: run proctoring-ui service check
+  cron:
+    minute: "*"
+    name: "run proctoring-ui service check sleep{{ item }}"
+    user: root
+    state: present
+    job: "(sleep {{ item }}; /opt/mettl-scripts/custom-cloudwatch-metrics/service_monitoring.sh custom-ec2-{{ env }} proctoring-ui 8083 true {{ aws_region }}) >> /var/log/service-monitoring.log 2>&1"
+  with_items:
+       - [ '0', '20', '40' ]

@@ -1,0 +1,3 @@
+jenkins_home: /var/lib/jenkins
+nfs_server_ip: nfs
+mettl_config_mount_point_on_jenkins: /home/ansible/mettlconfig

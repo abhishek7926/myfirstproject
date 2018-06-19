@@ -1,0 +1,29 @@
+#!/bin/bash
+echo "|/root/coredump.sh %E %p %s %c %P %u %g %t %h %e" > /proc/sys/kernel/core_pattern
+echo "mediaservertype="janus"" >> /etc/environment
+rm -rf /var/tmp/aws-mon/
+echo "" > /opt/asg_name
+
+echo ${ansible_public_key} > /home/ansible/.ssh/authorized_keys
+echo ${jenkins_public_key} >> /home/ubuntu/.ssh/authorized_keys
+sudo stop janus
+sed -i 's/^stun_server.*/stun_server = ${stunServerAddress}/' /usr/local/etc/janus/janus.cfg
+sed -i 's/^stun_port.*/stun_port = ${stunServerPort}/'  /usr/local/etc/janus/janus.cfg
+sudo start janus
+mkfs -t ext4 /dev/xvdf
+mount /dev/xvdf /home/mettl/proctoring-data
+chown mettl:mettl /home/mettl/proctoring-data
+su mettl <<"EOF"
+start=`date +%s`
+while [ ! -f /home/mettl/mettlconfig/mettl_override.properties ] && [ ! -f /home/mettl/release/nfs-health-check ]
+do
+echo "waiting for 2 seconds"
+sleep 2
+done
+end=`date +%s`
+DIFF=$(( $end - $start ))
+echo "It took $DIFF seconds" > /home/mettl/nfs-mount-time
+EOF
+/bin/su - mettl /home/mettl/release/misc/genericMachineUp.sh ${deployement_env} livefeed-server service  > /home/mettl/mettl_logs/machineup.log
+sudo usermod -a -G mettlsupergroup kapil-singhal
+sudo usermod -a -G mettlsupergroup gaurav-garg

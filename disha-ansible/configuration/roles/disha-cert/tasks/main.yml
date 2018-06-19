@@ -1,0 +1,11 @@
+- name: Creates directory /data/disha-data
+  file: path=/data/disha-data state=directory owner=mettl group=mettl mode=0755 recurse=yes
+
+- name: copy all disha data files
+  become: true
+  copy: src="files/disha-data/{{ item.src }}" dest="/data/disha-data/{{ item.dest }}" owner=mettl group=mettl mode=0644
+  with_items:
+     - { src: '{{ env }}_CSC_WEBAPI.cer' , dest: 'CSC_WEBAPI.cer' }
+     - { src: '{{ env }}_PMG_{{ certName }}.pfx' , dest: 'PMG_{{ certName }}.pfx' }
+     - { src: '{{ env }}_Staging_Signature_PrivateKey.p12' , dest: 'Staging_Signature_PrivateKey.p12' }
+     - { src: '{{ env }}_uidai_auth_stage.cer' , dest: 'uidai_auth_stage.cer' }

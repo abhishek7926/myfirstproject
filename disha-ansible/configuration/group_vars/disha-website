@@ -1,0 +1,47 @@
+env: disha-website
+domain: pmgdisha.website
+internal_domain: websitepvt
+kibana_user: kibana-admin
+kibana_password: mettlKib@123
+aws_region: ap-south-1
+logs_bucket: disha-website-logs
+jenkins_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDSltiMJ5hewLXt4QEka5guOM7ryg9aIj2jPlevkrLVO+RsYtdwm9mcDu6/cQF4lthxXczcA/8kDLMOdAdYWHaFnZ1zTPXKoyGdpabWl/z6v/M500Xy5qpSPVmZZ0P9lEfUVHhqTax3yl/szXPsOa2FiGsgKjbXSIsC7bFFCMpkelMPlHh2pKKdL8VdjWT8XlUfTrzqlJPUzqBvaTfbis9dPFt5lWZc8k8iL//lcsLWykblHeA3bso+Tj8lrB+ok/p2pQkhtq9nekUJbveb4UFS3BNmBPaeNn64E5lZASfZndELTVfVQZ05qdAphThV1ag6U9lcn1MbQ6wGA1kHTMev"
+disha_serverName: pmgdisha.website
+location_serverName: location.pmgdisha.website
+pmgdisha_info_serverName: info.pmgdisha.website
+biometric_serverName: csc-gov.pmgdisha.website
+biometric_admin_serverName: admin.csc-gov.pmgdisha.website
+certificate_serverName: certificate.pmgdisha.website
+circuit_breaker_serverName: turbine.pmgdisha.website
+vpc_cidr: 10.10.0.0/16
+global_users:
+ - username: shanky
+   role: admin
+ - username: preeti-sharma
+   role: admin
+ - username: farman
+   role: admin
+ - username: cfe-manish
+   role: admin
+ - username: saurabh-goyal
+   role: admin
+ - username: ankit-agarwal
+   role: admin
+ - username: srishti-juneja
+   role: readonly
+ - username: amreek-panesar
+   role: readonly
+ - username: lavi-tyagi
+   role: readonly
+ - username: mohit-bhunwalia
+   role: readonly
+ - username: cfe-kapil
+   role: readonly
+ - username: nihar
+   role: readonly
+ - username: gaurav-kumar
+   role: readonly
+ - username: meghna-madan
+   role: readonly
+ - username: kripansh-banga
+   role: readonly

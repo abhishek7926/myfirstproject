@@ -1,0 +1,3 @@
+log_cleanup_script_path: /data/skillmaster/cleanup.sh
+backup_s3_movement_script_path: /data/skillmaster/skillmaster-move-backup-to-s3.sh
+skillmaster_backup_path: /data/skillmaster/backup

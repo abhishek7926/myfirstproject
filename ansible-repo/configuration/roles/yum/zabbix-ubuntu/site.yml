@@ -1,0 +1,4 @@
+---
+- hosts: zabbix-server
+  roles:
+    - { role: "zabbix-ubuntu" }

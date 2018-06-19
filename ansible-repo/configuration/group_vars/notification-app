@@ -1,0 +1,13 @@
+hostname: notification-app
+role: app-roles/notification-app
+tomcat_folder: notification
+tomcat_shutdown_port: 8061
+tomcat_connector_port: 8060
+tomcat_version: 8.0.35
+tomcat_release: 8
+artifact_name: Notification
+logfile_path:
+ - /var/log/*.log
+ - /home/mettl/*.log
+ssl: false
+

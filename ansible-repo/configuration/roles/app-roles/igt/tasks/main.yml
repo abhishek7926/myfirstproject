@@ -1,0 +1,29 @@
+- name: make igt-data directory
+  file:
+    path: /mnt/igt-data
+    state: directory
+    owner: mettl
+    group: mettl
+    
+- name: Make directories in /mnt/igt-data
+  file:
+    dest: /mnt/igt-data/{{ item }}
+    state: directory
+    recurse: yes
+    owner: mettl
+    group: mettl
+  with_items:
+   - attachment
+   - inprogress
+   - new
+   - processed
+   - processed-response
+   - published
+   - econciliation
+   - response
+   - temp
+
+- name: set mountpoints
+  mount: name=/mnt/igt-data src=/dev/xvdc fstype=ext3 opts=defaults,nobootwait,comment=cloudconfig dump=0 passno=0 state=mounted
+
+  

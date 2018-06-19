@@ -1,0 +1,25 @@
+---
+#- name: Installing aws cli ...
+#  apt: name=awscli state=latest update_cache=yes
+
+#- name: Creating aws directory ...
+#  file: path=/root/.aws state=directory
+
+#- name: Creating aws config file
+#  template: src=aws_credentials dest=/root/.aws/credentials mode=0640
+
+
+
+
+- name: Installing unzip
+  apt: name={{ item }} state=latest update_cache=yes
+  with_items:
+      - unzip
+
+- name: Download,unarchive and install awscli on change
+  unarchive:
+    src: https://s3.amazonaws.com/aws-cli/awscli-bundle.zip
+    dest: /tmp
+    remote_src: True
+  notify: install awscli
+

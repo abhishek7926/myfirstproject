@@ -1,0 +1,38 @@
+- name: setting the hostname of fhgfs server
+  hostname: name="{{ fhgfs_server_host_name }}"
+  notify:
+      - restart fhgfs-mgmtd
+      - restart fhgfs-meta
+      - restart fhgfs-admon
+      - restart fhgfs-storage
+
+- name: getting the private ip of the instance
+  command: ec2metadata --local-ipv4
+  register: fhgfs_private_ip
+
+- name: changing the fhgfs ip in config files
+  replace:
+      dest: /etc/fhgfs/{{ item }}
+      regexp: '^sysMgmtdHost.*'
+      replace: 'sysMgmtdHost = {{ fhgfs_private_ip.stdout }}'
+  notify:
+      - restart fhgfs-mgmtd
+      - restart fhgfs-meta
+      - restart fhgfs-admon
+      - restart fhgfs-storage
+  with_items:
+      - "fhgfs-admon.conf"
+      - "fhgfs-meta.conf"
+      - "fhgfs-storage.conf"
+
+- name: verify fhgfs servers are started
+  become: true
+  service: name={{ item }} state=started enabled=yes
+  with_items:
+      - fhgfs-mgmtd
+      - fhgfs-meta
+      - fhgfs-admon
+      - fhgfs-storage
+
+
+

@@ -1,0 +1,4 @@
+---
+
+- name: export nfs config
+  command: exportfs -ra

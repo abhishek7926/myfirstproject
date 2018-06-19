@@ -1,0 +1,7 @@
+- name: Install gulp and forever
+  npm:
+      name: "{{ item }}"
+      global: yes
+  with_items:
+    - gulp
+    - forever

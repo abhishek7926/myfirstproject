@@ -1,0 +1,5 @@
+java_version: 7
+tomcat_version: 7.0.40
+tomcat_release: 7
+role: app-roles/shared-report-corporate
+ssl: false

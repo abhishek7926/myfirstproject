@@ -1,0 +1,9 @@
+- name: Ensure NFS common is installed.
+  apt: name=nfs-common state=installed update_cache=yes
+
+- name: Create mettl-scripts mountable dir
+  file: path="{{ mettl_scripts_mount_point }}" state=directory
+
+- name: set mettl-scripts mountpoints
+  mount: name={{ mettl_scripts_mount_point }} src={{ nfs_server_ip }}.{{ internal_domain }}:{{ mettl_scripts_shared_dir }} fstype=nfs opts=auto dump=0 passno=0 state=mounted
+

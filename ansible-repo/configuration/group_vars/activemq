@@ -1,0 +1,2 @@
+hostname: activemq
+ulimit: 50000

@@ -1,0 +1,26 @@
+- name: Create mountable dir for skill master directory
+  file: path="/data/skillmaster" state=directory mode="755" owner=mettl group=mettl
+
+- name: Create mountable dir for skill master data
+  file: path="/data/skillmaster/MettlDb" state=directory mode="755"
+
+- name: Create mountable dir for skill master backup
+  file: path="/data/skillmaster/backup" state=directory mode="755"
+
+- name: set skill master data mountpoints
+  mount: name=/data/skillmaster/MettlDb src=/dev/xvdf fstype=ext4 opts=defaults,nobootwait,comment=cloudconfig dump=0 passno=0 state=mounted
+  become: yes
+
+- filesystem:
+    fstype: ext4
+    dev: /dev/xvdg
+
+- name: set skill master backup mountpoints
+  mount: name=/data/skillmaster/backup src=/dev/xvdg fstype=ext4 opts=defaults,nobootwait,comment=cloudconfig dump=0 passno=0 state=mounted
+  become: yes
+
+- name: change permissions of skill master backup directory
+  file: path="/data/skillmaster/backup" state=directory mode="755" owner=mettl group=mettl
+
+- include: skillmaster_cronjobs.yml
+

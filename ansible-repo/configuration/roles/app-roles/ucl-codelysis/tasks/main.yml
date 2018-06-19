@@ -1,0 +1,56 @@
+- command: "uname -r"
+  register: kernel_release
+
+- command: "lsb_release -cs"
+  register: lsb_release
+
+- name: Install docker prerequiested
+  apt: name={{ item }} state=installed update_cache=yes
+  with_items:
+   - linux-image-extra-{{ kernel_release.stdout }}
+   - linux-image-extra-virtual
+   - apt-transport-https
+   - ca-certificates
+   - curl
+   - software-properties-common
+
+- name: Add apt-key for docker
+  apt_key: url=https://download.docker.com/linux/ubuntu/gpg state=present id=0EBFCD88
+
+- name: add apt repo for docker
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu {{ lsb_release.stdout }} stable
+    state: present
+
+- name: Install docker cli
+  apt: name=docker-ce state=installed update_cache=yes
+
+- name: add mettl user to docker group
+  user:
+    name: mettl
+    groups: docker
+    append: yes
+
+- name: remove docker-py
+  pip:
+    name: docker-py
+    state: absent
+
+- name: Install docker python module
+  pip:
+    name: "docker-compose==1.12.0"
+
+- name: create docker network
+  docker_network:
+    name: mettlucldockernetwork
+
+- name: log into docker hub registry
+  docker_login: email="pulldockerimages@mettl.com" password="BGEJ7qBmB3yZAdYV" registry_url="https://quay.io/v2/" username="pull_dockerimages"
+
+- name: ensure an all languages container is running
+  docker_container: name=all_languages_container state=present image="quay.io/dockerimages/mettluclcodelysis:{{ ucl_codelysis_docker_all_version }}" pull=true
+
+- name: ensure a swift container is running
+  docker_container: name=swift_container state=present image="quay.io/dockerimages/swiftuclcodelysis:{{ ucl_codelysis_docker_swift_version }}" pull=true
+
+

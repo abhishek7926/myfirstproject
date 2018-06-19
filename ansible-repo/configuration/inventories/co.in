@@ -1,0 +1,290 @@
+[activemq]
+activemq.coinpvt ansible_user=ansible ansible_become=yes
+[redis]
+redis.coinpvt ansible_user=ansible ansible_become=yes
+[nfs]
+nfs.coinpvt ansible_user=ansible ansible_become=yes
+[admin-panel]
+adminpanel.coinpvt ansible_user=ansible ansible_become=yes
+[igt]
+igt.coinpvt ansible_user=ansible ansible_become=yes
+[redis]
+redis.coinpvt ansible_user=ansible ansible_become=yes
+[prelogin]
+prelogin.coinpvt ansible_user=ansible ansible_become=yes
+[dubaiway]
+dubaiway.coinpvt ansible_user=ansible ansible_become=yes
+[corporate]
+corporate.coinpvt ansible_user=ansible ansible_become=yes
+[shared-report-corporate]
+shared-report-corporate.coinpvt ansible_user=ansible ansible_become=yes
+[hpe]
+hpe.coinpvt ansible_user=ansible ansible_become=yes
+[proctoring]
+proctoring.coinpvt ansible_user=ansible ansible_become=yes
+#[ucl-code-project]
+#172.0.1.196 ansible_user=ansible ansible_become=yes
+#[ucl-codelysis-android]
+#172.0.1.153 ansible_user=ansible ansible_become=yes
+
+[360feedback]
+360feedback.coinpvt ansible_user=ansible ansible_become=yes
+[proxy]
+proxy.coinpvt ansible_user=ansible ansible_become=yes
+[bulkpdf]
+bulkpdf.coinpvt ansible_user=ansible ansible_become=yes
+[static]
+static.coinpvt ansible_user=ansible ansible_become=yes
+[mettl-apis]
+api.coinpvt ansible_user=ansible ansible_become=yes
+[certification]
+certification.coinpvt ansible_user=ansible ansible_become=yes
+#[aui]
+#172.0.1.16 ansible_user=ansible ansible_become=yes
+#[pr]
+#172.0.1.246 ansible_user=ansible ansible_become=yes
+[accenture]
+accenture.coinpvt ansible_user=ansible ansible_become=yes
+[practice-test]
+practice-test.coinpvt ansible_user=ansible ansible_become=yes
+[ndlm-info]
+ndlm-info.coinpvt ansible_user=ansible ansible_become=yes
+[duo-lingo]
+duo-lingo.coinpvt ansible_user=ansible ansible_become=yes
+[skill-master]
+skill-master.coinpvt ansible_user=ansible ansible_become=yes
+#[scheduler-candidate-event]
+#172.0.1.127 ansible_user=ansible ansible_become=yes
+#[ucl-codelysis]
+#172.0.1.217 ansible_user=ansible ansible_become=yes
+
+[elk]
+elk.coinpvt ansible_user=ansible ansible_become=yes
+[zabbix]
+zabbix.coinpvt ansible_user=ansible ansible_become=yes
+[sonar]
+sonar.coinpvt ansible_user=ansible ansible_become=yes
+[kafka]
+kafka.coinpvt ansible_user=ansible ansible_become=yes
+[jenkins]
+jenkins.coinpvt ansible_user=ansible ansible_become=yes
+###### Java services #######
+[fes]
+fes.coinpvt ansible_user=ansible ansible_become=yes
+[report-service]
+report.coinpvt ansible_user=ansible ansible_become=yes
+[java-codelysis]
+java-codelysis.coinpvt ansible_user=ansible ansible_become=yes
+[typing-simulator]
+typing-simulator.coinpvt ansible_user=ansible ansible_become=yes
+[dblysis]
+dblysis.coinpvt ansible_user=ansible ansible_become=yes
+[grader]
+grader.coinpvt ansible_user=ansible ansible_become=yes
+[htmltopdf]
+htmltopdf.coinpvt ansible_user=ansible ansible_become=yes
+[excel]
+excel.coinpvt ansible_user=ansible ansible_become=yes
+[scheduler]
+scheduler.coinpvt ansible_user=ansible ansible_become=yes
+[contest]
+contest.coinpvt ansible_user=ansible ansible_become=yes
+[api-demo]
+api-demo.coinpvt ansible_user=ansible ansible_become=yes
+[lms]
+lms.coinpvt ansible_user=ansible ansible_become=yes
+[schema]
+schema.coinpvt ansible_user=ansible ansible_become=yes
+[biometric]
+biometric.coinpvt ansible_user=ansible ansible_become=yes
+[biometric-admin]
+biometric-admin.coinpvt ansible_user=ansible ansible_become=yes
+[streaming-server]
+streaming.coinpvt ansible_user=ansible ansible_become=yes
+[chat-socket]
+chat-socket.coinpvt ansible_user=ansible ansible_become=yes
+[chat-service]
+chat-service.coinpvt ansible_user=ansible ansible_become=yes
+[notification-app]
+notification.coinpvt ansible_user=ansible ansible_become=yes
+#[chat-web-socket]
+#172.0.1.251 ansible_user=ansible ansible_become=yes
+#[coding-simulator]
+#172.0.1.179 ansible_user=ansible ansible_become=yes
+#[livefeed-server]
+#172.0.2.248 ansible_user=ansible ansible_become=yes
+[livefeed-router]
+livefeed-router.coinpvt ansible_user=ansible ansible_become=yes
+[chat-activemq]
+chat-activemq.coinpvt ansible_user=ansible ansible_become=yes
+[offline-app]
+offline-app.coinpvt ansible_user=ansible ansible_become=yes
+[fhgfs-ucl-code-project]
+fhgfs-ucl-code-project.coinpvt ansible_user=ansible ansible_become=yes
+
+
+[co.in:children]
+nfs
+proxy
+360feedback  
+static
+mettl-apis
+corporate
+shared-report-corporate
+hpe                
+admin-panel   
+certification
+prelogin
+dubaiway
+#aui
+#pr
+elk
+ndlm-info
+zabbix
+sonar
+kafka
+jenkins
+redis
+activemq
+igt
+accenture
+practice-test
+duo-lingo
+#### java services ####
+fes
+bulkpdf
+report-service
+java-codelysis
+typing-simulator
+dblysis
+grader
+htmltopdf
+excel
+scheduler
+contest
+api-demo
+lms
+schema
+biometric
+biometric-admin
+streaming-server
+skill-master
+chat-socket
+chat-service
+notification-app
+#chat-web-socket
+#coding-simulator
+#scheduler-candidate-event
+#ucl-codelysis-android
+#ucl-code-project
+#ucl-codelysis
+#livefeed-server
+livefeed-router
+chat-activemq
+proctoring
+offline-app
+fhgfs-ucl-code-project
+
+[admin-panel:vars]
+machine_specific_users= [{'username': 'jalaj-khanna', 'role': 'admin'}]
+[igt:vars]
+machine_specific_users= [{'username': 'shanky', 'role': 'admin'}]
+[prelogin:vars]
+machine_specific_users= [{'username': 'nevin-sunny', 'role': 'admin'}]
+[dubaiway:vars]
+machine_specific_users= [{'username': 'cfe-manish', 'role': 'admin'}]
+[corporate:vars]
+machine_specific_users= [{'username': 'kirandeep-kaur', 'role': 'admin'}]
+[shared-report-corporate:vars]
+machine_specific_users= [{'username': 'kirandeep-kaur', 'role': 'admin'}]
+[hpe:vars]
+machine_specific_users= [{'username': 'cfe-manish', 'role': 'admin'}]
+#[ucl-code-project:vars]
+#machine_specific_users= [{'username': 'cfe-vikas', 'role': 'admin'}], {'username': 'manish-agrawal', 'role': 'admin'}
+#[ucl-codelysis-android:vars]
+#machine_specific_users= [{'username': 'cfe-vikas', 'role': 'admin'}], {'username': 'manish-agrawal', 'role': 'admin'}
+
+[360feedback:vars]
+machine_specific_users= [{'username': 'tarun-yaduvanshi', 'role': 'admin'}]
+[proxy:vars]
+machine_specific_users= [{'username': 'shanky', 'role': 'admin'}]
+[bulkpdf:vars]
+machine_specific_users= [{'username': 'aatish-kumar', 'role': 'admin'}]
+[static:vars]
+machine_specific_users= [{'username': 'amarjeet-kaur', 'role': 'admin'}]
+[mettl-apis:vars]
+machine_specific_users= [{'username': 'ruchi-narula', 'role': 'admin'}]
+[certification:vars]
+machine_specific_users= [{'username': 'nevin-sunny', 'role': 'admin'}]
+#[aui:vars]
+#machine_specific_users= [{'username': 'ruchi-narula', 'role': 'admin'}]
+#[pr:vars]
+#machine_specific_users= [{'username': 'mayuresh-singh', 'role': 'admin'}]
+[accenture:vars]
+machine_specific_users= [{'username': 'shipra', 'role': 'admin'}]
+[practice-test:vars]
+machine_specific_users= [{'username': 'shipra', 'role': 'admin'}]
+[ndlm-info:vars]
+machine_specific_users= [{'username': 'saurabh-goyal', 'role': 'admin'}]
+[duo-lingo:vars]
+machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'}]
+[skill-master:vars]
+machine_specific_users= [{'username': 'kirandeep-kaur', 'role': 'admin'}]
+#[scheduler-candidate-event:vars]
+#machine_specific_users= [{'username': 'guneet', 'role': 'admin'}]
+#[ucl-codelysis:vars]
+#machine_specific_users= [{'username': 'cfe-vikas', 'role': 'admin'}], {'username': 'manish-agrawal', 'role': 'admin'}
+
+###### Java services #######
+[fes:vars]
+machine_specific_users= [{'username': 'kapil-singhal', 'role': 'admin'}]
+[report-service:vars]
+machine_specific_users= [{'username': 'kirandeep-kaur', 'role': 'admin'}]
+[java-codelysis:vars]
+machine_specific_users= [{'username': 'cfe-vikas', 'role': 'admin'}]
+[typing-simulator:vars]
+machine_specific_users= [{'username': 'kirandeep-kaur', 'role': 'admin'}]
+[dblysis:vars]
+machine_specific_users= [{'username': 'manish-agrawal', 'role': 'admin'}]
+[grader:vars]
+machine_specific_users= [{'username': 'kirandeep-kaur', 'role': 'admin'}]
+[htmltopdf:vars]
+machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'}]
+[excel:vars]
+machine_specific_users= [{'username': 'jalaj-khanna', 'role': 'admin'}]
+[scheduler:vars]
+machine_specific_users= [{'username': 'kirandeep-kaur', 'role': 'admin'}]
+[contest:vars]
+machine_specific_users= [{'username': 'ruchi-narula', 'role': 'admin'}]
+[api-demo:vars]
+machine_specific_users= [{'username': 'tarun-yaduvanshi', 'role': 'admin'}]
+[lms:vars]
+machine_specific_users= [{'username': 'jalaj-khanna', 'role': 'admin'}]
+[schema:vars]
+machine_specific_users= [{'username': 'manish-agrawal', 'role': 'admin'}]
+[biometric:vars]
+machine_specific_users= [{'username': 'saurabh-goyal', 'role': 'admin'}]
+[biometric-admin:vars]
+machine_specific_users= [{'username': 'saurabh-goyal', 'role': 'admin'}]
+[streaming-server:vars]
+machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'}]
+[chat-socket:vars]
+machine_specific_users= [{'username': 'nishant-kumar', 'role': 'admin'}]
+[chat-service:vars]
+machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'}]
+[notification-app:vars]
+machine_specific_users= [{'username': 'jalaj-khanna', 'role': 'admin'}]
+#[chat-web-socket:vars]
+#machine_specific_users= [{'username': 'nishant-kumar', 'role': 'admin'}, {'username': 'nishant-kumar', 'role': 'admin'}, {'username': 'kapil-singhal', 'role': 'admin'}]
+#[coding-simulator:vars]
+#machine_specific_users= [{'username': 'cfe-vikas', 'role': 'admin'}]
+#[livefeed-server:vars]
+#machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'}, {'username': 'nishant-kumar', 'role': 'admin'}, {'username': 'kapil-singhal', 'role': 'admin'}]
+[livefeed-router:vars]
+machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'}, {'username': 'nishant-kumar', 'role': 'admin'}, {'username': 'kapil-singhal', 'role': 'admin'}]
+[chat-activemq:vars]
+machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'}, {'username': 'nishant-kumar', 'role': 'admin'}]
+[proctoring:vars]
+machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'}, {'username': 'nishant-kumar', 'role': 'admin'}]
+[offline-app:vars]
+machine_specific_users= [{'username': 'mayuresh-singh', 'role': 'admin'}]

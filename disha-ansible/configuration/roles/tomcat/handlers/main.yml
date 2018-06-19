@@ -1,0 +1,5 @@
+  - name: restart tomcat
+    shell: /home/mettl/release/restartServer.sh {{ tomcat_folder }}-tomcat >> ansibleRestartTomcat.txt
+ 
+
+

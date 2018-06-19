@@ -1,0 +1,138 @@
+
+- name: setup cronjob to send kurento_logs to s3
+  cron:
+      minute: 0
+      name: kurento-logs-backup
+      user: mettl
+      state: present
+      job: "/opt/mettl-scripts/log-backup/move-logs.sh /home/mettl/mettl_logs/kurento-media-server/logs *.log {{ logs_bucket }} {{ hostname }}/mettl_logs {{ aws_region }} >> /home/mettl/mettl_logs/kurento-logs-backup.log 2>&1"
+
+
+- name: run livefeed service check
+  cron:
+    minute: "*"
+    name: "run livefeed service check sleep{{ item }}"
+    user: root
+    state: present
+    job: "(sleep {{ item }}; /opt/mettl-scripts/custom-cloudwatch-metrics/service_monitoring.sh custom-ec2-{{ env }} livefeed-server 8085 true {{ aws_region }}) >> /var/log/service-monitoring.log 2>&1"
+  with_items:
+       - [ '0', '20', '40' ]
+
+#- name: Install kurento key
+#  apt_key: url=http://ubuntu.kurento.org/kurento.gpg.key state=present
+
+#- name: Add kurento repository
+#  apt_repository: repo='deb http://ubuntu.kurento.org trusty kms{{ kurento_repo_version }}' state=present
+
+#- name: Installing package kurento
+#  apt: name=kurento-media-server-{{ kurento_package_version }} state=present update_cache=yes
+
+- name: add properties
+  lineinfile: dest=/etc/kurento/modules/kurento/WebRtcEndpoint.conf.ini line={{ item }}
+  notify: restart kurento
+  with_items:
+      - "stunServerAddress={{ stunServerAddress }}"
+      - "stunServerPort={{ stunServerPort }}"
+      - "turnURL=kurento:kurento@{{ turnURLIp }}:{{ turnURLPort }}"
+
+- name: create proctoring-data group
+  group:
+    name: proctoring-data
+    state: present
+
+- name: Adding user mettl and kurento to proctoring-data group
+  user: name={{ item }}
+        groups=proctoring-data
+        append=yes
+  with_items:
+      - mettl
+      - kurento
+
+
+
+- name: Installing package openssl
+  apt: name=openssl state=latest update_cache=yes
+
+- name: Creating proctoring data folder in mettl home
+  file: path="/home/mettl/proctoring-data" state=directory recurse=yes owner=kurento group=proctoring-data mode=0775
+
+- name: Setting acl on proctoring data folder
+  acl:
+    path: /home/mettl/proctoring-data
+    entity: proctoring-data
+    etype: group
+    permissions: rwx
+    state: present
+    recursive: yes
+
+
+- name: Verifying mettl_logs permission and owner
+  file: path="/home/mettl/mettl_logs" state=directory recurse=yes owner=mettl group=mettl mode=0755
+
+- name: Create directory kurento
+  file: path="/home/mettl/mettl_logs/kurento-media-server" state=directory recurse=yes owner=kurento group=kurento mode=0755
+
+- name: Create symlink
+  file: src=/home/mettl/mettl_logs/kurento-media-server  dest=/var/log/kurento-media-server state=link owner=kurento group=kurento mode=0755 force=yes
+  notify: restart kurento
+
+- name: Setting ulimit for kurento user
+  lineinfile: dest=/etc/security/limits.conf line={{item}}
+  with_items:
+       - "kurento            hard    nofile            50000"
+       - "kurento            soft    nofile            50000"
+
+- name: Ensuring ulimit
+  lineinfile: dest=/etc/pam.d/common-session line="session required pam_limits.so"
+- name: Ensuring ulimit
+  lineinfile: dest=/etc/pam.d/common-session-noninteractive line="session required pam_limits.so"
+
+
+
+#- name: Copy log backup script
+#  copy:
+#    src: cleanlog.sh
+#    dest: /home/mettl/release/cleanLog.sh
+#    owner: mettl
+#    group: mettl
+#    mode: 0744
+#
+#- name: Create cron env variable path in mettl user
+#  cron:
+#    name: PATH
+#    env: yes
+#    user: mettl
+#    value: /usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+#
+#- name: Create cron env variable shell in mettl user
+#  cron:
+#    name: SHELL
+#    user: mettl
+#    env: yes
+#    value: /bin/bash
+#    insertbefore: PATH
+#
+#- name: Cron entry for kurento logs
+#  cron:
+#    name: "log backup kurento"
+#    job: "source /home/mettl/release/cleanLog.sh; moveKurentoLogsToS3fromFolder /home/mettl/mettl_logs/kurento-media-server/logs kurento  >> /home/mettl/mettl_logs/crontab/kurento.log 2>&1"
+#    minute: 50
+#    hour: 1
+#    user: mettl
+#
+#- name: Cron entry for LiveFeedService
+#  cron:
+#    name: "log backup LiveFeedService"
+#    job: "source /home/mettl/release/cleanLog.sh; moveGenericLogsToS3fromFolder /home/mettl/mettl_logs LiveFeedService webRTCLiveFeedService.log >> /home/mettl/mettl_logs/crontab/livefeed.log 2>&1"
+#    minute: 50
+#    hour: 1
+#    user: mettl
+
+- name: verify kurento is started
+  become: true
+  #service:
+   # name=kurento-media-server-6.0
+    #state=started
+    #enabled=yes
+
+  command: service kurento-media-server-6.0 start

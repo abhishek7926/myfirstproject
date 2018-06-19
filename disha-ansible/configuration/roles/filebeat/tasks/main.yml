@@ -1,0 +1,28 @@
+# Filebeat tasks
+
+
+- name: Fetching filebeat package
+  get_url: 
+     url: https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-5.0.2-amd64.deb
+     dest: /tmp
+     mode: 0766
+
+- name: Install filebeat
+  apt:
+    deb: /tmp/filebeat-5.0.2-amd64.deb
+
+- name: Creating filebeat conf file
+  template: src=filebeat.yml.j2 dest=/etc/filebeat/filebeat.yml
+  notify:
+     -  restart filebeat
+
+#- name: Creating cert directories
+ # file: path=/etc/pki/tls/certs state=directory recurse=yes owner=root group=root mode=0755
+
+#- name: Adding certificate
+ # copy: src=logstash-forwarder.crt dest=/etc/pki/tls/certs/logstash-forwarder.crt owner=root group=root mode=0644
+  #notify:
+   #  -  restart filebeat
+
+- name: Start service
+  service: name=filebeat state=started enabled=yes

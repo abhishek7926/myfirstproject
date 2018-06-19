@@ -1,0 +1,8 @@
+role: app-roles/pre-login
+artifact_name: preLogin
+tomcat_folder: prelogin
+ssl: true
+java_version: 7
+tomcat_version: 7.0.40
+tomcat_release: 7
+

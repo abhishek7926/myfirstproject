@@ -1,0 +1,9 @@
+  - name: setup cronjob for publishing website metric
+    cron:
+      user: root
+      name: "send metric for url- {{ item[0].url }} response code- {{ item[0].response_code }} in {{ item[1] }} seconds"
+      minute: "*"
+      job: "(sleep {{ item[1] }}; /opt/mettl-scripts/custom-cloudwatch-metrics/web_monitoring.sh  {{ item[0].url }} {{ item[0].response_code }} custom-ec2-{{ env }} {{ aws_region }} ) >> /var/log/web-monitoring.log  2>&1"
+    with_nested:
+       - "{{ web_urls }}"
+       - [ '0', '20', '40' ]

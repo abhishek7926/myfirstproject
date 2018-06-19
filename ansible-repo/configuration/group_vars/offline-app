@@ -1,0 +1,14 @@
+hostname: offline-app
+logfile_path:
+ - /var/log/*.log
+ - /home/mettl/*.log
+role: app-roles/offline-app
+artifact_name: mobileApp
+tomcat_folder: mobileApp
+ssl: true
+tomcat_version: 7.0.40
+tomcat_release: 7
+enable_any_specific_apache_module: true
+specific_apache_modules:
+ - proxy_ajp
+

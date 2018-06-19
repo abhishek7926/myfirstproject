@@ -1,0 +1,42 @@
+[master-1-elasticsearch]
+master-1-elasticsearch.onlinepvt ansible_user=ansible ansible_become=yes
+[master-2-elasticsearch]
+master-2-elasticsearch.onlinepvt ansible_user=ansible ansible_become=yes
+[master-3-elasticsearch]
+master-3-elasticsearch.onlinepvt ansible_user=ansible ansible_become=yes
+[data-1-elasticsearch]
+data-1-elasticsearch.onlinepvt ansible_user=ansible ansible_become=yes
+[data-2-elasticsearch]
+data-2-elasticsearch.onlinepvt ansible_user=ansible ansible_become=yes
+
+
+[master-elasticsearch-nodes:children]
+master-1-elasticsearch
+master-2-elasticsearch
+master-3-elasticsearch
+
+[data-elasticsearch-nodes:children]
+data-1-elasticsearch
+data-2-elasticsearch
+
+[online:children]
+master-elasticsearch-nodes
+data-elasticsearch-nodes
+
+
+
+[master-1-elasticsearch:vars]
+machine_specific_users= [{'username': 'ruchi-narula', 'role': 'admin'},{'username': 'kaushal-gupta', 'role': 'admin'}]
+
+[master-2-elasticsearch:vars]
+machine_specific_users= [{'username': 'ruchi-narula', 'role': 'admin'},{'username': 'kaushal-gupta', 'role': 'admin'}]
+
+[master-3-elasticsearch:vars]
+machine_specific_users= [{'username': 'ruchi-narula', 'role': 'admin'},{'username': 'kaushal-gupta', 'role': 'admin'}]
+
+[data-1-elasticsearch:vars]
+machine_specific_users= [{'username': 'ruchi-narula', 'role': 'admin'},{'username': 'kaushal-gupta', 'role': 'admin'}]
+
+[data-2-elasticsearch:vars]
+machine_specific_users= [{'username': 'ruchi-narula', 'role': 'admin'},{'username': 'kaushal-gupta', 'role': 'admin'}]
+

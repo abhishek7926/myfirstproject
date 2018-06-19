@@ -1,0 +1,48 @@
+---
+#
+# install/run filebeat elk client for browbeat
+#
+
+- name: Copy filebeat yum repo file
+  copy:
+    src=filebeat.repo
+    dest=/etc/yum.repos.d/filebeat.repo
+    owner=root
+    group=root
+    mode=0644
+  become: true
+
+- name: Import Filebeat GPG Key
+  rpm_key: key=http://packages.elastic.co/GPG-KEY-elasticsearch state=present
+
+- name: Install filebeat rpms
+  yum: name={{ item }} state=present
+  become: true
+  with_items:
+    - filebeat
+
+- name: Generate filebeat configuration template
+  template:
+    src=filebeat.yml.j2
+    dest=/etc/filebeat/filebeat.yml
+    owner=root
+    group=root
+    mode=0644
+  become: true
+
+
+#- name: Install ELK server SSL client certificate
+#  get_url:
+#    url=http://{{ elk_server }}:{{ elk_server_ssl_cert_port }}/filebeat-forwarder.crt
+#    dest=/etc/pki/tls/certs/filebeat-forwarder.crt
+#  become: true
+
+- name: Start filebeat service
+  command: systemctl start filebeat.service
+  become: true
+
+- name: Setup filebeat service
+  service: name=filebeat state=started enabled=yes
+  become: true
+
+

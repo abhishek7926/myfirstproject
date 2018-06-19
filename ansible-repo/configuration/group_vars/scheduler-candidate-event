@@ -1,0 +1,3 @@
+hostname: scheduler-candidate-event
+autoscaling: "true"
+

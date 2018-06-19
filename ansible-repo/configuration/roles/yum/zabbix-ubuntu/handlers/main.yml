@@ -1,0 +1,21 @@
+---
+# handlers file for zabbix
+
+- name: Start database
+  service: name=mysqld state=started
+  become: true
+
+- name: Restart database
+  service: name=mysqld state=restarted
+  become: true
+
+- name: Restarting apache
+  service: name=httpd state=restarted
+  become: true
+
+- name: Start zabbix-server
+  service: name=zabbix-server state=started
+  become: true
+
+- name: Start zabbix-agent
+  service: name=zabbix-agent state=started

@@ -1,0 +1,313 @@
+[client-api]
+client-api.onlinepvt ansible_user=ansible ansible_become=yes
+[admin-panel]
+adminpanel.onlinepvt ansible_user=ansible ansible_become=yes
+[igt]
+igt.onlinepvt ansible_user=ansible ansible_become=yes
+[prelogin]
+prelogin.onlinepvt ansible_user=ansible ansible_become=yes
+[corporate]
+corporate.onlinepvt ansible_user=ansible ansible_become=yes
+[shared-report-corporate]
+shared-report-corporate.onlinepvt ansible_user=ansible ansible_become=yes
+[hpe]
+hpe.onlinepvt ansible_user=ansible ansible_become=yes
+[proctoring]
+proctoring.onlinepvt ansible_user=ansible ansible_become=yes
+[pr]
+pr.onlinepvt ansible_user=ansible ansible_become=yes
+
+[360feedback]
+360feedback.onlinepvt ansible_user=ansible ansible_become=yes
+[uber]
+uber.onlinepvt ansible_user=ansible ansible_become=yes
+[feedback]
+feedback.onlinepvt ansible_user=ansible ansible_become=yes
+[test-notification]
+test-notification.onlinepvt ansible_user=ansible ansible_become=yes
+[bulkpdf]
+bulkpdf.onlinepvt ansible_user=ansible ansible_become=yes
+[static]
+static.onlinepvt ansible_user=ansible ansible_become=yes
+[mettl-apis]
+api.onlinepvt ansible_user=ansible ansible_become=yes
+[certification]
+certification.onlinepvt ansible_user=ansible ansible_become=yes
+[accenture]
+accenture.onlinepvt ansible_user=ansible ansible_become=yes
+[duo-lingo]
+duo-lingo.onlinepvt ansible_user=ansible ansible_become=yes
+[skill-master-special]
+skill-master-special.onlinepvt ansible_user=ansible ansible_become=yes
+[skill-master-general]
+skill-master-general.onlinepvt ansible_user=ansible ansible_become=yes
+[skill-master-admin]
+skill-master-admin.onlinepvt ansible_user=ansible ansible_become=yes
+
+###### Java services #######
+[fes]
+fes.onlinepvt ansible_user=ansible ansible_become=yes
+[report-service]
+report.onlinepvt ansible_user=ansible ansible_become=yes
+[typing-simulator]
+typing-simulator.onlinepvt ansible_user=ansible ansible_become=yes
+[dblysis]
+dblysis.onlinepvt ansible_user=ansible ansible_become=yes
+[grader]
+grader.onlinepvt ansible_user=ansible ansible_become=yes
+[htmltopdf]
+htmltopdf.onlinepvt ansible_user=ansible ansible_become=yes
+[excel]
+excel.onlinepvt ansible_user=ansible ansible_become=yes
+[large-excel]
+large-excel.onlinepvt ansible_user=ansible ansible_become=yes
+[scheduler]
+scheduler.onlinepvt ansible_user=ansible ansible_become=yes
+[contest]
+contest.onlinepvt ansible_user=ansible ansible_become=yes
+[api-demo]
+api-demo.onlinepvt ansible_user=ansible ansible_become=yes
+[lms]
+lms.onlinepvt ansible_user=ansible ansible_become=yes
+[schema]
+schema.onlinepvt ansible_user=ansible ansible_become=yes
+[streaming-server]
+streaming.onlinepvt ansible_user=ansible ansible_become=yes
+[chat-socket]
+chat-socket.onlinepvt ansible_user=ansible ansible_become=yes
+[chat-service]
+chat-service.onlinepvt ansible_user=ansible ansible_become=yes
+[notification-app]
+notification.onlinepvt ansible_user=ansible ansible_become=yes
+[livefeed-router]
+livefeed-router.onlinepvt ansible_user=ansible ansible_become=yes
+[offline-app]
+offline-app.onlinepvt ansible_user=ansible ansible_become=yes
+[english-simulator]
+english-simulator.onlinepvt ansible_user=ansible ansible_become=yes
+[intellisense]
+intellisense.onlinepvt ansible_user=ansible ansible_become=yes
+[chat-web-socket]
+chat-web-socket.onlinepvt ansible_user=ansible ansible_become=yes
+[intellisense-router]
+intellisense-router.onlinepvt ansible_user=ansible ansible_become=yes
+[intellisense-csharp]
+intellisense-csharp.onlinepvt  ansible_user=ansible ansible_become=yes
+[intellisense-python]
+intellisense-python.onlinepvt  ansible_user=ansible ansible_become=yes
+[intellisense-java]
+intellisense-java.onlinepvt  ansible_user=ansible ansible_become=yes
+
+[question-service]
+question-service.onlinepvt ansible_user=ansible ansible_become=yes
+[question-event-service]
+question-event-service.onlinepvt ansible_user=ansible ansible_become=yes
+
+
+[skill-master:children]
+skill-master-admin
+skill-master-general
+skill-master-special
+
+[online:children]
+question-service
+question-event-service
+skill-master
+client-api
+360feedback
+uber
+feedback
+static
+mettl-apis
+corporate
+shared-report-corporate
+hpe                
+admin-panel   
+certification
+prelogin
+igt
+accenture
+test-notification
+duo-lingo
+#### java services ####
+fes
+bulkpdf
+report-service
+typing-simulator
+dblysis
+grader
+htmltopdf
+excel
+large-excel
+scheduler
+contest
+api-demo
+lms
+schema
+streaming-server
+chat-socket
+chat-service
+notification-app
+livefeed-router
+proctoring
+pr
+offline-app
+english-simulator
+intellisense
+intellisense-router
+intellisense-csharp
+intellisense-python
+intellisense-java
+chat-web-socket
+
+[corporate:vars]
+machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'},{'username': 'romil-goyal', 'role': 'admin'},{'username': 'ruchi-narula', 'role': 'admin'}]
+
+[shared-report-corporate:vars]
+machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'},{'username': 'romil-goyal', 'role': 'admin'},{'username': 'ruchi-narula', 'role': 'admin'}]
+
+[skill-master:vars]
+machine_specific_users= [{'username': 'romil-goyal', 'role': 'admin'},{'username': 'manish-agrawal', 'role': 'admin'}]
+
+[question-service:vars]
+machine_specific_users= [{'username': 'ruchi-narula', 'role': 'admin'},{'username': 'jalaj-khanna', 'role': 'admin'},{'username': 'kaushal-gupta', 'role': 'admin'},{'username': 'romil-goyal', 'role': 'admin'}]
+
+[question-event-service:vars]
+machine_specific_users= [{'username': 'ruchi-narula', 'role': 'admin'},{'username': 'jalaj-khanna', 'role': 'admin'},{'username': 'kaushal-gupta', 'role': 'admin'},{'username': 'romil-goyal', 'role': 'admin'}]
+
+
+[pr:vars]
+machine_specific_users= [{'username': 'nishant-kumar', 'role': 'admin'},{'username': 'aatish-kumar', 'role': 'admin'}]
+
+[scheduler:vars]
+machine_specific_users= [{'username': 'ruchi-narula', 'role': 'admin'},{'username': 'romil-goyal', 'role': 'admin'}]
+
+[grader:vars]
+machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'},{'username': 'manish-agrawal', 'role': 'admin'}]
+
+[mettl-apis:vars]
+machine_specific_users= [{'username': 'nishant-kumar', 'role': 'admin'},{'username': 'romil-goyal', 'role': 'admin'}]
+
+[admin-panel:vars]
+machine_specific_users= [{'username': 'jalaj-khanna', 'role': 'admin'}]
+
+[notification-app:vars]
+machine_specific_users= [{'username': 'nevin-sunny', 'role': 'admin'},{'username': 'jalaj-khanna', 'role': 'admin'}]
+
+[static:vars]
+machine_specific_users= [{'username': 'amarjeet-kaur', 'role': 'admin'},{'username': 'mayuresh-singh', 'role': 'admin'}]
+
+[excel:vars]
+machine_specific_users= [{'username': 'jalaj-khanna', 'role': 'admin'}]
+
+[large-excel:vars]
+machine_specific_users= [{'username': 'jalaj-khanna', 'role': 'admin'}]
+
+[report-service:vars]
+machine_specific_users= [{'username': 'jalaj-khanna', 'role': 'admin'}]
+
+[htmltopdf:vars]
+machine_specific_users= [{'username': 'amarjeet-kaur', 'role': 'admin'},{'username': 'ghanshyam-agrawal', 'role': 'admin'}]
+
+[bulkpdf:vars]
+machine_specific_users= [{'username': 'amarjeet-kaur', 'role': 'admin'},{'username': 'ghanshyam-agrawal', 'role': 'admin'}]
+
+[offline-app:vars]
+machine_specific_users= [{'username': 'aatish-kumar', 'role': 'admin'},{'username': 'mayuresh-singh', 'role': 'admin'}]
+
+[streaming-server:vars]
+machine_specific_users= [{'username': 'kapil-singhal', 'role': 'admin'},{'username': 'nishant-kumar', 'role': 'admin'}]
+
+[chat-socket:vars]
+machine_specific_users= [{'username': 'kapil-singhal', 'role': 'admin'},{'username': 'nishant-kumar', 'role': 'admin'}]
+
+[chat-service:vars]
+machine_specific_users= [{'username': 'kapil-singhal', 'role': 'admin'},{'username': 'nishant-kumar', 'role': 'admin'}]
+
+[livefeed-router:vars]
+machine_specific_users= [{'username': 'nishant-kumar', 'role': 'admin'},{'username': 'kapil-singhal', 'role': 'admin'}]
+
+[proctoring:vars]
+machine_specific_users= [{'username': 'kapil-singhal', 'role': 'admin'},{'username': 'nishant-kumar', 'role': 'admin'}]
+
+
+[intellisense:vars]
+machine_specific_users= [{'username': 'aatish-kumar', 'role': 'admin'},{'username': 'manish-agrawal', 'role': 'admin'}]
+
+[fes:vars]
+machine_specific_users= [{'username': 'aatish-kumar', 'role': 'admin'},{'username': 'kapil-singhal', 'role': 'admin'},{'username': 'manish-agrawal', 'role': 'admin'}]
+
+[dblysis:vars]
+machine_specific_users= [{'username': 'manish-agrawal', 'role': 'admin'},{'username': 'ghanshyam-agrawal', 'role': 'admin'}]
+
+[schema:vars]
+machine_specific_users= [{'username': 'manish-agrawal', 'role': 'admin'},{'username': 'ghanshyam-agrawal', 'role': 'admin'}]
+
+[typing-simulator:vars]
+machine_specific_users= [{'username': 'romil-goyal', 'role': 'admin'},{'username': 'manish-agrawal', 'role': 'admin'}]
+
+[english-simulator:vars]
+machine_specific_users= [{'username': 'jalaj-khanna', 'role': 'admin'}, {'username': 'kapil-singhal', 'role': 'admin'}]
+
+[api-demo:vars]
+machine_specific_users= [{'username': 'tarun-yaduvanshi', 'role': 'admin'},{'username': 'nevin-sunny', 'role': 'admin'}]
+
+[360feedback:vars]
+machine_specific_users= [{'username': 'tarun-yaduvanshi', 'role': 'admin'},{'username': 'shipra', 'role': 'admin'}]
+
+[certification:vars]
+machine_specific_users= [{'username': 'nevin-sunny', 'role': 'admin'},{'username': 'shipra', 'role': 'admin'}]
+
+[contest:vars]
+machine_specific_users= [{'username': 'ruchi-narula', 'role': 'admin'},{'username': 'jalaj-khanna', 'role': 'admin'}]
+
+[prelogin:vars]
+machine_specific_users= [{'username': 'tarun-yaduvanshi', 'role': 'admin'}]
+
+[lms:vars]
+machine_specific_users= [{'username': 'shipra', 'role': 'admin'},{'username': 'jalaj-khanna', 'role': 'admin'}]
+
+[duo-lingo:vars]
+machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'},{'username': 'ruchi-narula', 'role': 'admin'}]
+
+[hpe:vars]
+machine_specific_users= [{'username': 'tarun-yaduvanshi', 'role': 'admin'},{'username': 'shipra', 'role': 'admin'}]
+
+[accenture:vars]
+machine_specific_users= [{'username': 'shipra', 'role': 'admin'},{'username': 'nevin-sunny', 'role': 'admin'}]
+
+[igt:vars]
+machine_specific_users= [{'username': 'shipra', 'role': 'admin'},{'username': 'tarun-yaduvanshi', 'role': 'admin'},{'username': 'amit-singh', 'role': 'admin'}]
+
+[grader:vars]
+machine_specific_users= [{'username': 'kirandeep-kaur', 'role': 'admin'}]
+
+[client-api:vars]
+machine_specific_users= [{'username': 'manish-agrawal', 'role': 'admin'},{'username': 'tarun-yaduvanshi', 'role': 'admin'}]
+
+
+[uber:vars]
+machine_specific_users= [{'username': 'mayuresh-singh', 'role': 'admin'},{'username': 'tarun-yaduvanshi', 'role': 'admin'}]
+
+[feedback:vars]
+machine_specific_users= [{'username': 'nevin-sunny', 'role': 'admin'},{'username': 'tarun-yaduvanshi', 'role': 'admin'}]
+
+[test-notification:vars]
+machine_specific_users= [{'username': 'nevin-sunny', 'role': 'admin'},{'username': 'tarun-yaduvanshi', 'role': 'admin'}]
+
+[chat-web-socket:vars]
+machine_specific_users= [{'username': 'nishant-kumar', 'role': 'admin'},{'username': 'kapil-singhal', 'role': 'admin'}]
+
+[intellisense-router:vars]
+machine_specific_users= [{'username': 'aatish-kumar', 'role': 'admin'},{'username': 'manish-agrawal', 'role': 'admin'}]
+
+[intellisense-csharp:vars]
+machine_specific_users= [{'username': 'aatish-kumar', 'role': 'admin'},{'username': 'manish-agrawal', 'role': 'admin'}]
+
+[intellisense-python:vars]
+machine_specific_users= [{'username': 'aatish-kumar', 'role': 'admin'},{'username': 'manish-agrawal', 'role': 'admin'}]
+
+[intellisense-java:vars]
+machine_specific_users= [{'username': 'aatish-kumar', 'role': 'admin'},{'username': 'manish-agrawal', 'role': 'admin'}]
+
+

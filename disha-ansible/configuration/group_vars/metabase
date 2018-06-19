@@ -1,0 +1,6 @@
+hostname: metabase
+logfile_path:
+ - /var/log/*.log
+ - /home/mettl/*.log
+role: app-roles/metabase
+java_version: 8

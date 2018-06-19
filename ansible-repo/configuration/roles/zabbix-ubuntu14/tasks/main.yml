@@ -1,0 +1,60 @@
+---
+# tasks file for zabbix
+
+- stat: path=/root/zabbix-release_3.2-1+trusty_all.deb
+  register: zabbixrelease
+
+- stat: path=/usr/share/doc/zabbix-server-mysql/create.sql.gz
+  register: zabbixdump
+
+- name: Downloading repository packages
+  get_url:
+    url: http://repo.zabbix.com/zabbix/3.2/ubuntu/pool/main/z/zabbix-release/zabbix-release_3.2-1+trusty_all.deb
+    dest: /root/
+  when: zabbixrelease.stat.exists == False
+
+- name: Installing zabbix-server  package
+  apt:
+    deb: /root/zabbix-release_3.2-1+trusty_all.deb
+  when: zabbixrelease.stat.exists == False
+
+- name: Updating package list
+  apt:
+    update_cache: yes
+
+- name: Installing zabbix packages 
+  apt: name=zabbix-server-mysql state=installed install_recommends=yes
+
+
+- name: Installing zabbix packages
+  apt: name={{ item }} state=installed
+  with_items:
+      - zabbix-frontend-php
+      - python-mysqldb
+
+- service: name=mysql state=started
+
+- include: mysql_secure_installation.yml
+
+- name: Configuring php setting ...
+  template: src=zabbix.conf.j2 dest=/etc/apache2/conf-enabled/zabbix.conf owner=root group=root mode=0644
+
+- service: name=apache2 state=restarted
+
+- name: Creating zabbix database ...
+  mysql_db: name=zabbix state=present
+
+- name: Specify GRANTS on database user ...
+  mysql_user: name=zabbix password={{ zabbix_database_password }} priv=zabbix.*:ALL,GRANT state=present
+
+- name: Importing database ...
+  shell: "zcat /usr/share/doc/zabbix-server-mysql/create.sql.gz | mysql -uroot zabbix -p{{ mysql_root_password }}"
+  when: zabbixdump.stat.exists == False
+
+- name: Adding zabbix configuration file ...
+  template: src=zabbix-server.conf.j2 dest=/etc/zabbix/zabbix_server.conf owner=root group=root mode=0644
+
+- name: Configuring zabbix ui part- To avoid verification when zabbix ui opens for first time...
+  template: src=zabbix.conf.php.j2 dest=/etc/zabbix/web/zabbix.conf.php owner=www-data group=www-data mode=0644
+
+- service: name=zabbix-server state=restarted

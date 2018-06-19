@@ -1,0 +1,8 @@
+- name: setup cronjob to delete target folders in /home/mettl/codeProject/compilations
+  cron:
+      minute: 0
+      name: remove temporary target folders in /home/mettl/codeProject/compilations
+      user: mettl
+      state: present
+      job: "find /home/mettl/codeProject/compilations/* -type d -mmin +59 -exec rm -rf {} \\; >> /home/mettl/mettl_logs/cleanCompilations.log 2>&1"
+

@@ -1,0 +1,6 @@
+#!/bin/bash
+rm -rf /var/tmp/aws-mon/
+echo "localhost" >/etc/hostname
+hostname localhost
+sleep 30
+/bin/su - mettl /home/mettl/release/misc/genericMachineUp.sh ${deployement_env} disha-web web > /home/mettl/mettl_logs/machineup.log

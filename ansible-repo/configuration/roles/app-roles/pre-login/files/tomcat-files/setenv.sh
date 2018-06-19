@@ -1,0 +1,1 @@
+export CATALINA_OPTS="$CATALINA_OPTS -XX:MaxPermSize=512m -XX:+CMSPermGenSweepingEnabled -XX:+CMSClassUnloadingEnabled -Xms128m -Xmx796m -Dcom.sun.management.jmxremote.port=9092 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false"

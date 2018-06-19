@@ -1,0 +1,51 @@
+[redis]
+redis.onlinepvt ansible_user=ansible ansible_become=yes
+[nfs]
+nfs.onlinepvt ansible_user=ansible ansible_become=yes
+[disha-web-tc-map]
+web-tcmap.onlinepvt ansible_user=ansible ansible_become=yes
+[jenkins]
+jenkins.onlinepvt ansible_user=ansible ansible_become=yes
+[username]
+username.onlinepvt ansible_user=ansible ansible_become=yes
+[location]
+location.onlinepvt ansible_user=ansible ansible_become=yes
+[eligibility]
+eligibility.onlinepvt ansible_user=ansible ansible_become=yes
+[ifsc]
+ifsc.onlinepvt ansible_user=ansible ansible_become=yes
+[pmgdisha-info]
+pmgdisha_info.onlinepvt ansible_user=ansible ansible_become=yes
+[biometric]
+biometric.onlinepvt ansible_user=ansible ansible_become=yes
+[biometric-admin]
+biometric-admin.onlinepvt ansible_user=ansible ansible_become=yes
+[certificate]
+certificate.onlinepvt ansible_user=ansible ansible_become=yes
+[reporting-database-updator]
+reporting-database-updator.onlinepvt ansible_user=ansible ansible_become=yes
+[metabase]
+metabase.onlinepvt ansible_user=ansible ansible_become=yes
+[practice]
+practice.onlinepvt ansible_user=ansible ansible_become=yes
+[circuit-breaker]
+circuit-breaker.onlinepvt ansible_user=ansible ansible_become=yes
+
+
+[disha-online:children]
+redis
+nfs
+disha-web-tc-map
+jenkins
+username
+location
+eligibility
+ifsc
+pmgdisha-info
+biometric
+biometric-admin
+certificate
+reporting-database-updator
+metabase
+practice
+circuit-breaker

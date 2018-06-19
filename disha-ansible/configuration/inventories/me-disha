@@ -1,0 +1,49 @@
+[redis]
+redis.mepvt ansible_user=ansible ansible_become=yes
+[nfs]
+nfs.mepvt ansible_user=ansible ansible_become=yes
+[disha-web-tc-map]
+disha-web-tcmap.mepvt ansible_user=ansible ansible_become=yes
+[jenkins]
+jenkins.mepvt ansible_user=ansible ansible_become=yes
+[jenkins-rerun]
+jenkins.mepvt ansible_user=ansible ansible_become=yes
+[username]
+disha-username.mepvt ansible_user=ansible ansible_become=yes
+[location]
+disha-location.mepvt ansible_user=ansible ansible_become=yes
+[eligibility]
+disha-eligibility.mepvt ansible_user=ansible ansible_become=yes
+[ifsc]
+disha-ifsc.mepvt ansible_user=ansible ansible_become=yes
+[pmgdisha-info]
+pmgdisha_info.mepvt ansible_user=ansible ansible_become=yes
+[biometric]
+biometric.mepvt ansible_user=ansible ansible_become=yes
+[biometric-admin]
+biometric-admin.mepvt ansible_user=ansible ansible_become=yes
+[certificate]
+disha-certificate.mepvt ansible_user=ansible ansible_become=yes
+[reporting-database-updator]
+reporting-database-updator.mepvt ansible_user=ansible ansible_become=yes
+[metabase]
+metabase.mepvt ansible_user=ansible ansible_become=yes
+[practice]
+practice.mepvt ansible_user=ansible ansible_become=yes
+
+[me-disha:children]
+redis
+nfs
+disha-web-tc-map
+jenkins
+username
+location
+eligibility
+ifsc
+pmgdisha-info
+biometric
+biometric-admin
+certificate
+reporting-database-updator
+metabase
+practice

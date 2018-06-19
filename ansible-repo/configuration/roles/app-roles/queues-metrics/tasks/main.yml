@@ -1,0 +1,45 @@
+- name: Install pip and perl lib
+  apt: name={{ item }} state=installed
+  with_items:
+    - python-pip
+    - libwww-perl
+
+- name: install boto3
+  pip:
+    name: boto3
+    version: 1.4.0
+
+- name: Create metric log dir
+  file: path="{{ item }}" state=directory mode="755" owner="root" group="root"
+  with_items:
+    - /var/log/queues
+
+- name: setup cronjob for autoscaling queue metrics
+  cron:
+    user: root
+    name: "send autoscaling metric for queue {{ item[0].name }}_sleep{{ item[1] }}"
+    minute: "*"
+    job: "(sleep {{ item[1] }}; /opt/mettl-scripts/custom-cloudwatch-metrics/autoscaling-queues/queueMetrics/queue.sh {{ item[0].name }} activemq.{{ internal_domain }} {{ item[0].port }} {{ item[0].username }} {{ item[0].password }} {{ item[0].asg_name }}  custom-ec2-{{ env }} {{ item[0].aws_region }}) >> {{ item[0].log_file }} 2>&1"
+  with_nested:
+       - "{{ autoscaling_job_list }}"
+       - [ '0', '20', '40' ]
+
+- name: setup cronjob for chat queue metrics
+  cron:
+    user: root
+    name: "send metric for queue {{ item[0].name }}_sleep{{ item[1] }}"
+    minute: "*"
+    job: "(sleep {{ item[1] }}; /opt/mettl-scripts/custom-cloudwatch-metrics/queues/queue.sh {{ item[0].name }} chat-activemq.{{ internal_domain }} {{ item[0].port }} {{ item[0].username }} {{ item[0].password }} custom-ec2-{{ env }} {{ item[0].aws_region }}) >> {{ item[0].log_file }} 2>&1"
+  with_nested:
+       - "{{ chat_metrics_job_list }}"
+       - [ '0', '20', '40' ]
+
+- name: setup cronjob for platform queue metrics
+  cron:
+    user: root
+    name: "send metric for queue {{ item[0].name }}_sleep{{ item[1] }}"
+    minute: "*"
+    job: "(sleep {{ item[1] }}; /opt/mettl-scripts/custom-cloudwatch-metrics/queues/queue.sh {{ item[0].name }} activemq.{{ internal_domain }} {{ item[0].port }} {{ item[0].username }} {{ item[0].password }} custom-ec2-{{ env }} {{ item[0].aws_region }}) >> {{ item[0].log_file }} 2>&1"
+  with_nested:
+       - "{{ platform_metrics_job_list }}"
+       - [ '0', '20', '40' ]

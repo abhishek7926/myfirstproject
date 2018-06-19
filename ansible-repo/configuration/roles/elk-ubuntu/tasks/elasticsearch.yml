@@ -1,0 +1,35 @@
+- name: Install elasticsearch key
+  apt_key: url=https://packages.elastic.co/GPG-KEY-elasticsearch state=present
+
+- name: Add repository for elasticsearch
+  apt_repository: repo="deb https://artifacts.elastic.co/packages/5.x/apt stable main"  state=present
+
+- name: Installing package elasticsearch
+  apt: name=elasticsearch state=present update_cache=yes
+
+- name: Restrict elasticsearch to localhost
+  lineinfile: 'dest=/etc/elasticsearch/elasticsearch.yml regexp=network.host line="network.host: localhost"'
+
+#- name: Checking if x-pack plugin ios installed or not
+#  stat: path=/usr/share/elasticsearch/plugins/x-pack/x-pack-5.0.2.jar
+#  register: xpack
+#
+#- name: Installing X-pack security plugin for elasticsearch
+#  command: "./elasticsearch-plugin install x-pack --batch"
+#  args:
+#    chdir: /usr/share/elasticsearch/bin/
+#  ignore_errors: yes
+#  when: xpack.stat.exists == False
+#
+#- name: Configuring X-pack plugin
+#  lineinfile: 'dest=/etc/elasticsearch/elasticsearch.yml line="action.auto_create_index: .security,.monitoring*,.watches,.triggered_watches,.watcher-history*" state=present'
+#  notify:
+#     - restart elasticsearch
+
+- name: Start service elasticsearch
+  service: name=elasticsearch state=started enabled=yes
+
+#- name: To make elasticsearch service available after reboot
+#  command: update-rc.d elasticsearch defaults 95 10
+#  notify:
+#     - restart elasticsearch

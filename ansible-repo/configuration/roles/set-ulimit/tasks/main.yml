@@ -1,0 +1,16 @@
+ - pam_limits:
+    domain: root
+    limit_type: '-'
+    limit_item: nofile
+    value: "{{ ulimit }}"
+
+ - pam_limits:
+    domain: mettl
+    limit_type: '-'
+    limit_item: nofile
+    value: "{{ ulimit }}"
+
+ - name: Ensuring ulimit ...
+   lineinfile: dest=/etc/pam.d/common-session line="session required pam_limits.so"
+ - name: Ensuring ulimit ...
+   lineinfile: dest=/etc/pam.d/common-session-noninteractive line="session required pam_limits.so"

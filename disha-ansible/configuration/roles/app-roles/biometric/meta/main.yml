@@ -1,0 +1,5 @@
+dependencies:
+  - { role: mettl-app}
+  - { role: disha-cert}
+  - { role: apache}
+  - { role: tomcat}

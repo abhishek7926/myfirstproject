@@ -1,0 +1,7 @@
+java_version: 7
+tomcat_version: 7.0.40
+tomcat_release: 7
+ssl: true
+role: app-roles/pr
+artifact_name: prService 
+tomcat_folder: prService

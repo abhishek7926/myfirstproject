@@ -1,0 +1,88 @@
+---
+  - name: Adding repo for apache 2.4.33
+    apt_repository: repo='{{ apache_repo }}'
+
+  - name: Update APT package cache
+    apt: update_cache=yes
+
+  - name: install apache2 latest
+    become: true
+    apt: name=apache2 update_cache=yes state=latest
+
+  - name: setting log format for access logs
+    template: src=roles/apache/files/apache2.conf dest=/etc/apache2/
+    notify: reload apache
+
+  - name: enable general apache modules
+    become: true
+    apache2_module: name={{ item }} state=present
+    with_items:
+     - ssl
+     - rewrite
+     - proxy 
+     - proxy_http
+     - headers
+     - speling
+    notify: reload apache
+
+  - name: enable specific apache modules
+    become: true
+    apache2_module: name={{ item }} state=present
+    with_items:
+       - "{{ specific_apache_modules }}"
+    notify: reload apache
+    when: enable_any_specific_apache_module
+
+  - stat:
+      path: "roles/{{ role }}/files/apache-files/mpm_event.conf"
+    register: mpm_file_stat
+    delegate_to: localhost
+
+  - name: Configure apache threads
+    become: true    
+    template: src=roles/{{ role }}/files/apache-files/mpm_event.conf dest=/etc/apache2/mods-available/mpm_event.conf
+    notify: reload apache
+    when: mpm_file_stat.stat.exists
+
+  - command: "ls roles/{{ role }}/files/apache-files/vhost/"
+    register: dir_out
+    delegate_to: localhost
+
+  - name: copy vhost files
+    template: src=roles/{{ role }}/files/apache-files/vhost/{{ item }} dest=/etc/apache2/sites-available/{{ item }}
+    become: true
+    notify: reload apache
+    with_items: "{{ dir_out.stdout_lines }}"
+
+  - name: make soft links in sites-enabled directory
+    file:
+      src: /etc/apache2/sites-available/{{ item }}
+      dest: /etc/apache2/sites-enabled/{{ item }}
+      state: link
+    notify: reload apache
+    with_items: "{{ dir_out.stdout_lines }}"
+
+  - name: a2dissite default site
+    file: path=/etc/apache2/sites-enabled/{{ item }} state=absent
+    with_items:
+      - 000-default.conf
+      - default-ssl.conf
+    notify: reload apache
+
+  - name: copy server.crt
+    become: true
+    template: src=roles/apache/files/{{ item.src }} dest=/etc/ssl/{{ item.dest}}
+    with_items:
+     - { src: '{{ env }}_server.crt' , dest: 'certs/server.crt' }
+     - { src: '{{ env }}_server.key' , dest: 'private/server.key' }
+     - { src: '{{ env }}_server_bundle.crt' , dest: 'certs/server_bundle.crt' }
+    notify: restart apache
+    when: ssl
+
+  - name: ensure apache is running
+    service: name=apache2 state=started enabled=yes
+
+  - name: make apache logs directory readable by others
+    file: path=/var/log/apache2 mode=755
+
+  - include: apache-log-backup.yml

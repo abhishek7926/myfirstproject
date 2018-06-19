@@ -1,0 +1,104 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::mettl-devops",
+                "arn:aws:s3:::proctoring-static-${env}",
+                "arn:aws:s3:::deployement-versions"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObject",
+                "s3:DeleteObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::mettl-devops",
+                "arn:aws:s3:::proctoring-static-${env}/*",
+                "arn:aws:s3:::deployement-versions/*",
+                "arn:aws:s3:::mettl-devops/generic-data-for-ansible-and-jenkins/*",
+                "arn:aws:s3:::mettl-devops/ansible/keys/${env}/*",
+                "arn:aws:s3:::mettl-devops/jenkins/keys/${env}/*"
+            ]
+        },
+
+        {
+             "Action": [
+                            "ec2:DescribeVpcs",
+                            "ec2:DescribeVpcClassicLink",
+                            "ec2:DescribeAvailabilityZones",
+                            "ec2:DescribeSubnets",
+                            "ec2:DescribeInstances"
+                        ],
+            "Effect": "Allow",
+            "Resource": "*"
+        },
+        {
+                    "Effect": "Allow",
+                    "Action": "autoscaling:Describe*",
+                    "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "autoscaling:*",
+            "Resource": "arn:aws:autoscaling:${aws_region}:*:*.${format("%s", lower("${private_dns_zone_name}"))}"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "elasticloadbalancing:Describe*",
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:CreateSnapshot",
+                "ec2:DescribeSnapshots",
+                "ec2:CreateImage",
+                "ec2:DescribeImages",
+                "ec2:DeleteSnapshot",
+                "ec2:DeregisterImage",
+                "ec2:DescribeInstances"
+            ],
+            "Condition": {
+                  "StringEquals": {
+                         "ec2:Region": "${aws_region}"
+                  }
+            },
+            "Resource": [
+                   "*"
+            ]
+        },
+         {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:RebootInstances",
+                "ec2:StopInstances",
+                "ec2:StartInstances"
+            ],
+            "Condition": {
+                 "StringLike": {
+                     "ec2:ResourceTag/Name": "*.xyzpvt"
+                 }
+            },
+            "Resource": "arn:aws:ec2:${aws_region}:*:instance/*"
+         },
+         {
+                     "Effect": "Allow",
+                     "Action": [
+                         "rds:DescribeDBInstances",
+                         "rds:StartDBInstance",
+                         "rds:StopDBInstance"
+                     ],
+                     "Resource": "arn:aws:rds:${aws_region}:*:db:*-xyz"
+         }
+
+
+    ]
+}

@@ -1,0 +1,3 @@
+hostname: yolo
+ulimit: unlimited
+autoscaling: "true"

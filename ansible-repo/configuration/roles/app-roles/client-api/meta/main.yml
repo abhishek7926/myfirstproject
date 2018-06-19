@@ -1,0 +1,5 @@
+dependencies:
+  - { role: mettl-app}
+  - { role: apache}
+  - { role: tomcat}
+

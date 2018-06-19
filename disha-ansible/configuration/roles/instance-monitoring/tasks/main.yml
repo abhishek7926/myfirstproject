@@ -1,0 +1,73 @@
+  - name: perl packages install
+    apt: name={{ item }} state=installed update_cache=yes
+    with_items:
+    - libdatetime-perl
+    - libwww-perl
+
+  - name: Create custom-cloudwatch-metrics dir
+    file: path="/opt/custom-cloudwatch-metrics" state=directory mode="755" owner="root" group="root"
+
+  - name: Download zip file
+    get_url:
+      url: https://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.1.zip
+      dest: /opt/custom-cloudwatch-metrics
+
+  - name: Obtaining generic monitoring scripts
+    unarchive:
+      src: /opt/custom-cloudwatch-metrics/CloudWatchMonitoringScripts-1.2.1.zip
+      dest: /opt/custom-cloudwatch-metrics
+      remote_src: True
+
+
+  - name: make scripts executable
+    file:
+      path: /opt/custom-cloudwatch-metrics/aws-scripts-mon/{{ item }}
+      owner: root
+      group: root
+      mode: 700
+    with_items:
+      - mon-get-instance-stats.pl
+      - mon-put-instance-data.pl
+
+
+  - name: Changing namespace for publishing ram,swap,disk
+    become: true
+    replace: dest=/opt/custom-cloudwatch-metrics/aws-scripts-mon/{{ item }} regexp='System/Linux' replace='custom-ec2-{{ env }}'
+    with_items:
+        - mon-get-instance-stats.pl
+        - mon-put-instance-data.pl
+
+  - name: setup cronjob for publishing ram,swap,disk
+    cron:
+      user: root
+      name: "send metric for ram,swap,disk in {{ item }} seconds"
+      minute: "*"
+      job: "(sleep {{ item }}; /opt/mettl-scripts/custom-cloudwatch-metrics/ec2/sendDiskRamSwapStatsToCloudWatch.sh {{ autoscaling }}) >> /var/log/disk_ram_swap.log  2>&1"
+    with_items:
+      - 0
+      - 20
+      - 40
+
+  - name: setup cronjob for publishing inodes
+    cron:
+      user: root
+      name: "send metric for inodes in {{ item }} seconds"
+      minute: "*"
+      job: "(sleep {{ item }}; /opt/mettl-scripts/custom-cloudwatch-metrics/ec2/inodes.sh custom-ec2-{{ env }} {{ aws_region }} {{ autoscaling }}) >> /var/log/inodes.log  2>&1"
+    with_items:
+      - 0
+      - 20
+      - 40
+
+
+  - name: setup cronjob for publishing load average
+    cron:
+      user: root
+      name: "send metric for load average in {{ item }} seconds"
+      minute: "*"
+      job: "(sleep {{ item }}; /opt/mettl-scripts/custom-cloudwatch-metrics/ec2/load_average.sh  custom-ec2-{{ env }} {{ aws_region }} {{ autoscaling }}) >> /var/log/load_average.log  2>&1"
+    with_items:
+      - 0
+      - 20
+      - 40
+

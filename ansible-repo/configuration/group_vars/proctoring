@@ -1,0 +1,6 @@
+hostname: proctoring
+tomcat_connector_port: 8888
+logfile_path:
+ - /var/log/*.log
+ - /home/mettl/mettl_logs/*/*.log
+

@@ -1,0 +1,3 @@
+hostname: english-simulator
+install_zabbix_agent: false
+

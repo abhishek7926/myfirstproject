@@ -1,0 +1,4 @@
+hostname: r-simulators-cms
+ulimit: unlimited
+autoscaling: "true"
+node_version: 8

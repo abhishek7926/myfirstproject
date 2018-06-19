@@ -1,0 +1,13 @@
+role: app-roles/admin-panel
+env: prod
+hostname: admin.mettl.com
+site: admin.mettl.com
+root_template: root.xml
+java_version: 7
+tomcat_version: 7.0.40
+catalina_root: ROOT
+tomcat_release: 7
+volume: volume1
+app: admin-panel
+config_ip: 10.0.0.151
+setenv: false

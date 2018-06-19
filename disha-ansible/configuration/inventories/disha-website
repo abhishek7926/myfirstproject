@@ -1,0 +1,55 @@
+[redis]
+redis.websitepvt ansible_user=ansible ansible_become=yes
+[nfs]
+nfs.websitepvt ansible_user=ansible ansible_become=yes
+[disha-web-tc-map]
+web-tcmap.websitepvt ansible_user=ansible ansible_become=yes
+[jenkins]
+jenkins.websitepvt ansible_user=ansible ansible_become=yes
+[jenkins-rerun]
+jenkins.websitepvt ansible_user=ansible ansible_become=yes
+[username]
+username.websitepvt ansible_user=ansible ansible_become=yes
+[location]
+location.websitepvt ansible_user=ansible ansible_become=yes
+[eligibility]
+eligibility.websitepvt ansible_user=ansible ansible_become=yes
+[ifsc]
+ifsc.websitepvt ansible_user=ansible ansible_become=yes
+[pmgdisha-info]
+pmgdisha_info.websitepvt ansible_user=ansible ansible_become=yes
+[biometric]
+biometric.websitepvt ansible_user=ansible ansible_become=yes
+[biometric-admin]
+biometric-admin.websitepvt ansible_user=ansible ansible_become=yes
+[certificate]
+certificate.websitepvt ansible_user=ansible ansible_become=yes
+[reporting-database-updator]
+reporting-database-updator.websitepvt ansible_user=ansible ansible_become=yes
+[metabase]
+metabase.websitepvt ansible_user=ansible ansible_become=yes
+[practice]
+practice.websitepvt ansible_user=ansible ansible_become=yes
+[circuit-breaker]
+circuit-breaker.websitepvt ansible_user=ansible ansible_become=yes
+[data-processing-engine]
+data-processing-engine.websitepvt ansible_user=ansible ansible_become=yes
+
+[disha-website:children]
+redis
+nfs
+disha-web-tc-map
+jenkins
+username
+location
+eligibility
+ifsc
+pmgdisha-info
+biometric
+biometric-admin
+certificate
+reporting-database-updator
+metabase
+practice
+circuit-breaker
+data-processing-engine

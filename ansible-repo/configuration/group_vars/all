@@ -1,0 +1,43 @@
+install_filebeat: true
+install_zabbix_agent: true
+installers_base_url: https://s3.ap-south-1.amazonaws.com/mettl-installers
+mettl_config_mount_point: /home/mettl/mettlconfig
+mettl_release_scripts_mount_point: /home/mettl/release
+mettl_scripts_mount_point: /opt/mettl-scripts
+mettl_config_shared_dir: /export/configuration
+mettl_release_scripts_shared_dir: /export/release-scripts
+mettl_scripts_shared_dir: /export/mettl-scripts
+volume: volume1
+
+logfile_path:
+ - /var/log/*.log
+all_filebeat_topics: "[360feedback,accenture,adminPanel,api-demo,biometric,chat-service,contest,corporate,biometric-admin,pr,static,dubaiway,duo-lingo,hpe,igt,certification,logstash,maintenance,mettl-apis,ndlm-info,notification-app,offline-app,practice-test,prelogin,shared-report-corporate]"
+
+three_sixty_feedback_tomcat_connector_port: 8030
+accenture_tomcat_connector_port: 8040
+admin_panel_tomcat_connector_port: 8030
+api_demo_tomcat_connector_port: 8010
+dubaiway_tomcat_connector_port: 8070
+duolingo_tomcat_connector_port: 8030
+hpe_tomcat_connector_port: 8050
+igt_tomcat_connector_port: 8030
+ndlm_info_tomcat_connector_port: 8030
+practice_test_tomcat_connector_port: 8040
+jenkins_connector_port: 8080
+elk_connector_port: 5601
+zabbix_server_port: 80
+lms_tomcat_connector_port: 8010
+uber_tomcat_connector_port: 8050
+feedback_tomcat_connector_port: 8030
+test_notification_tomcat_connector_port: 8090
+proctoring_ui_tomcat_connector_port: 8030
+interviewapp_admin_frontend_port: 80
+interviewapp_interview_frontend_port: 80
+interviewapp_admin_api_port: 8084
+interviewapp_interview_api_port: 8083
+interviewapp_socket_port: 8082
+status_mettl_tomcat_connector_port: 8030
+
+
+
+

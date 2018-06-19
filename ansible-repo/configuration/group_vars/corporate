@@ -1,0 +1,7 @@
+hostname: corporate
+tomcat_folder: corporate
+logfile_path:
+ - /var/log/*.log
+ - /home/mettl/*.log
+document_type: "corporate"
+artifact_name: mettl-ui

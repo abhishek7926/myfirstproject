@@ -1,0 +1,26 @@
+[metrics]
+metrics.onlinepvt ansible_user=ansible ansible_become=yes
+[activemq]
+activemq.onlinepvt ansible_user=ansible ansible_become=yes
+[redis]
+redis.onlinepvt ansible_user=ansible ansible_become=yes
+[nfs]
+nfs.onlinepvt ansible_user=ansible ansible_become=yes
+[fhgfs-ucl-code-project]
+fhgfs-ucl-code-project.onlinepvt ansible_user=ansible ansible_become=yes
+[chat-activemq]
+chat-activemq.onlinepvt ansible_user=ansible ansible_become=yes
+
+
+[online:children]
+metrics
+activemq
+redis
+nfs
+fhgfs-ucl-code-project
+chat-activemq
+
+
+
+[chat-activemq:vars]
+machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'}, {'username': 'nishant-kumar', 'role': 'admin'}]

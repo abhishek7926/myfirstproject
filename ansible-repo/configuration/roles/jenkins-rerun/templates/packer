@@ -1,0 +1,35 @@
+{
+"provisioners": [
+{
+"type" : "shell",
+"inline": [
+
+"sudo rm -rf /var/lib/apt/lists/*",
+"sudo apt-get clean",
+"sudo apt-get update"
+
+]
+
+},
+{
+"type": "ansible",
+"playbook_file": "/home/ansible/ansible-repo/configuration/site.yml",
+"extra_arguments": [  "--sudo"],
+"groups": [
+"{{ env }}","run_role_on_host"
+]
+}
+],
+"builders": [
+
+{
+"type": "amazon-ebs",
+"region": "{{ aws_region }}",
+"source_ami": "base_ami_for_host",
+"instance_type": "t2.small",
+"ssh_username": "ubuntu",
+"ami_name": "run_role_on_host-{{ env }}-timestamp",
+"vpc_id": "env_vpc",
+"subnet_id": "subnet-id"}
+]
+}

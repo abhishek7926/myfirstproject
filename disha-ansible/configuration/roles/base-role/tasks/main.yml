@@ -1,0 +1,70 @@
+---
+
+# Installing htop, xclip, unzip, awscli packages
+
+
+- name: Set hostname according to enviornment and domain
+  set_fact:
+      full_hostname: "{{ env  }}-{{ hostname }}.{{ domain }}"
+  when: specific_host_name is not defined or not specific_host_name
+
+- name: Change hostname
+  become: true
+  hostname: name={{ full_hostname }}
+  when: specific_host_name is not defined or not specific_host_name
+
+- name: Put entry in /etc/hosts
+  lineinfile:
+     dest: /etc/hosts
+     regexp: '^127\.0\.0\.1'
+     line: '127.0.0.1 {{ full_hostname }} '
+     owner: root
+     group: root
+     mode: 0644
+  when: specific_host_name is not defined or not specific_host_name
+
+- name: Installing general apt-get debian packages
+  apt: name={{ item }} state=latest update_cache=yes
+  with_items:
+      - htop
+      - xclip
+      - unzip
+
+- name: Install pip and perl lib
+  apt: name={{ item }} state=installed
+  with_items:
+    - python-pip
+    - libwww-perl
+
+- name: install boto3
+  pip:
+    name: boto3
+    version: 1.4.0
+
+
+# Aliases tasks
+- name: Creating default aliases
+  lineinfile: dest=/etc/bash.bashrc line={{ item }}
+  with_items:
+      - "alias apachelogs='cd /var/log/apache2'"
+      - "alias apacheconfig='cd /etc/apache2'"
+      - "alias sitesavailable-apacheconfig='cd /etc/apache2/sites-available'"
+      - "alias sitesenabled-apacheconfig='cd /etc/apache2/sites-enabled'"
+      - "alias mettllogs='cd /home/mettl/mettl_logs'"
+      - "alias mettlconfig='cd /home/mettl/mettlconfig'"
+      - "alias psef='ps -ef | grep'"
+
+# For ulimits
+
+# - name: Setting ulimit ...
+#   lineinfile: dest=/etc/security/limits.conf line={{item}}
+#   with_items:
+#       - "root            hard    nofile            4096"
+#       - "root            soft    nofile            4096"
+#       - "*            hard    nofile            4096"
+#       - "*            soft    nofile            4096"
+
+# - name: Ensuring ulimit ...
+#   lineinfile: dest=/etc/pam.d/common-session line="session required pam_limits.so"
+# - name: Ensuring ulimit ...
+#   lineinfile: dest=/etc/pam.d/common-session-noninteractive line="session required pam_limits.so"

@@ -1,0 +1,33 @@
+[java-codelysis]
+172.16.1.218 ansible_user=ansible ansible_become=yes
+[ucl-code-project]
+172.16.7.67 ansible_user=ansible ansible_become=yes
+[ucl-codelysis-android]
+172.16.7.200 ansible_user=ansible ansible_become=yes
+[aui]
+172.16.1.19 ansible_user=ansible ansible_become=yes
+[scheduler-candidate-event]
+172.16.1.192 ansible_user=ansible ansible_become=yes
+[ucl-codelysis]
+172.16.7.191 ansible_user=ansible ansible_become=yes
+[coding-simulator]
+172.16.1.160 ansible_user=ansible ansible_become=yes
+[livefeed-server]
+172.16.5.227 ansible_user=ansible ansible_become=yes
+[proxy]
+20.0.3.169 ansible_user=ansible ansible_become=yes
+[application-grader]
+20.0.1.183 ansible_user=ansible ansible_become=yes
+[com:children]
+aui
+coding-simulator
+scheduler-candidate-event
+ucl-codelysis-android
+ucl-code-project
+ucl-codelysis
+livefeed-server
+java-codelysis
+proxy
+application-grader
+[aui:vars]
+machine_specific_users= [{'username': 'ruchi-narula', 'role': 'admin'}]

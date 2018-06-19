@@ -1,0 +1,30 @@
+#!/bin/bash
+echo "mediaservertype="kurento"" >> /etc/environment
+rm -rf /var/tmp/aws-mon/
+echo "" > /opt/asg_name
+
+echo ${ansible_public_key} > /home/ansible/.ssh/authorized_keys
+echo ${jenkins_public_key} >> /home/ubuntu/.ssh/authorized_keys
+sed -i 's/^stunServerAddress.*/stunServerAddress = ${stunServerAddress}/' /etc/kurento/modules/kurento/WebRtcEndpoint.conf.ini
+sed -i 's/^stunServerPort.*/stunServerPort = ${stunServerPort}/' /etc/kurento/modules/kurento/WebRtcEndpoint.conf.ini
+sed -i 's/^turnURL.*/turnURL = kurento:kurento@${turnURL}:${turnURLPort}/' /etc/kurento/modules/kurento/WebRtcEndpoint.conf.ini
+mkfs -t ext4 /dev/xvdf
+mount /dev/xvdf /home/mettl/proctoring-data
+chown kurento /home/mettl/proctoring-data
+chgrp proctoring-data /home/mettl/proctoring-data
+setfacl -m group:proctoring-data:rwx /home/mettl/proctoring-data/
+service kurento-media-server-6.0 restart
+su mettl <<"EOF"
+start=`date +%s`
+while [ ! -f /home/mettl/mettlconfig/mettl_override.properties ] && [ ! -f /home/mettl/release/nfs-health-check ]
+do
+echo "waiting for 2 seconds"
+sleep 2
+done
+end=`date +%s`
+DIFF=$(( $end - $start ))
+echo "It took $DIFF seconds" > /home/mettl/nfs-mount-time
+EOF
+/bin/su - mettl /home/mettl/release/misc/genericMachineUp.sh ${deployement_env} livefeed-server service  > /home/mettl/mettl_logs/machineup.log
+sudo usermod -a -G mettlsupergroup kapil-singhal
+sudo usermod -a -G mettlsupergroup gaurav-garg

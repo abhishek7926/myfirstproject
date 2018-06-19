@@ -1,0 +1,8 @@
+hostname: lms
+tomcat_folder: mettl-lms-app
+tomcat_shutdown_port: 8011
+logfile_path:
+ - /var/log/*.log
+ - /home/mettl/*.log
+artifact_name: mettl-lms-app
+

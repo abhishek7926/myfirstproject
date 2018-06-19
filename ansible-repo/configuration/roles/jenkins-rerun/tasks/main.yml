@@ -1,0 +1,22 @@
+- name: install packer
+  unarchive: src="{{ installers_base_url }}/packer_1.1.1_linux_amd64.zip" dest=/opt/ remote_src=yes
+- name: packer json
+  template: src=packer dest=/home/ansible/ owner=jenkins group=jenkins mode="755"
+
+- name: install redis tools
+  apt: name=redis-tools state=installed update_cache=yes
+
+- name: "install mongodb client"
+  apt: name=mongodb-clients state=installed update_cache=yes
+
+- name: "include jenkins plugins"
+  include: plugins.yml
+
+- name: "include seed job playbook"
+  include: seedjob.yml
+
+- name: Ensure maven is installed
+  apt: name=maven state=installed
+
+- name: Mount mettl config in jenkins
+  include: mount_mettl_config.yml

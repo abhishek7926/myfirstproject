@@ -1,0 +1,14 @@
+---
+  - name: Copy logrotate job to cron.daily
+    command: cp /etc/cron.daily/logrotate /etc/cron.hourly/logrotate
+
+  - name: Make tomcat logrotate file in /etc/logrotate.d
+    template: src=tomcat-logrotate dest=/etc/logrotate.d/tomcat
+
+  - name: setup cronjob to send tomcat logs to s3
+    cron:
+      minute: 0
+      name: tomcat-logs-backup
+      user: mettl
+      state: present
+      job: "/opt/mettl-scripts/log-backup/move-logs.sh /home/mettl/{{ volume }}/{{ tomcat_folder }}-tomcat/logs *.gz  {{ logs_bucket }} {{ hostname }}/tomcat-logs {{ aws_region }} >> /home/mettl/mettl_logs/tomcatbackup.log 2>&1"

@@ -1,0 +1,8 @@
+---
+- name: Installing Zabbix Agent ...
+  apt: name=zabbix-agent state=installed
+
+- name: Configuring Zabbix Agent ...
+  template: src=zabbix_agent.conf.j2 dest=/etc/zabbix/zabbix_agentd.conf owner=root group=root mode=0644
+
+- service: name=zabbix-agent state=started

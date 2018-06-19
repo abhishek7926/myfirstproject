@@ -1,0 +1,59 @@
+/home/mettl/{{ volume }}/{{ tomcat_folder }}-tomcat/logs/catalina.out {   
+hourly
+compress
+copytruncate
+rotate 52
+create 644 mettl mettl
+missingok
+notifempty
+}
+
+/home/mettl/{{ volume }}/{{ tomcat_folder }}-tomcat/logs/catalina.*.log {
+hourly
+compress
+copytruncate
+rotate 52
+create 644 mettl mettl
+missingok
+notifempty
+}
+
+/home/mettl/{{ volume }}/{{ tomcat_folder }}-tomcat/logs/localhost_access_log.*.txt {
+hourly
+compress
+copytruncate
+rotate 52
+create 644 mettl mettl
+missingok
+notifempty
+}
+
+/home/mettl/{{ volume }}/{{ tomcat_folder }}-tomcat/logs/localhost.*.log {
+hourly
+compress
+copytruncate
+rotate 52
+create 644 mettl mettl
+missingok
+notifempty
+}
+
+/home/mettl/{{ volume }}/{{ tomcat_folder }}-tomcat/logs/manager.*.log {
+hourly
+compress
+copytruncate
+rotate 52
+create 644 mettl mettl
+missingok
+notifempty
+}
+
+/home/mettl/{{ volume }}/{{ tomcat_folder }}-tomcat/logs/host-manager.*.log {
+hourly
+compress
+copytruncate
+rotate 52
+create 644 mettl mettl
+missingok
+notifempty
+}

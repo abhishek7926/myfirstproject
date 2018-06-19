@@ -1,0 +1,13 @@
+hostname: proctoring-ui
+role: app-roles/proctoring-ui
+tomcat_version: 7.0.40
+tomcat_release: 7
+logfile_path:
+ - /var/log/*.log
+ - /home/mettl/*.log
+tomcat_folder: proctoring-ui
+tomcat_shutdown_port: 8031
+artifact_name: proctoring-ui
+ssl: true
+autoscaling: "true"
+

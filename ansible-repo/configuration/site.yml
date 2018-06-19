@@ -1,0 +1,410 @@
+---
+################################# Maintenance ###############################################
+- hosts: all
+  roles:
+   - base-role
+
+- hosts: report-service-api
+  roles:
+    - report-service-api
+
+- hosts: assessment-service-api
+  roles:
+    - assessment-service-api
+
+- hosts: janus-livefeed-server
+  roles:
+   - janus-livefeed-server
+
+- hosts: proxy
+  roles:
+    - nginx
+
+- hosts: elk
+  roles:
+    - elk-ubuntu
+
+- hosts: jenkins
+  roles:
+    - jenkins
+- hosts: jenkins-rerun
+  roles:
+    - jenkins-rerun
+
+- hosts: cos-api
+  roles:
+    - cos-api
+
+- hosts: zabbix
+  roles:
+    - zabbix-ubuntu14
+
+- hosts: sonar
+  roles:
+   - sonar
+
+- hosts: kafka
+  roles:
+   - kafka
+
+- hosts: metrics
+  roles:
+   - special-monitoring
+
+####################################### Mettl #############################################
+- hosts: activemq
+  roles:
+    - activemq
+
+- hosts: uber
+  roles:
+    - uber
+
+- hosts: hackathon
+  roles:
+    - hackathon
+
+- hosts: test-notification
+  roles:
+    - test-notification
+
+- hosts: feedback
+  roles:
+     - feedback
+
+- hosts: chat-activemq
+  roles:
+    - activemq
+
+- hosts: client-api
+  roles:
+    - client-api
+
+- hosts: redis
+  roles:
+    - redis
+
+- hosts: nfs
+  roles:
+    - nfs-server
+
+- hosts: igt
+  roles:
+    - igt
+
+
+- hosts: codelysis
+  roles:
+   - mettl-app
+
+- hosts: bulkpdf
+  roles:
+   - mettl-app
+
+- hosts: corporate
+  roles:
+   - corporate
+- hosts: report-corporate
+  roles:
+   - corporate
+- hosts: shared-report-corporate
+  roles:
+   - shared-report-corporate
+
+- hosts: 360feedback
+  roles:
+   - 360feedback
+
+- hosts: static
+  roles:
+   - static
+
+- hosts: prelogin
+  roles:
+   - pre-login
+
+- hosts: hpe
+  roles:
+   - hpe
+
+- hosts: admin-panel
+  roles:
+    - admin-panel
+
+- hosts: mettl-apis
+  roles:
+   - mettl-apis
+
+- hosts: certification
+  roles:
+    - certification
+
+- hosts: aui
+  roles:
+    - aui
+
+- hosts: pr
+  roles:
+    - pr
+
+- hosts: accenture
+  roles:
+    - accenture
+
+- hosts: duo-lingo
+  roles:
+    - duo-lingo
+
+
+#### java services ####
+
+- hosts: proctoring
+  roles:
+    - proctoring
+
+- hosts: fes
+  roles:
+    - fes
+
+- hosts: report-service
+  roles:
+    - mettl-app
+- hosts: java-codelysis
+  roles:
+    - mettl-app
+
+- hosts: typing-simulator
+  roles:
+    - mettl-app
+- hosts: dblysis
+  roles:
+    - mettl-app
+
+- hosts: grader
+  roles:
+    - mettl-app
+
+- hosts: application-grader
+  roles:
+    - mettl-app
+
+- hosts: htmltopdf
+  roles:
+    - ami-changes
+
+- hosts: excel
+  roles:
+    - mettl-app
+
+- hosts: large-excel
+  roles:
+    - mettl-app
+
+- hosts: scheduler
+  roles:
+    - mettl-app
+
+
+- hosts: scheduler-candidate-event
+  roles:
+    - mettl-app
+
+- hosts: email-service
+  roles:
+    - mettl-app
+
+- hosts: contest
+  roles:
+    - contest
+
+- hosts: api-demo
+  roles:
+    - api-demo
+
+- hosts: lms
+  roles:
+    - lms
+
+- hosts: schema
+  roles:
+    - schema
+
+- hosts: streaming-server
+  roles:
+    - streaming-server
+
+- hosts: skill-master
+  roles:
+    - skill-master
+
+- hosts: master-elasticsearch-nodes
+  roles:
+    - elasticsearch
+
+- hosts: data-elasticsearch-nodes
+  roles:
+    - elasticsearch
+
+- hosts: chat-socket
+  roles:
+    - chat-socket
+
+- hosts: chat-service
+  roles:
+    - chat-service
+
+- hosts: notification-app
+  roles:
+    - notification-app
+
+- hosts: chat-web-socket
+  roles:
+    - chat-web-socket
+
+- hosts: coding-simulator
+  roles:
+    - coding-simulator
+
+- hosts: ucl-code-project
+  roles:
+    - ucl-code-project
+
+- hosts: ucl-codelysis-android
+  roles:
+    - ami-changes
+
+- hosts: ucl-codelysis
+  roles:
+    - ucl-codelysis
+
+- hosts: livefeed-server
+  roles:
+    - livefeed-server
+
+- hosts: livefeed-router
+  roles:
+    -  mettl-app
+
+- hosts: r-simulators-router
+  roles:
+    -  r-simulators
+
+- hosts: reporting_migrator
+  roles:
+    -  mettl-app
+
+- hosts: reporting_metabase
+  roles:
+    -  reporting_metabase
+
+- hosts: offline-app
+  roles:
+    -  offline-app
+- hosts: fhgfs-ucl-code-project
+  roles:
+    -  fhgfs-server
+
+- hosts: english-simulator
+  roles:
+    - ami-changes
+
+- hosts: intellisense
+  roles:
+    - ami-changes
+
+- hosts: intellisense-router
+  roles:
+    - intellisense-router
+
+- hosts: intellisense-csharp
+  roles:
+    - intellisense-csharp
+
+- hosts: intellisense-python
+  roles:
+    - mettl-app
+
+- hosts: intellisense-java
+  roles:
+    - intellisense-java
+
+- hosts: proctoring-ui
+  roles:
+    - proctoring-ui
+
+- hosts: question-service
+  roles:
+   - question-service
+
+- hosts: question-event-service
+  roles:
+   - mettl-app
+
+- hosts: interviewApp-admin-frontend
+  roles:
+    - interview-app-frontend
+
+- hosts: interviewApp-admin-backend
+  roles:
+    - interview-app-backend
+
+- hosts: interviewApp-candidate-frontend
+  roles:
+    - interview-app-frontend
+
+- hosts: interviewApp-socket
+  roles:
+    - interview-socket
+
+- hosts: status-mettl
+  roles:
+    - status-mettl
+
+- hosts: labs-1-backend
+  roles:
+    - labs-backend
+- hosts: labs-2-backend
+  roles:
+    - labs-backend
+- hosts: labs-api
+  roles:  
+    - labs-api
+
+- hosts: jobvite
+  roles:
+    - jobvite
+
+- hosts: mettl-api-gateway
+  roles:
+   - mettl-api-gateway
+
+- hosts: r-simulators-spi
+  roles:
+   - r-simulators
+
+- hosts: r-simulators-socket
+  roles:
+   - r-simulators
+
+- hosts: r-simulators-cms
+  roles:
+   - r-simulators-cms
+
+- hosts: client_archival
+  roles:
+   - mettl-app
+
+- hosts: mongo_client_archival
+  roles:
+   - mongo-client-archival
+
+- hosts: yolo
+  roles:
+   - yolo
+
+- hosts: plagiarism
+  roles:
+   - mettl-app
+
+- name: Include user-management
+  include: userManagement.yml

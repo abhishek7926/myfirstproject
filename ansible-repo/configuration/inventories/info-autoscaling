@@ -1,0 +1,67 @@
+[java-codelysis]
+172.17.1.89 ansible_user=ansible ansible_become=yes
+[ucl-code-project]
+172.17.1.169 ansible_user=ansible ansible_become=yes
+[ucl-codelysis-android]
+172.17.1.131 ansible_user=ansible ansible_become=yes
+[pr]
+172.17.1.236 ansible_user=ansible ansible_become=yes
+[aui]
+172.17.1.171 ansible_user=ansible ansible_become=yes
+[scheduler-candidate-event]
+172.17.1.125 ansible_user=ansible ansible_become=yes
+[ucl-codelysis]
+172.17.1.48 ansible_user=ansible ansible_become=yes
+[chat-web-socket]
+172.17.1.121 ansible_user=ansible ansible_become=yes
+[coding-simulator]
+172.17.1.123 ansible_user=ansible ansible_become=yes
+[livefeed-server]
+172.17.5.13 ansible_user=ansible ansible_become=yes
+[proxy]
+172.17.1.20 ansible_user=ansible ansible_become=yes
+[application-grader]
+172.17.1.20 ansible_user=ansible ansible_become=yes
+[mettl-api-gateway]
+52.66.176.172 ansible_user=ansible ansible_become=yes
+
+[info:children]
+aui
+chat-web-socket
+coding-simulator
+scheduler-candidate-event
+ucl-codelysis-android
+ucl-code-project
+ucl-codelysis
+livefeed-server
+java-codelysis
+proxy
+application-grader
+pr
+mettl-api-gateway
+
+[pr:vars]
+machine_specific_users= [{'username': 'aatish-kumar', 'role': 'admin'}]
+[java-codelysis:vars]
+machine_specific_users= [{'username': 'manish-agrawal', 'role': 'admin'}]
+[aui:vars]
+machine_specific_users= [{'username': 'ruchi-narula', 'role': 'admin'},{'username': 'ghanshyam-agrawal', 'role': 'admin'},{'username': 'manish-agrawal', 'role': 'admin'}]
+[chat-web-socket:vars]
+machine_specific_users= [{'username': 'kapil-singhal', 'role': 'admin'}]
+[coding-simulator:vars]
+machine_specific_users= [{'username': 'manish-agrawal', 'role': 'admin'}]
+[livefeed-server:vars]
+machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'}, {'username': 'kapil-singhal', 'role': 'admin'}]
+[scheduler-candidate-event:vars]
+machine_specific_users= [{'username': 'ruchi-narula', 'role': 'admin'},{'username': 'guneet', 'role': 'admin'},{'username': 'romil-goyal', 'role': 'admin'}]
+[ucl-code-project:vars]
+machine_specific_users= [{'username': 'cfe-vikas', 'role': 'admin'}, {'username': 'manish-agrawal', 'role': 'admin'}]
+[ucl-codelysis-android:vars]
+machine_specific_users= [{'username': 'cfe-vikas', 'role': 'admin'}, {'username': 'manish-agrawal', 'role': 'admin'}]
+[ucl-codelysis:vars]
+machine_specific_users= [{'username': 'cfe-vikas', 'role': 'admin'}, {'username': 'manish-agrawal', 'role': 'admin'}]
+[proxy:vars]
+machine_specific_users= [{'username': 'shanky', 'role': 'admin'}]
+[application-grader:vars]
+machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'},{'username': 'manish-agrawal', 'role': 'admin'}]
+

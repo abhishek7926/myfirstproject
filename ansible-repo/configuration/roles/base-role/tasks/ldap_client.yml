@@ -1,0 +1,11 @@
+- name: Check if ldap is installed
+  command: dpkg-query -l libpam-ldap
+  register: ldap_check
+  ignore_errors: True
+
+- name: Copy the client installation script
+  template: src=files/ldap_client.sh dest=/root/ldap_client.sh owner=root group=root mode=0755
+
+- name: Install ldap_client
+  shell: bash -c /root/ldap_client.sh
+  when: ldap_check.rc != 0

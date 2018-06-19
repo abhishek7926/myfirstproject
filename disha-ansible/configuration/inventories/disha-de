@@ -1,0 +1,54 @@
+[redis]
+redis.depvt ansible_user=ansible ansible_become=yes
+[nfs]
+nfs.depvt ansible_user=ansible ansible_become=yes
+[disha-web-tc-map]
+web-tcmap.depvt ansible_user=ansible ansible_become=yes
+[jenkins]
+jenkins.depvt ansible_user=ansible ansible_become=yes
+[username]
+username.depvt ansible_user=ansible ansible_become=yes
+[location]
+location.depvt ansible_user=ansible ansible_become=yes
+[eligibility]
+eligibility.depvt ansible_user=ansible ansible_become=yes
+[ifsc]
+ifsc.depvt ansible_user=ansible ansible_become=yes
+[pmgdisha-info]
+pmgdisha_info.depvt ansible_user=ansible ansible_become=yes
+[biometric]
+biometric.depvt ansible_user=ansible ansible_become=yes
+[biometric-admin]
+biometric-admin.depvt ansible_user=ansible ansible_become=yes
+[certificate]
+certificate.depvt ansible_user=ansible ansible_become=yes
+[reporting-database-updator]
+reporting-database-updator.depvt ansible_user=ansible ansible_become=yes
+[metabase]
+metabase.depvt ansible_user=ansible ansible_become=yes
+[practice]
+practice.depvt ansible_user=ansible ansible_become=yes
+[circuit-breaker]
+circuit-breaker.depvt ansible_user=ansible ansible_become=yes
+[data-processing-engine]
+data-processing-engine.depvt ansible_user=ansible ansible_become=yes
+
+
+[disha-de:children]
+redis
+nfs
+disha-web-tc-map
+jenkins
+username
+location
+eligibility
+ifsc
+pmgdisha-info
+biometric
+biometric-admin
+certificate
+reporting-database-updator
+metabase
+practice
+circuit-breaker
+data-processing-engine

@@ -1,0 +1,29 @@
+# Installing Zabbix Agent
+
+- stat: path=/root/zabbix-release_3.2-1+trusty_all.deb
+  register: zabbixrelease
+
+- name: Downloading repository packages
+  get_url:
+   url: http://repo.zabbix.com/zabbix/3.2/ubuntu/pool/main/z/zabbix-release/zabbix-release_3.2-1+trusty_all.deb
+   dest: /root/
+  when: zabbixrelease.stat.exists == False
+
+- name: Installing zabbix-server package
+  apt:
+   deb: /root/zabbix-release_3.2-1+trusty_all.deb
+  when: zabbixrelease.stat.exists == False
+
+- name: Updating package list
+  apt:
+   update_cache: yes
+
+- name: Installing Zabbix Agent ...
+  apt: name=zabbix-agent state=installed
+
+- name: Configuring Zabbix Agent ...
+  template: src=zabbix_agent.conf.j2 dest=/etc/zabbix/zabbix_agentd.conf owner=root group=root mode=0644
+  notify: restart zabbix-agent
+
+- name: ensure zabbix service is running
+  service: name=zabbix-agent enabled=yes state=started

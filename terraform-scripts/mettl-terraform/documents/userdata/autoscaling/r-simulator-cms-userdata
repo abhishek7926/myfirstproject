@@ -1,0 +1,41 @@
+#!/bin/bash
+rm -rf /var/tmp/aws-mon/
+echo "" > /opt/asg_name
+echo "localhost" >/etc/hostname
+hostname localhost
+sudo usermod -a -G mettlsupergroup manish-agrawal
+mkfs -t ext4 /dev/xvdc
+mount /dev/xvdc /home/mettl/volume1/docker/volumes
+chown mettl:mettl /home/mettl/volume1/docker/volumes
+su mettl <<"EOF"
+start=`date +%s`
+while [ ! -f /home/mettl/mettlconfig/mettl_override.properties ] && [ ! -f /home/mettl/release/nfs-health-check ]
+do
+echo "waiting for 2 seconds"
+sleep 2
+done
+end=`date +%s`
+DIFF=$(( $end - $start ))
+echo "It took $DIFF seconds" > /home/mettl/nfs-mount-time
+EOF
+/bin/su - mettl /home/mettl/release/machine-up-scripts/r-simulators-cms-up.sh ${deployement_env} > /home/mettl/mettl_logs/machineup.log
+
+port=10003
+a=`netstat -tupln |grep $port  |wc -l`
+until [ "$a" == "1" ]
+do
+echo "sleep for 2 sec"
+sleep 2
+a=`netstat -tupln |grep $port  |wc -l`
+done
+
+port=3000
+a=`netstat -tupln |grep $port  |wc -l`
+until [ "$a" == "1" ]
+do
+echo "sleep for 2 sec"
+sleep 2
+a=`netstat -tupln |grep $port  |wc -l`
+done
+
+umount /home/mettl/mettlconfig

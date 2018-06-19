@@ -1,0 +1,42 @@
+autoscaling_job_list:
+    - { name: 'candidateEvent' , port: '8161' , username: 'admin' , password: 'admin' , asg_name: 'scheduler-candidate-event-as.{{ internal_domain }}' , log_file: '/var/log/queues/candidateEvent.log', aws_region: '{{ aws_region }}' }
+    - { name: 'proctoring' , port: '8161' , username: 'admin' , password: 'admin' , asg_name: 'mip-as.{{ internal_domain }}' , log_file: '/var/log/queues/proctoring.log' , aws_region: '{{ aws_region }}' }
+    - { name: 'applicationGrader' , port: '8161' , username: 'admin' , password: 'admin' , asg_name: 'application-grader-as.{{ internal_domain }}' , log_file: '/var/log/queues/applicationGrader-as.log' , aws_region: '{{ aws_region }}' }
+    - { name: 'email' , port: '8161' , username: 'admin' , password: 'admin' , asg_name: 'email-service-as.{{ internal_domain }}' , log_file: '/var/log/queues/email-service-as.log' , aws_region: '{{ aws_region }}' }
+    - { name: 'proctoring_java' , port: '8161' , username: 'admin' , password: 'admin' , asg_name: 'yolo-as.{{ internal_domain }}' , log_file: '/var/log/queues/new-mip-as.log' , aws_region: '{{ aws_region }}' }
+
+chat_metrics_job_list:
+    - { name: 'binary_chat_queues_receive_queue' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/binary_chat_queues_receive_queue.log', aws_region: '{{ aws_region }}' }
+    - { name: 'binary_chat_queues_send_queue' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/binary_chat_queues_send_queue.log' , aws_region: '{{ aws_region }}' }
+    - { name: 'chat_queues_adminAckMessageQueue' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/chat_queues_adminAckMessageQueue.log', aws_region: '{{ aws_region }}' }
+    - { name: 'chat_queues_adminMessageQueue' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/chat_queues_adminMessageQueue.log' , aws_region: '{{ aws_region }}' }
+    - { name: 'chat_queues_receiveQueue' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/chat_queues_receiveQueue.log', aws_region: '{{ aws_region }}' }
+    - { name: 'chat_queues_sendQueue' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/chat_queues_sendQueue.log' , aws_region: '{{ aws_region }}' }
+    - { name: 'chat_streaming_connection' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/chat_streaming_connection.log' , aws_region: '{{ aws_region }}' }
+    - { name: 'chat_streaming_messages' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/chat_streaming_messages.log' , aws_region: '{{ aws_region }}' }
+    - { name: 'ws_binary_chat_queues_send_queue' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/ws_binary_chat_queues_send_queue.log' , aws_region: '{{ aws_region }}' }
+    - { name: 'ws_chat_queues_adminAckMessageQueue' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/ws_chat_queues_adminAckMessageQueue.log' , aws_region: '{{ aws_region }}' }
+    - { name: 'ws_chat_queues_adminMessageQueue' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/ws_chat_queues_adminMessageQueue.log' , aws_region: '{{ aws_region }}' }
+    - { name: 'ws_chat_queues_sendQueue' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/ws_chat_queues_sendQueue.log' , aws_region: '{{ aws_region }}' }
+
+platform_metrics_job_list:
+    - { name: 'testNotification' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/testNotification.log', aws_region: '{{ aws_region }}' }
+    - { name: 'scheduler' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/scheduler.log' , aws_region: '{{ aws_region }}' }
+    - { name: 'accountActivity' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/accountActivity.log' , aws_region: '{{ aws_region }}' }
+    - { name: 'applicationGrader' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/applicationGrader.log' , aws_region: '{{ aws_region }}' }
+    - { name: 'auiQueue' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/auiQueue.log' , aws_region: '{{ aws_region }}' }
+    - { name: 'authBlockedCandidate' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/authBlockedCandidate.log' , aws_region: '{{ aws_region }}' }
+    - { name: 'bulkPdf' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/bulkPdf.log' , aws_region: '{{ aws_region }}' }
+    - { name: 'candidateEvent' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/candidateEvent.log' , aws_region: '{{ aws_region }}' }
+    - { name: 'cpc' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/cpc.log' , aws_region: '{{ aws_region }}' }
+    - { name: 'excelRequest' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/excelRequest.log' , aws_region: '{{ aws_region }}' }
+    - { name: 'grader' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/grader.log' , aws_region: '{{ aws_region }}' }
+    - { name: 'itemAnalysisExcel' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/itemAnalysisExcel.log' , aws_region: '{{ aws_region }}' }
+    - { name: 'largeExcelRequest' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/largeExcelRequest.log' , aws_region: '{{ aws_region }}' }
+    - { name: 'largeInferentialExcelRequest' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/largeInferentialExcelRequest.log' , aws_region: '{{ aws_region }}' }
+    - { name: 'manageEnterpriseBillingAmount' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/manageEnterpriseBillingAmount.log' , aws_region: '{{ aws_region }}' }
+    - { name: 'proctoring' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/proctoring.log' , aws_region: '{{ aws_region }}' }
+    - { name: 'revaluation' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/revaluation.log' , aws_region: '{{ aws_region }}' }
+    - { name: 'email' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/email.log' , aws_region: '{{ aws_region }}' }
+    - { name: 'proctoring_java' , port: '8161' , username: 'admin' , password: 'admin' , log_file: '/var/log/queues/proctoring_java.log' , aws_region: '{{ aws_region }}' }
+

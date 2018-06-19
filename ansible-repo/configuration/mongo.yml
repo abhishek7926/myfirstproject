@@ -1,0 +1,6 @@
+- hosts: mongo
+  roles:
+   - mongo
+   - base-nfs-client
+   - ntp
+   - instance-monitoring

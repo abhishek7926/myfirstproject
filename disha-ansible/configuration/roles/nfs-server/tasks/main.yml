@@ -1,0 +1,37 @@
+---
+- name: create group mettl
+  group: name=mettl state=present
+
+- name: check user mettl existence
+  user: name=mettl group=mettl home=/home/mettl state=present
+
+- name: Create export directory dir
+  file: path=/export state=directory recurse=yes mode=755 owner=mettl group=mettl
+
+
+- name: Create mountable dir
+  file: path={{ item }} state=directory recurse=yes mode=700 owner=mettl group=mettl
+  with_items:
+    - "{{ mettl_config_shared_dir}}"
+    - "{{ mettl_release_scripts_shared_dir}}"
+    - "{{ disha_data_shared_dir}}"
+
+- name: Create mettl-scripts mountable dir
+  file: path={{ mettl_scripts_shared_dir }} state=directory recurse=yes mode=777 owner=mettl group=mettl
+
+- name: set mountpoints for disha data
+  mount: name={{ disha_data_shared_dir}} src=/dev/xvdh fstype=ext4 opts=defaults,nobootwait,comment=cloudconfig dump=0 passno=0 state=mounted
+
+- name: Ensure NFS utilities are installed.
+  apt: name={{ item }} state=installed update_cache=yes
+  with_items:
+    - nfs-common
+    - nfs-kernel-server
+
+- name: copy /etc/exports
+  template: src=exports.j2 dest=/etc/exports owner=root group=root
+  notify: 
+    - export nfs config
+
+- name: start nfs server
+  service: name=nfs-kernel-server state=started

@@ -1,0 +1,20 @@
+---
+
+
+- name: Copying yum repo for Elasticsearch
+  copy: src=elasticsearch.repo.j2 dest=/etc/yum.repos.d/elasticsearch.repo owner=root group=root mode=0644
+
+- name: Install Elasticsearch
+  yum: name=elasticsearch state=installed
+
+- command: systemctl enable elasticsearch.service
+
+- name: Restrict to localhost
+  lineinfile: 'dest=/etc/elasticsearch/elasticsearch.yml regexp=network.host line="network.host: localhost"'
+
+#- name: Generate the openssl cert
+#  command: openssl req -config /etc/pki/tls/openssl.cnf -x509 -days 3650 -batch -nodes -newkey rsa:2048 -keyout private/logstash-forwarder.key -out certs/logstash-forwarder.crt chdir=/etc/pki/tls
+ 
+- name: Start the Service
+  service: name=elasticsearch enabled=yes state=restarted
+#  notify: Restart elasticsearch

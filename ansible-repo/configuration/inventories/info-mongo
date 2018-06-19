@@ -1,0 +1,27 @@
+[mongo-light]
+mongo-light-new.infopvt ansible_user=ansible ansible_become=yes
+[mongo-light-member2]
+mongo-light-member2-new.infopvt ansible_user=ansible ansible_become=yes
+[mongo-light-member3]
+mongo-light-member3-new.infopvt ansible_user=ansible ansible_become=yes
+[mongo-light-arbiter]
+mongo-light-arbiter-new.infopvt ansible_user=ansible ansible_become=yes
+
+[mongo-primary]
+mongo-primary-new.infopvt ansible_user=ansible ansible_become=yes
+[mongo-primary-member2]
+mongo-primary-member2-new.infopvt ansible_user=ansible ansible_become=yes
+[mongo-primary-arbiter]
+mongo-primary-arbiter-new.infopvt ansible_user=ansible ansible_become=yes
+
+[mongo:children]
+mongo-light
+mongo-light-member2
+mongo-light-member3
+mongo-light-arbiter
+mongo-primary
+mongo-primary-member2
+mongo-primary-arbiter
+
+[info:children]
+mongo

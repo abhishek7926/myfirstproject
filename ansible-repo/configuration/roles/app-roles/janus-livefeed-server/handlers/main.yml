@@ -1,0 +1,5 @@
+---
+
+- name: restart janus
+  become: true
+  command: restart janus

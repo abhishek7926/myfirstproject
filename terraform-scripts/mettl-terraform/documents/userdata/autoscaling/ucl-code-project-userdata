@@ -1,0 +1,31 @@
+#!/bin/bash
+rm -rf /var/tmp/aws-mon/
+echo "" > /opt/asg_name
+echo ${ansible_public_key} > /home/ansible/.ssh/authorized_keys
+sudo sed -i 's/^sysMgmtdHost.*/sysMgmtdHost = fhgfs-ucl-code-project.${deployement_env}pvt/' /etc/fhgfs/fhgfs-client.conf
+service fhgfs-client restart
+service fhgfs-helperd restart
+pip install --upgrade awscli
+su mettl <<"EOF"
+start=`date +%s`
+while [ ! -f /home/mettl/mettlconfig/mettl_override.properties ] && [ ! -f /home/mettl/release/nfs-health-check ]
+do
+echo "waiting for 2 seconds"
+sleep 2
+done
+end=`date +%s`
+DIFF=$(( $end - $start ))
+echo "It took $DIFF seconds" > /home/mettl/nfs-mount-time
+EOF
+/bin/su - mettl /home/mettl/release/misc/genericMachineUp.sh ${deployement_env} userCodeLibraryCodeProject service  > /home/mettl/mettl_logs/machineup.log
+
+port=9311
+a=`netstat -tupln |grep $port  |wc -l`
+until [ "$a" == "1" ]
+do
+echo "sleep for 2 sec"
+sleep 2
+a=`netstat -tupln |grep $port  |wc -l`
+done
+
+umount /home/mettl/mettlconfig

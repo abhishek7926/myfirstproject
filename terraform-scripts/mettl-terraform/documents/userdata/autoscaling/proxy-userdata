@@ -1,0 +1,3 @@
+#!/bin/bash
+rm -rf /var/tmp/aws-mon/
+echo "" > /opt/asg_name

@@ -1,0 +1,2 @@
+document_type: "{{ hostname }}"
+kafka_topic: "{{ hostname }}"

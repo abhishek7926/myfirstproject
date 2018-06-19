@@ -1,0 +1,3 @@
+- name: installing graphviz on schema service machine
+  apt: name=graphviz state=latest update_cache=yes
+

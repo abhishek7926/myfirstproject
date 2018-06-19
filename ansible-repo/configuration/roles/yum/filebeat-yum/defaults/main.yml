@@ -1,0 +1,4 @@
+---
+
+elk_server: "10.0.4.249"
+logstash_syslog_port: "5601"

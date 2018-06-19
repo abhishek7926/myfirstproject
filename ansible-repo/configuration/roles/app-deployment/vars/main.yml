@@ -1,0 +1,4 @@
+---
+# defaults file for mettl-deployment
+tomcat_base_path: "/home/mettl/volume1"
+nexus_common_url: "http://nexus.mettl.com:8081/nexus/content/repositories/releases/com/mettl"

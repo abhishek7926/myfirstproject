@@ -1,0 +1,6 @@
+---
+  - name: Copy logrotate job to cron.daily
+    command: cp /etc/cron.daily/logrotate /etc/cron.hourly/logrotate
+
+  - name: Make apache logrotate file in /etc/logrotate.d
+    template: src=apache-logrotate dest=/etc/logrotate.d/apache2

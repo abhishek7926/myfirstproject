@@ -1,0 +1,174 @@
+- name: Creating proctoring data folder in mettl home
+  file: path="/home/mettl/proctoring-data" state=directory recurse=yes owner=mettl group=mettl mode=0775
+
+- name: Core dump script
+  template: src=coredump.sh dest=/root/coredump.sh mode=0777
+
+- name: check if janus exists
+  shell: "janus --version"
+  register: janus_version
+  ignore_errors: True
+
+- name: Add apt-repository for ffmpeg
+  apt_repository: repo='ppa:kirillshkrogalev/ffmpeg-next' state=present update_cache=yes
+
+- name: Ensure required packages installed
+  apt: name={{ item }} state=latest update_cache=yes
+  with_items:
+    - libmicrohttpd-dev
+    - libjansson-dev
+    - libnice-dev 
+    - libssl-dev
+    - libsofia-sip-ua-dev
+    - libglib2.0-dev 
+    - libopus-dev 
+    - libogg-dev 
+    - libcurl4-openssl-dev 
+    - pkg-config 
+    - gengetopt 
+    - libtool 
+    - automake
+    - cmake
+    - git
+    - ffmpeg
+
+- name: ensure required debian packages are installed
+  apt: deb={{ installers_base_url }}/janus/{{ item }}
+  with_items:
+    - libavcodec-dev_9.20-0ubuntu0.14.04.1_amd64.deb
+    - libavformat-dev_9.20-0ubuntu0.14.04.1_amd64.deb
+    - libavutil-dev_9.20-0ubuntu0.14.04.1_amd64.deb
+
+- name: Download libsrtp
+  unarchive: src="{{ installers_base_url }}/janus/libsrtp-2.0.0.tar.gz" dest=/opt/ remote_src=yes owner=root
+
+- name: install libsrtp
+  shell: "{{ item }}"
+  with_items:
+    - cd /opt/libsrtp-2.0.0; ./configure --prefix=/usr --enable-openssl
+  when: janus_version.stdout == ""
+
+- name: make build for libsrtp
+  make:
+      chdir: /opt/libsrtp-2.0.0
+      target: shared_library
+  when: janus_version.stdout == ""
+
+- name: make and install build for libsrtp
+  make:
+      chdir: /opt/libsrtp-2.0.0
+      target: install
+  when: janus_version.stdout == ""
+
+- name: Download websocket library
+  unarchive: src="{{ installers_base_url }}/janus/libwebsockets.tar.gz" dest=/opt/ remote_src=yes owner=root
+
+- name: Creating build folder
+  file: path="/opt/libwebsockets/build" state=directory owner=root group=root
+
+- name: cmake libwebsocket build
+  shell: cd /opt/libwebsockets/build;cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr -DCMAKE_C_FLAGS="-fpic" ..
+  when: janus_version.stdout == ""
+
+- name: make build for libwebsocket
+  make:
+      chdir: /opt/libwebsockets/build
+  when: janus_version.stdout == ""
+
+- name: make and install build for libwebsocket
+  make:
+      chdir: /opt/libwebsockets/build
+      target: install
+  when: janus_version.stdout == ""
+
+- name: Download janus-gateway
+  unarchive: src="{{ installers_base_url }}/janus/janus-gateway.tar.gz" dest=/opt/ remote_src=yes owner=root
+
+- name: install janus
+  shell: "{{ item }}"
+  with_items:
+    - cd /opt/janus-gateway;sh autogen.sh
+    - cd /opt/janus-gateway;./configure --enable-websockets
+    - cd /opt/janus-gateway;./configure --enable-post-processing
+  when: janus_version.stdout == ""
+
+- name: Download avformat
+  get_url:
+    url={{ installers_base_url }}/janus/avformat.h
+    dest=/usr/include/libavformat/avformat.h
+    owner=root
+    group=root
+    force=yes
+  when: janus_version.stdout == ""
+
+- name: make build for janus
+  make:
+    chdir: /opt/janus-gateway
+  when: janus_version.stdout == ""
+
+- name: make and install build for janus
+  make:
+    chdir: /opt/janus-gateway
+    target: "{{ item }}"
+  with_items:
+    - install
+    - configs
+  when: janus_version.stdout == ""
+
+- name: Download janus config
+  get_url:
+    url={{ installers_base_url }}/janus/{{ item }}
+    dest=/usr/local/etc/janus/{{ item }}
+    owner=root
+    group=root
+    force=yes
+  with_items:
+    - janus.cfg
+    - janus.transport.http.cfg
+    - janus.transport.websockets.cfg
+  notify: restart janus
+  
+- name: Copy logrotate job to cron.daily
+  command: cp /etc/cron.daily/logrotate /etc/cron.hourly
+
+- name: Make janus logrotate file in /etc/logrotate.d
+  template: src=janus-logrotate dest=/etc/logrotate.d/janus
+
+- name: Create directory janus
+  file: path="/home/mettl/mettl_logs/janus" state=directory recurse=yes owner=mettl group=mettl mode=0755
+
+- name: janus upstart
+  template:
+    src: janus-upstart
+    dest: /etc/init/janus.conf
+    force: yes
+
+- name: run livefeed service check
+  cron:
+    minute: "*"
+    name: "run livefeed service check sleep{{ item }}"
+    user: root
+    state: present
+    job: "(sleep {{ item }}; /opt/mettl-scripts/custom-cloudwatch-metrics/service_monitoring.sh custom-ec2-{{ env }} livefeed-server 8085 true {{ aws_region }}) >> /var/log/service-monitoring.log 2>&1"
+  with_items:
+       - [ '0', '20', '40' ]
+
+
+- name: Install kurento key for openssl hack
+  apt_key: url=http://ubuntu.kurento.org/kurento.gpg.key state=present
+
+- name: Add kurento repository for openssl hack
+  apt_repository: repo='deb http://ubuntu.kurento.org trusty kms6' state=present
+
+- name: Installing package openssl
+  apt: name=openssl state=latest update_cache=yes
+
+- name: check janus service status
+  shell: "status janus"
+  register: janus_status
+  become: true
+
+- name: verify janus is started
+  become: true
+  command: start janus
+  when: not janus_status.stdout | search("start/running")

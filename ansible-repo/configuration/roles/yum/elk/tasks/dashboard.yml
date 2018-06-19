@@ -1,0 +1,28 @@
+---
+
+- name: Installing unzip
+  yum: name=unzip state=installed
+
+- name: Creating dashboard directory
+  file: path={{ ansible_env.HOME }}/dashboards state=directory mode=0755
+
+- name: Obtaining sample dashboards
+  unarchive: 
+    src=https://download.elastic.co/beats/dashboards/beats-dashboards-1.1.0.zip 
+    dest={{ ansible_env.HOME }}/dashboards
+    copy=no
+
+- name: Installing sample dashboards
+  command: sh load.sh
+  args:
+    chdir: '{{ ansible_env.HOME }}/dashboards/beats-dashboards-1.1.0'
+
+- name: Download Filebeat index template
+  get_url: 
+    url=https://gist.githubusercontent.com/thisismitch/3429023e8438cc25b86c/raw/d8c479e2a1adcea8b1fe86570e42abab0f10f364/filebeat-index-template.json
+    dest=/tmp
+
+- name: Loading Filebeat index template
+  shell: curl -XPUT 'http://localhost:9200/_template/filebeat?pretty' -d@filebeat-index-template.json
+  args:
+    chdir: /tmp/

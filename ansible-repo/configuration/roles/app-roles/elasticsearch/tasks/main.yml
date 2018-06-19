@@ -1,0 +1,54 @@
+- name: Install elasticsearch key
+  apt_key: url=https://packages.elastic.co/GPG-KEY-elasticsearch state=present
+
+- name: Add repository for elasticsearch
+  apt_repository: repo="deb https://artifacts.elastic.co/packages/5.x/apt stable main"  state=present
+
+- name: Installing package elasticsearch
+  apt: name=elasticsearch state=present update_cache=yes
+
+- name: Create data dir
+  file: path="/data" state=directory mode="755"
+
+- name: Create elasticsearch data mountable dir
+  file: path="/data/elasticsearch" state=directory mode="750" owner="elasticsearch" group="elasticsearch"
+
+- filesystem:
+    fstype: ext4
+    dev: /dev/xvdc
+
+- name: set mountpoints
+  mount: name=/data/elasticsearch src=/dev/xvdc fstype=ext4 opts=defaults,nobootwait,comment=cloudconfig dump=0 passno=0 state=mounted
+
+- name: Set permissions elasticsearch data
+  file: path="/data/elasticsearch" state=directory mode="750" owner="elasticsearch" group="elasticsearch"
+
+- name: copy master elasticsearch defaults
+  become: true
+  template: src=master_elasticsearch_defaults.yml dest=/etc/default/elasticsearch
+  notify: restart elasticsearch
+  when: master_node
+
+- name: copy data elasticsearch defaults
+  become: true
+  template: src=data_elasticsearch_defaults.yml dest=/etc/default/elasticsearch
+  notify: restart elasticsearch
+  when: data_node
+
+- name: copy master elasticsearch config
+  become: true
+  template: src=master_elasticsearch_config.yml dest=/etc/elasticsearch/elasticsearch.yml
+  notify: restart elasticsearch
+  when: master_node
+
+- name: copy data elasticsearch config
+  become: true
+  template: src=data_elasticsearch_config.yml dest=/etc/elasticsearch/elasticsearch.yml
+  notify: restart elasticsearch
+  when: data_node
+
+- name: Start service elasticsearch
+  service: name=elasticsearch state=started enabled=yes
+
+
+

@@ -1,0 +1,8 @@
+[disha-cms]
+10.10.1.193 ansible_user=ansible ansible_become=yes
+[disha-web]
+10.10.1.170 ansible_user=ansible ansible_become=yes
+
+[disha-website:children]
+disha-cms
+disha-web

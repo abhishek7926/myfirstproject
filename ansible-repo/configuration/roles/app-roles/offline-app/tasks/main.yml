@@ -1,0 +1,7 @@
+  - name: make apache password file
+    copy:
+      src: passwords
+      dest: /etc/apache2/passwords
+      owner: root
+      group: root
+      mode: 0644

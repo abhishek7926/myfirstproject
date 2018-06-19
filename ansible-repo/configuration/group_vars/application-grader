@@ -1,0 +1,2 @@
+hostname: application-grader
+autoscaling: "true"

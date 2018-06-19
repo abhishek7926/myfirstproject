@@ -1,0 +1,10 @@
+- name: check mettlsupergroup existence
+  group: name={{ item }} state=present
+  with_items:
+    - mettlsupergroup
+    - logreader
+- name: Creating sudo file for mettl super group
+  copy: src="99-mettlsupergroup" dest=/etc/sudoers.d/99-mettlsupergroup owner=root group=root mode=0644
+
+- include: create_users.yml
+- include: delete_users.yml

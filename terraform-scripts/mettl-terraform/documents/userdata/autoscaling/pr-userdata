@@ -1,0 +1,15 @@
+#!/bin/bash
+rm -rf /var/tmp/aws-mon/
+echo "" > /opt/asg_name
+su mettl <<"EOF"
+start=`date +%s`
+while [ ! -f /home/mettl/mettlconfig/mettl_override.properties ] && [ ! -f /home/mettl/release/nfs-health-check ]
+do
+echo "waiting for 2 seconds"
+sleep 2
+done
+end=`date +%s`
+DIFF=$(( $end - $start ))
+echo "It took $DIFF seconds" > /home/mettl/nfs-mount-time
+EOF
+/bin/su - mettl /home/mettl/release/misc/genericMachineUp.sh ${deployement_env} prService web > /home/mettl/mettl_logs/machineup.log

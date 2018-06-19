@@ -1,0 +1,3 @@
+hostname: r-simulators-socket
+autoscaling: "true"
+ulimit: unlimited

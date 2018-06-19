@@ -1,0 +1,3 @@
+hostname: chat-socket
+ulimit: 50000
+role: app-roles/chat-socket

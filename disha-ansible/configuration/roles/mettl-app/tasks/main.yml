@@ -1,0 +1,29 @@
+---
+  - name: check mettl app groups existence
+    group: name={{ item }} state=present
+    with_items:
+      - logreader
+      - mettl
+      - readonly
+
+  - name: Check user "mettl" existence 
+    user: name=mettl group=mettl groups=logreader home=/home/mettl state=present
+
+  - name: Check user "readonly" existence 
+    user: name=readonly group=readonly groups=logreader home=/home/readonly state=present
+
+  - name: Mkdir mettl_logs having group logreader
+    file: path=/home/mettl/mettl_logs state=directory owner=mettl group=logreader
+
+  - name: Creates directory {{ volume }} if does not exist
+    file: path=/home/mettl/{{ volume }} state=directory owner=mettl group=mettl
+
+  - name: Creates directory /data
+    file: path=/data/report-data state=directory owner=mettl group=mettl mode=0700 recurse=yes
+
+  - name: copy all mettl files to /data/
+    copy: src=files/data dest=/ directory_mode=yes owner=mettl group=mettl mode=0700
+
+  - name: "include mettl-app-log-backup role"
+    include_role:
+      name: mettl-app-log-backup

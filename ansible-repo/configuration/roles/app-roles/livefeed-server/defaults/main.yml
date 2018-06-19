@@ -1,0 +1,4 @@
+kurento_repo_version: 6
+kurento_package_version: 6.0
+stunServerPort: 19302
+turnURLPort: 3478

@@ -1,0 +1,34 @@
+---
+# tasks file for ansible-elk
+
+#- name: Import Elasticsearch public GPG key into rpm
+#  get_url:
+#     url: http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm
+#     dest: /opt/
+
+#- command: rpm -ivh /opt/epel-release-7-8.noarch.rpm
+
+- name: Setting SELinux to permissive
+  command: setenforce 0
+
+- name: Install Java 8
+  include: java.yml
+
+- name: Install wget Package
+  yum: name=wget state=present
+
+- name: Install Elasticsearch
+  include: elasticsearch.yml
+
+
+- name: Install Kibana
+  include: kibana.yml
+
+- name: Install Nginx
+  include: nginx.yml
+
+- name: Install Logstash
+  include: logstash.yml
+
+- name: Load Kibana dashboards
+  include: dashboard.yml 

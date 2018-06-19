@@ -1,0 +1,28 @@
+installers_base_url: https://s3.ap-south-1.amazonaws.com/mettl-installers
+mettl_config_mount_point: /home/mettl/mettlconfig
+mettl_release_scripts_mount_point: /home/mettl/release
+mettl_scripts_mount_point: /opt/mettl-scripts
+mettl_config_shared_dir: /export/configuration
+mettl_release_scripts_shared_dir: /export/release-scripts
+mettl_scripts_shared_dir: /export/mettl-scripts
+disha_data_shared_dir: /export/dishadata
+disha_data_mount_point: /home/mettl/volume1/disha-data
+volume: volume1
+logfile_path:
+ - /var/log/*.log
+
+disha_cms_tomcat_connector_port: 8050
+disha_web_tomcat_connector_port: 8040
+disha_web_tcmap_tomcat_connector_port: 8040
+pmgdisha_tomcat_connector_port: 8050
+jenkins_connector_port: 8080
+disha_username_tomcat_connector_port: 8041
+disha_eligibility_tomcat_connector_port: 8080
+disha_ifsc_tomcat_connector_port: 8080
+disha_location_tomcat_connector_port: 8080
+biometric_tomcat_connector_port: 8080
+biometric_ajp_connector_port: 8008
+biometric_admin_tomcat_connector_port: 8030
+disha_certificate_tomcat_connector_port: 8080
+disha_practice_tomcat_connector_port: 8040
+circuit_breaker_connector_port: 8080

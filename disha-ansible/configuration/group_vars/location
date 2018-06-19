@@ -1,0 +1,12 @@
+hostname: disha-location
+logfile_path:
+ - /var/log/*.log
+ - /home/mettl/*.log
+tomcat_folder: location-server-app
+tomcat_shutdown_port: 8051
+artifact_name: location-server-app
+ssl: true
+role: app-roles/location
+java_version: 8
+tomcat_version: 8.0.35
+tomcat_release: 8

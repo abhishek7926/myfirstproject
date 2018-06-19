@@ -1,0 +1,9 @@
+/home/mettl/mettl_logs/janus/janus.log {
+    missingok
+    copytruncate
+    notifempty
+    hourly
+    size 10M
+    create 0660 mettl
+    rotate 10
+}

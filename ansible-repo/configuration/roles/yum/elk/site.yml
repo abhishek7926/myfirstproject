@@ -1,0 +1,5 @@
+---
+- hosts: elk-host
+  roles:
+     - { role: "/home/ubuntu/ansible-elk-centos7/roles/ELK" }
+     - { role: "/home/ubuntu/ansible-elk-centos7/roles/filebeat" }

@@ -1,0 +1,31 @@
+---
+
+#- name: Installing EPEL repo
+#  yum: name=epel-release state=installed
+
+- name: Installing Nginx
+  yum: name=nginx state=present
+
+- name: Installing Http-tools
+  yum: name=httpd-tools state=present
+
+- name: Create Kibana password
+  shell: 
+    echo "{{ elk_kibana.user }}:$(openssl passwd -crypt {{ elk_kibana.password }}):kibana" |tee .kibana.htpasswd
+  args:
+    chdir: /etc/nginx/conf.d
+    creates: /etc/nginx/conf.d/.kibana.htpasswd
+  sudo: yes
+  register: http_pass_gen
+  when: elk_kibana.user is defined and elk_kibana.password is defined 
+
+- name: Copying nginx conf
+  copy: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf
+#  notify: Restart Nginx
+
+- name: Copying Kibana conf
+  copy: src=files/kibana-conf.j2 dest=/etc/nginx/conf.d/kibana.conf  
+#  notify: Restart Nginxi
+
+- name: Resatart the Service
+  service: name=nginx enabled=yes state=restarted

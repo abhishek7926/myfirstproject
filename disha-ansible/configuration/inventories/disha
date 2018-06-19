@@ -1,0 +1,43 @@
+[redis]
+redis.websitepvt ansible_user=ansible ansible_become=yes
+[nfs]
+nfs.websitepvt ansible_user=ansible ansible_become=yes
+[disha-web-tc-map]
+disha-web-tcmap.websitepvt ansible_user=ansible ansible_become=yes
+[jenkins]
+jenkins.websitepvt ansible_user=ansible ansible_become=yes
+[jenkins-rerun]
+jenkins.websitepvt ansible_user=ansible ansible_become=yes
+[username]
+disha-username.websitepvt ansible_user=ansible ansible_become=yes
+[location]
+disha-location.websitepvt ansible_user=ansible ansible_become=yes
+[eligibility]
+disha-eligibility.websitepvt ansible_user=ansible ansible_become=yes
+[ifsc]
+disha-ifsc.websitepvt ansible_user=ansible ansible_become=yes
+[pmgdisha-info]
+pmgdisha_info.websitepvt ansible_user=ansible ansible_become=yes
+[biometric]
+biometric.websitepvt ansible_user=ansible ansible_become=yes
+[biometric-admin]
+biometric-admin.websitepvt ansible_user=ansible ansible_become=yes
+[certificate]
+disha-certificate.websitepvt ansible_user=ansible ansible_become=yes
+[reporting-database-updator]
+reporting-database-updator.websitepvt ansible_user=ansible ansible_become=yes
+
+[disha:children]
+redis
+nfs
+disha-web-tc-map
+jenkins
+username
+location
+eligibility
+ifsc
+pmgdisha-info
+biometric
+biometric-admin
+certificate
+reporting-database-updator

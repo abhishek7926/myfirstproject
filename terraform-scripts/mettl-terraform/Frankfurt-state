@@ -1,0 +1,1726 @@
+{
+    "version": 3,
+    "terraform_version": "0.9.4",
+    "serial": 270,
+    "lineage": "fe0230dd-0447-48fb-94b3-cdad60ad5791",
+    "modules": [
+        {
+            "path": [
+                "root"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "360feedback_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "accenture_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "activemq_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "adminpanel_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "api"
+            ],
+            "outputs": {
+                "as_name_output": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "api-as.xyzpvt"
+                },
+                "elb_name_output": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "api-lb-xyzpvt"
+                }
+            },
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "api_demo_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "api_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "api_sg"
+            ],
+            "outputs": {
+                "sg_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "sg-60c2cc08"
+                }
+            },
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "attach_trial"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "aui"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "aui-scaling"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "biometric_admin_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "biometric_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "bulkpdf_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "certification_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "chat-web-socket-sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "chat_activemq_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "chat_service_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "chat_socket_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "chatweb-socket"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "coding-simulator"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "coding-simulator-sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "contest_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "corporate_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "dblysis_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "dubaiway_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "duo_lingo_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "elb-http-sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "elk_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "excel_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "fes_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "fes_volume_attach"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "fhgfs_ucl_code_project_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "fhgfs_ucl_code_project_volume_attach"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "grader_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "hpe_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "htmltopdf_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "igt_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "java_codelysis_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "jenkins_instance"
+            ],
+            "outputs": {
+                "instance_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "i-0bf54aa56acbb415a"
+                }
+            },
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "kafka_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "live_feed_router_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "live_feed_service"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "live_feed_service_instance"
+            ],
+            "outputs": {
+                "instance_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "i-01aea98fbe68d5642"
+                }
+            },
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "lms_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "mip"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "mongodb_light_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "mongodb_primary_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "ndlm_info_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "nfs_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "notification_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "offline_app_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "pr-lb"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "practice_test_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "prelogin_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "proctoring_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "proxy_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "redis_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "report_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "reportservice_instance"
+            ],
+            "outputs": {
+                "instance_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "i-053e43ba10899f368"
+                }
+            },
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "scheduler"
+            ],
+            "outputs": {
+                "as_name_output": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "scheduler-as.xyzpvt"
+                }
+            },
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "scheduler-candidate-event"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "scheduler_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "schema_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "shared_report_corporate_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "skill_master_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "skill_master_volume_attach"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "skillmaster_instance"
+            ],
+            "outputs": {
+                "instance_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "i-0aca5449cc092cc6f"
+                }
+            },
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "static_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "static_volume_attach"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "streaming_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "typing_simulator_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "ucl-code-project"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "ucl-code-project-scaling"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "ucl-codelysis"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "ucl-codelysis-android"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "ucl-codelysis-scaling"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "ucl_elb_sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "ucl_sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "vpc"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "windows_codelysis1_instance"
+            ],
+            "outputs": {
+                "instance_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "i-0023af04daba1493b"
+                }
+            },
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "windows_codelysis_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "windows_codeproject1_instance"
+            ],
+            "outputs": {
+                "instance_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "i-0e6f2e4ae4c6e6524"
+                }
+            },
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "windows_codeproject_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "zabbix_instance"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "360feedback_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "accenture_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "activemq_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "adminpanel_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "api",
+                "as-lb-http"
+            ],
+            "outputs": {
+                "elb_name_output": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "api-lb-xyzpvt"
+                }
+            },
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "api",
+                "as-with-lb-http"
+            ],
+            "outputs": {
+                "as_name_output": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "api-as.xyzpvt"
+                }
+            },
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "api_demo_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "api_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "aui",
+                "as-lb-http"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "aui",
+                "as-with-lb-http"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "biometric_admin_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "biometric_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "certification_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "chat_activemq_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "chat_service_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "chat_socket_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "chatweb-socket",
+                "as-lb-http"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "chatweb-socket",
+                "as-with-lb-http"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "coding-simulator",
+                "as-lb-http"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "coding-simulator",
+                "as-with-lb-http"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "contest_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "corporate_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "dblysis_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "dubaiway_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "duo_lingo_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "elk_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "fes_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "fhgfs_ucl_code_project_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "hpe_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "htmltopdf_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "igt_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "java_codelysis_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "jenkins_instance",
+                "sg"
+            ],
+            "outputs": {
+                "sg_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "sg-5738373f"
+                }
+            },
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "kafka_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "live_feed_service_instance",
+                "sg"
+            ],
+            "outputs": {
+                "sg_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "sg-4272d629"
+                }
+            },
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "lms_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "mongodb_light_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "mongodb_primary_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "ndlm_info_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "nfs_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "notification_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "offline_app_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "practice_test_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "prelogin_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "proctoring_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "proxy_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "redis_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "schema_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "shared_report_corporate_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "skill_master_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "skillmaster_instance",
+                "sg"
+            ],
+            "outputs": {
+                "sg_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "sg-f434209c"
+                }
+            },
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "static_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "streaming_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "typing_simulator_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "ucl-code-project",
+                "as-lb-tcp"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "ucl-code-project",
+                "as-with-lb-tcp"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "ucl-codelysis-android",
+                "as-lb-tcp"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "ucl-codelysis-android",
+                "as-with-lb-tcp"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "ucl-codelysis",
+                "as-lb-tcp"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "ucl-codelysis",
+                "as-with-lb-tcp"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "vpc",
+                "nat_instance"
+            ],
+            "outputs": {
+                "instance_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "i-0374513fac3bca51f"
+                }
+            },
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "windows_codelysis1_instance",
+                "sg"
+            ],
+            "outputs": {
+                "sg_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "sg-074bf26c"
+                }
+            },
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "windows_codelysis_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "windows_codeproject1_instance",
+                "sg"
+            ],
+            "outputs": {
+                "sg_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "sg-eb4af380"
+                }
+            },
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "windows_codeproject_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "zabbix_instance",
+                "sg"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "preeti_env",
+                "vpc",
+                "nat_instance",
+                "sg"
+            ],
+            "outputs": {
+                "sg_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "sg-59383731"
+                }
+            },
+            "resources": {},
+            "depends_on": []
+        }
+    ]
+}

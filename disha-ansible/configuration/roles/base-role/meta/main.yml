@@ -1,0 +1,7 @@
+dependencies:
+  - { role: base-nfs-client, when: (is_nfs_itself is not defined) or (is_nfs_itself == false)}
+  - { role: filebeat}
+  - { role: awscli}
+  - { role: ntp}
+  - { role: instance-monitoring}
+  - { role: checkmk-agent}

@@ -1,0 +1,2 @@
+hostname: chat-activemq
+ulimit: 50000

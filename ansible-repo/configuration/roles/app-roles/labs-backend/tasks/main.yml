@@ -1,0 +1,78 @@
+
+- name: Add mettl user to mettlsupergroup
+  user: name=mettl groups=mettlsupergroup append=yes
+
+- name: Create user scripts data mountable dir
+  file: path="/home/mettl/user_scripts" state=directory mode="755"
+
+- name: copy mettl profile
+  template: src=files/{{ item }} dest=/home/mettl/.profile
+  with_items:
+    - mettl-profile
+
+- name: copy user mgmnt script
+  template: src=files/{{ item }} dest=/home/mettl/user_scripts  mode="774"
+  with_items:
+    - adduser.sh
+    - changepass.sh
+    - deleteuser.sh
+
+
+- name: Add apt-repository for R
+  apt_repository: repo='deb http://cran.rstudio.com/bin/linux/ubuntu trusty/' state=present update_cache=yes
+
+- name: Ensure R is latest
+  apt: name=r-base state=latest update_cache=yes install_recommends=yes allow_unauthenticated=yes
+
+- name: Download rstudio deb
+  get_url:
+    url: "{{ installers_base_url }}/labs-backend/rstudio-server-1.1.383-amd64.deb"
+    dest: "/tmp/rstudio.deb"
+
+- name: Install a .deb package
+  apt:
+    deb: /tmp/rstudio.deb
+
+- name: Install prerequisites
+  apt: name=python-software-properties state=present
+  become: true
+
+- name: Add deadsnakes repo
+  apt_repository: repo="ppa:fkrull/deadsnakes"
+  become: true
+
+- name: Install python
+  apt: name="python3.4-dev" state=present
+  become: true
+
+- name: Install pip, npm ,nodejs
+  apt: name={{ item }} state=installed
+  with_items:
+    - python3-pip
+    - npm
+    - nodejs-legacy
+
+- name: Install configurable-http-proxy
+  npm:
+      name: "configurable-http-proxy"
+      global: yes
+
+- name: Install jupyterhub, notebook
+  command: pip3 install {{ item }}
+  with_items:
+    - jupyterhub
+    - notebook
+
+- name: Create labs dir
+  file: path="/labs" state=directory mode="755"
+
+- name: Create labs users data mountable dir
+  file: path="/labs/users" state=directory mode="755"
+
+- filesystem:
+    fstype: ext4
+    dev: /dev/xvdh
+
+- name: set mountpoints for labs users directory
+  mount: name=/labs/users src=/dev/xvdh fstype=ext4 opts=defaults,nobootwait,comment=cloudconfig dump=0 passno=0 state=mounted
+

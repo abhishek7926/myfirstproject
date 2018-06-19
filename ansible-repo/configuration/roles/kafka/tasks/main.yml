@@ -1,0 +1,42 @@
+---
+# tasks file for kafka cluster
+
+#
+#- name: Change hostname
+#  hostname: name=kafka
+#
+#- name: change in /etc/hosts
+#  lineinfile: dest=/etc/hosts line="127.0.1.1 kafka"
+
+- name: Check if Java is installed
+  shell: command -v java
+  register: check_java
+  ignore_errors: yes
+  changed_when: False
+
+- name: Installing java runtime enviorenment
+  apt: name=default-jre state=present update_cache=yes
+  when: check_java.rc != 0
+
+- name: Installing zookeeper service discovery for kafka
+  apt: name=zookeeperd state=present
+  when: kafkaserver
+
+- name: Extracting kafka package
+  unarchive: src="http://mirror.cc.columbia.edu/pub/software/apache/kafka/0.10.0.1/kafka_2.11-0.10.0.1.tgz" dest=/root/ remote_src=yes
+
+- name: Rename kafka directory
+  command: mv /root/kafka_2.11-0.10.0.1 /root/kafka warn=no
+  ignore_errors: yes
+
+- name: Copying server property file for kafka
+  template: src=server.properties.j2 dest=/root/kafka/config/server.properties owner=root group=root mode=0644
+
+- name: Copying consumer property file for kafka
+  template: src=consumer.properties.j2 dest=/root/kafka/config/consumer.properties owner=root group=root mode=0644
+
+- name: Copying producer property file for kafka
+  template: src=producer.properties.j2 dest=/root/kafka/config/producer.properties owner=root group=root mode=0644
+
+- name: Starting Kafka Server
+  shell: "nohup ~/kafka/bin/kafka-server-start.sh ~/kafka/config/server.properties > ~/kafka/kafka.log 2>&1 &"

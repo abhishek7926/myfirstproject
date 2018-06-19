@@ -1,0 +1,20 @@
+---
+
+- name: Add Java repository to sources
+  apt_repository: repo='ppa:webupd8team/java'
+
+- name: Autoaccept license for Java {{ java_version }}
+  shell: echo oracle-java{{ java_version }}-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+
+- name: Update APT package cache
+  apt: update_cache=yes
+
+- name: Install Java {{ java_version }}
+  apt: name=oracle-java{{ java_version }}-installer state=latest install_recommends=yes
+
+- name: Set Java {{ java_version }} Env
+  apt: name=oracle-java{{ java_version }}-set-default state=latest install_recommends=yes
+
+- name: ensure required packages are installed for Java {{ java_version }}
+  apt: name=python-software-properties state=latest update_cache=yes
+

@@ -1,0 +1,32 @@
+
+
+- name: Add logstash repository
+  apt_repository: repo='deb https://artifacts.elastic.co/packages/5.x/apt stable main' state=present
+
+- name: Install logstash package
+  apt: name=logstash state=present update_cache=yes
+
+- name: Creating directories for certificates
+  file: path=/etc/{{item.0}}/{{item.1}}/{{item.2}} state=directory
+  with_nested:
+        - ['pki']
+        - ['tls']
+        - ['certs', 'private']
+
+
+- name: Copy Logstash config template
+  template: src={{item}}.j2 dest=/etc/logstash/conf.d/{{item}}
+  with_items:
+      - "02-beats-input.conf"
+      - "10-syslog-filter.conf"
+      - "30-elasticsearch-output.conf"
+
+- name: Starting logstash 
+  service: name=logstash state=started enabled=yes
+
+#- name: To make service available after reboot
+ # command: update-rc.d logstash defaults 96 9
+
+
+  notify:
+    -  restart logstash

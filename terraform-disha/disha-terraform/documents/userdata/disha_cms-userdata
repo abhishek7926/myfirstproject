@@ -1,0 +1,3 @@
+#!/bin/bash
+rm -rf /var/tmp/aws-mon/
+/bin/su - mettl /home/mettl/release/misc/genericMachineUp.sh ${deployement_env} disha-cms web > /home/mettl/mettl_logs/machineup.log

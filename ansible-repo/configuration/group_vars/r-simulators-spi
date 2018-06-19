@@ -1,0 +1,3 @@
+hostname: r-simulators-spi
+autoscaling: "true"
+ulimit: unlimited

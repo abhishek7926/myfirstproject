@@ -1,0 +1,40 @@
+
+- name: Ensure phantomjs pre-requistes
+  apt: name={{ item }} state=installed update_cache=yes
+  become: true
+  with_items:
+   - build-essential
+   - chrpath
+   - libssl-dev
+   - libxft-dev
+   - libfreetype6
+   - libfreetype6-dev
+   - fontconfig-config
+   - libfontconfig1
+   - libfontconfig1-dev
+
+
+- name: Unarchive phantomjs
+  become: true
+  unarchive: src="https://github.com/Medium/phantomjs/releases/download/v2.1.1/phantomjs-2.1.1-linux-x86_64.tar.bz2" dest=/usr/local/share remote_src=yes
+
+- name: Set phantomjs binary link
+  file:
+    src: "/usr/local/share/phantomjs-2.1.1-linux-x86_64/bin/phantomjs"
+    dest: "/usr/local/bin/phantomjs"
+    state: link
+
+- name: Ensure phantomjs post dependencies
+  apt: name={{ item }} state=installed update_cache=yes
+  become: true
+  with_items:
+   - libfontconfig
+
+- name: Create data dir
+  file: path="/data" state=directory mode="755"
+
+- name: Create fes data mountable dir
+  file: path="/data/fes" state=directory mode="755"
+
+- name: set mountpoints
+  mount: name=/data/fes src=/dev/xvdh fstype=ext3 opts=defaults,nobootwait,comment=cloudconfig dump=0 passno=0 state=mounted

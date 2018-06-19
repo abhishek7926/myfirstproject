@@ -1,0 +1,9 @@
+  - name: setup cronjob for publishing tcp metric
+    cron:
+      user: root
+      name: "send metric for tcp endpoint- {{ item[0].tcp_endpoint }} port- {{ item[0].port }} in {{ item[1] }} seconds"
+      minute: "*"
+      job: "(sleep {{ item[1] }}; /opt/mettl-scripts/custom-cloudwatch-metrics/tcp_monitoring.sh  {{ item[0].tcp_endpoint }} {{ item[0].port }} custom-ec2-{{ env }} {{ aws_region }} ) >> /var/log/tcp-monitoring.log  2>&1"
+    with_nested:
+       - "{{ tcp_endpoints }}"
+       - [ '0', '20', '40' ]

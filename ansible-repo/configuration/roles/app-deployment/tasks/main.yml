@@ -1,0 +1,19 @@
+---
+# tasks file for mettl-deployment
+
+- name: Stopping old version applicaion
+  shell: ./shutdown.sh
+  args:
+    chdir: "{{ tomcat_base_path }}/{{ tomcat_folder_name }}/bin"
+    executable: /bin/bash
+
+- name: Include deployment file
+  include: deploy.yml
+
+- name: Starting new version application
+  shell: ./startup.sh
+  args:
+    chdir: "{{ tomcat_base_path }}/{{ tomcat_folder_name }}/bin"
+
+- name: Appending latest app version
+  local_action: "shell echo {{ release_num }} > /data/jenkins/depVer/{{ env }}/{{ tomcat_folder_name }}/index.html

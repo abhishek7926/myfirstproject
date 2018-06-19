@@ -1,0 +1,26 @@
+- name: "install mongodb client"
+  apt: name=mongodb-clients state=installed update_cache=yes
+
+- name: "include jenkins plugins"
+  include: plugins.yml
+
+- name: "include seed job playbook"
+  include: seedjob.yml
+
+- name: Ensure maven is installed
+  apt: name=maven state=installed
+
+- name: Mount mettl config in jenkins
+  include: mount_mettl_config.yml
+
+- name: Setting up reouting 80 to 8080
+  iptables:
+      table: nat
+      chain: PREROUTING
+      in_interface: eth0
+      protocol: tcp
+      match: tcp
+      destination_port: 80
+      jump: REDIRECT
+      to_ports: 8080
+  become: yes

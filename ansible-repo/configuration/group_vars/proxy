@@ -1,0 +1,17 @@
+---
+
+elk_server_port: '5601'
+jenkins_server_port: '8080'
+sonar_server_port: '9000'
+
+
+
+nginx_site_server_alias: []
+nginx_site_port: 80
+nginx_site_ssl_port: 443
+nginx_site_root: ''
+hostname: proxyserver
+role: app-roles/proxy
+ulimit: 100000
+autoscaling: "true"
+

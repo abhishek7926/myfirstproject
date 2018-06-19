@@ -1,0 +1,20 @@
+/var/log/nginx/*.log {
+        hourly
+        missingok
+        rotate 52
+        compress
+        delaycompress
+        notifempty
+        create 0640 root logreader
+        sharedscripts
+        prerotate
+                if [ -d /etc/logrotate.d/httpd-prerotate ]; then \
+                        run-parts /etc/logrotate.d/httpd-prerotate; \
+                fi \
+        endscript
+        postrotate
+                [ -s /run/nginx.pid ] && kill -USR1 `cat /run/nginx.pid`
+                /opt/mettl-scripts/log-backup/move-logs.sh /var/log/nginx *.gz {{ logs_bucket }} {{ hostname }}/nginx-logs {{ aws_region }} >> /var/log/nginx-log-backup.log 2>&1
+
+        endscript
+}

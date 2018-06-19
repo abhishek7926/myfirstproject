@@ -1,0 +1,15 @@
+[elk]
+elk.onlinepvt ansible_user=ansible ansible_become=yes
+[zabbix]
+zabbix.onlinepvt ansible_user=ansible ansible_become=yes
+[kafka]
+kafka.onlinepvt ansible_user=ansible ansible_become=yes
+[jenkins]
+jenkins.onlinepvt ansible_user=ansible ansible_become=yes
+
+
+[online:children]
+elk
+zabbix
+kafka
+jenkins

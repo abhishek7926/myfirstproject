@@ -1,0 +1,11 @@
+hostname: status-mettl
+role: app-roles/status-mettl
+tomcat_version: 7.0.40
+tomcat_release: 7
+logfile_path:
+ - /var/log/*.log
+ - /home/mettl/*.log
+tomcat_folder: status-mettl
+tomcat_shutdown_port: 8031
+artifact_name: StatusApp
+ssl: true

@@ -1,0 +1,27 @@
+---
+# defaults file for ansible-elk
+
+elk_kibana:
+  path: /opt/kibana
+
+filebeat:
+   DocumentLog: syslog
+   AuthLog: /var/log/auth.log
+   SyslogLog: /var/log/syslog.log
+
+
+elasticsearch:
+     ip: localhost
+     port: 9200
+
+logstash:
+    ip: localhost
+    port: 5044
+    bulksize: 1024
+
+
+logstash_forward: 
+         cert: /etc/pki/tls/certs/logstash-forwarder.crt
+
+curator_max_keep_days: 14
+curator_close_after_days: 7

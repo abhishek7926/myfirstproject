@@ -1,0 +1,46 @@
+- shell: uname -a
+  ignore_errors: no
+  register: uname_result
+
+- shell: lsb_release -cs
+  ignore_errors: no
+  register: lsb_release_result
+
+
+
+- name: apt-get update
+  apt: update_cache=yes
+
+- name: Installing the linux-image-extra-* packages, which allow Docker to use the aufs storage drivers.
+  apt: name={{ item }} state=installed
+  with_items:
+    - linux-image-extra-4.2.0-27-generic
+    - linux-image-extra-virtual
+
+- name: Install packages to allow apt to use a repository over HTTPS
+  apt: name={{ item }} state=installed
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common
+
+- name: Add Docker’s official GPG key
+  apt_key:
+    keyserver: "https://download.docker.com/linux/ubuntu/gpg"
+    state: present
+  register: add_repository_key
+  ignore_errors: true
+
+- name: Alternative | Add Docker repository key
+  shell: "curl -sSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -"
+  when: add_repository_key|failed
+
+- name: Add apt-repository for mono
+  apt_repository: repo='deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ lsb_release_result.stdout }} stable' state=present update_cache=yes
+
+- name: apt-get update
+  apt: update_cache=yes
+
+- name: Installing docker-ce
+  apt: name=docker-ce state=installed

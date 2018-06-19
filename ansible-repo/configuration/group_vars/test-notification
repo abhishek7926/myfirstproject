@@ -1,0 +1,9 @@
+hostname: test-notification
+tomcat_folder: MettlTestNotificationApp
+artifact_name: MettlTestNotificationApp
+tomcat_shutdown_port: 9005
+logfile_path:
+ - /var/log/*.log
+ - /home/mettl/*.log
+
+

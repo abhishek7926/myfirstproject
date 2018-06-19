@@ -1,0 +1,4 @@
+hostname: interviewApp-socket
+component: interview-socket
+role: app-roles/interview-socket
+ulimit: 10000

@@ -1,0 +1,21 @@
+/var/log/apache2/*.log {
+        hourly
+        missingok
+        rotate 52
+        compress
+        delaycompress
+        notifempty
+        create 640 root logreader
+        sharedscripts
+        postrotate
+                if /etc/init.d/apache2 status > /dev/null ; then \
+                    /etc/init.d/apache2 reload > /dev/null; \
+                fi;
+               /opt/mettl-scripts/log-backup/move-logs.sh /var/log/apache2 *.gz {{ logs_bucket }} {{ hostname }}/apache-logs {{ aws_region }} >> /var/log/apache-log-backup.log 2>&1
+        endscript
+        prerotate
+                if [ -d /etc/logrotate.d/httpd-prerotate ]; then \
+                        run-parts /etc/logrotate.d/httpd-prerotate; \
+                fi; \
+        endscript
+}

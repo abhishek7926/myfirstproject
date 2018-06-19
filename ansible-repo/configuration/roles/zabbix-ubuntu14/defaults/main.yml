@@ -1,0 +1,4 @@
+---
+# defaults file for zabbix
+mysql_root_password: "root@123"
+zabbix_database_password: "zabbix"

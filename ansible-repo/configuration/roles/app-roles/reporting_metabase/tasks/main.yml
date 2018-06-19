@@ -1,0 +1,11 @@
+- name: Setting up reouting 80 to 3000
+  iptables:
+      table: nat
+      chain: PREROUTING
+      in_interface: eth0
+      protocol: tcp
+      match: tcp
+      destination_port: 80
+      jump: REDIRECT
+      to_ports: 3000
+  become: yes

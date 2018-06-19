@@ -1,0 +1,24 @@
+---
+# Optional method of pinning a specific version of Jenkins and/or overriding the
+# default Jenkins packaging URL.
+role: jenkins
+jenkins_version: "2.2"
+jenkins_connection_delay: 5
+jenkins_connection_retries: 60
+jenkins_home: /var/lib/jenkins
+jenkins_hostname: localhost
+jenkins_http_port: 8080
+jenkins_jar_location: /opt/jenkins-cli.jar
+jenkins_plugins: [ant,git,maven-plugin,any-buildstep,artifactory,build-pipeline-plugin,build-timeout,chucknorris,google-login,google-play-android-publisher,htmlpublisher,postbuild-task,image-gallery,tmpcleaner,jobConfigHistory,m2release,nested-view,openid,performance,persona,role-strategy,schedule-build,selenium-axis,seleniumhtmlreport,sitemonitor,slack,sonar-gerrit,sonar,ssh,ssh-slaves,translation,build-user-vars-plugin,validating-string-parameter,view-job-filters,ws-cleanup,xvnc,job-dsl, rebuild]
+jenkins_url_prefix: ""
+jenkins_java_options: "-Djenkins.install.runSetupWizard=false"
+
+jenkins_admin_username: admin
+jenkins_admin_password: admin
+#jenkins_admin_password_file: ""
+
+jenkins_init_changes:
+  - option: "JENKINS_ARGS"
+    value: "--prefix={{ jenkins_url_prefix }}"
+  - option: "{{ jenkins_java_options_env_var }}"
+    value: "{{ jenkins_java_options }}"

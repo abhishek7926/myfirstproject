@@ -1,0 +1,51 @@
+env: disha-de
+domain: mettl.in
+internal_domain: depvt
+kibana_user: kibana-admin
+kibana_password: mettlKib@123
+aws_region: ap-south-1
+logs_bucket: disha-de-logs
+jenkins_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCgORN36e24FWpNKOsF9o/6Z3F5CGj0TNE4xg9ITHRqdioFM5W9Q+lrTZv4d8SETixS7QcLODbD78zjDgoBz3SqHQNokLU85vQVzeKJJo/CWUCUzhF+s9kKEB7oueDKjKRQDkFct0j9UGt+kFeiVRgc4qglpSZaQsfpzQ7mqTcLV9Ac3NB/JRDIlzvEjMCOHCBHFF3vAHMq5f9pDsqP9IlRymRvtDaSFXvltSqMvGerx7Qf7X/xDk6EkogYHNUe2fu9O8Ij4KRhrs+dm4rAzlyR4MBccteONSanfiPQ9QbJRmUBuzrrqesAQxwteZx/l+pmAPPi1DOHsZLlK/oh+I7B"
+disha_serverName: disha.mettl.in
+location_serverName: location.mettl.in
+pmgdisha_info_serverName: pmgdisha.mettl.in
+biometric_serverName: csc.mettl.in
+biometric_admin_serverName: admin.csc-gov.mettl.in
+certificate_serverName: certificate.mettl.in
+circuit_breaker_serverName: turbine.mettl.in
+vpc_cidr: 20.0.0.0/16
+global_users:
+ - username: shanky
+   role: admin
+ - username: farman
+   role: admin
+ - username: abhisheks
+   role: admin
+ - username: manoj-kaushik
+   role: admin
+ - username: cfe-manish
+   role: admin
+ - username: saurabh-goyal
+   role: admin
+ - username: ankit-agarwal
+   role: admin
+ - username: srishti-juneja
+   role: readonly
+ - username: amreek-panesar
+   role: readonly
+ - username: lavi-tyagi
+   role: readonly
+ - username: mohit-bhunwalia
+   role: readonly
+ - username: cfe-kapil
+   role: readonly
+ - username: nihar
+   role: readonly
+ - username: gaurav-kumar
+   role: readonly
+ - username: meghna-madan
+   role: readonly
+ - username: kripansh-banga
+   role: readonly
+ - username: annapurna-mishra
+   role: readonly

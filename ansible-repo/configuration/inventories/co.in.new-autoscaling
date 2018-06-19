@@ -1,0 +1,49 @@
+#[ucl-code-project]
+#172.0.1.196 ansible_user=ansible ansible_become=yes
+#[ucl-codelysis-android]
+#172.0.1.153 ansible_user=ansible ansible_become=yes
+#[ucl-codelysis]
+#172.0.1.217 ansible_user=ansible ansible_become=yes
+[aui]
+20.0.5.20 ansible_user=ansible ansible_become=yes
+#[pr]
+#172.0.1.246 ansible_user=ansible ansible_become=yes
+[scheduler-candidate-event]
+20.0.5.182 ansible_user=ansible ansible_become=yes
+[chat-web-socket]
+20.0.5.235 ansible_user=ansible ansible_become=yes
+[coding-simulator]
+20.0.5.79 ansible_user=ansible ansible_become=yes
+[livefeed-server]
+20.0.5.81 ansible_user=ansible ansible_become=yes
+
+
+[co.in.new:children]
+#ucl-code-project
+#ucl-codelysis-android
+#ucl-codelysis
+aui
+#pr
+scheduler-candidate-event
+chat-web-socket
+coding-simulator
+livefeed-server
+
+#[ucl-code-project:vars]
+#machine_specific_users= [{'username': 'cfe-vikas', 'role': 'admin'}], {'username': 'manish-agrawal', 'role': 'admin'}
+#[ucl-codelysis-android:vars]
+#machine_specific_users= [{'username': 'cfe-vikas', 'role': 'admin'}], {'username': 'manish-agrawal', 'role': 'admin'}
+#[ucl-codelysis:vars]
+#machine_specific_users= [{'username': 'cfe-vikas', 'role': 'admin'}], {'username': 'manish-agrawal', 'role': 'admin'}
+[aui:vars]
+machine_specific_users= [{'username': 'ruchi-narula', 'role': 'admin'}]
+#[pr:vars]
+#machine_specific_users= [{'username': 'mayuresh-singh', 'role': 'admin'}]
+[scheduler-candidate-event:vars]
+machine_specific_users= [{'username': 'guneet', 'role': 'admin'}]
+[chat-web-socket:vars]
+machine_specific_users= [{'username': 'nishant-kumar', 'role': 'admin'}, {'username': 'nishant-kumar', 'role': 'admin'}, {'username': 'kapil-singhal', 'role': 'admin'}]
+[coding-simulator:vars]
+machine_specific_users= [{'username': 'cfe-vikas', 'role': 'admin'}]
+[livefeed-server:vars]
+machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'}, {'username': 'nishant-kumar', 'role': 'admin'}, {'username': 'kapil-singhal', 'role': 'admin'}]

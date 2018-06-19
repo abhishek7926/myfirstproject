@@ -1,0 +1,9 @@
+#!/bin/bash
+rm -rf /var/tmp/aws-mon/
+echo "" > /opt/asg_name
+su mettl <<'EOF'
+sed -i '/brokerURI/c brokerURI = failover:(tcp://activemq.${deployement_env}pvt:61616)' /home/mettl/cpp_mip/conf/config.ini
+sed -i '/url/c url = mongo-primary-new.${deployement_env}pvt:27017' /home/mettl/cpp_mip/conf/config.ini
+
+/home/mettl/release/checkMIP.sh
+EOF

@@ -1,0 +1,51 @@
+
+
+ - name: Creating user activemq
+   become: true
+   user: name=activemq shell=/bin/bash home=/home/activemq state=present
+
+ - name: Check if Java is installed
+   shell: command -v java
+   register: check_java
+   ignore_errors: yes
+   changed_when: False
+
+ - name: Installing java runtime enviorenment
+   apt: name=default-jre state=present update_cache=yes
+   when: check_java.rc != 0
+
+ - filesystem:
+    fstype: ext4
+    dev: /dev/xvdc
+
+ - name: set mountpoints
+   mount: name=/activemq src=/dev/xvdc fstype=ext4 opts=defaults,nobootwait,comment=cloudconfig dump=0 passno=0 state=mounted
+
+ - name: Extracting activemq package
+   unarchive: src="{{ installers_base_url }}/apache-activemq-5.14.4-bin.tar.gz" dest=/activemq/ remote_src=yes
+
+ - name: Create symlink
+   file: src=/activemq/apache-activemq-5.14.4/bin/linux-x86-64/activemq  dest=/etc/init.d/activemq state=link
+
+ - name: Ensure activemq is started and runs on startup.
+   service: name=activemq state=started enabled=yes
+
+ - pam_limits:
+     domain: root
+     limit_type: '-'
+     limit_item: nofile
+     value: "{{ ulimit }}"
+
+ - pam_limits:
+     domain: "*"
+     limit_type: '-'
+     limit_item: nofile
+     value: "{{ ulimit }}"
+
+ - name: Ensuring ulimit ...
+   lineinfile: dest=/etc/pam.d/common-session line="session required pam_limits.so"
+ - name: Ensuring ulimit ...
+   lineinfile: dest=/etc/pam.d/common-session-noninteractive line="session required pam_limits.so"
+
+
+

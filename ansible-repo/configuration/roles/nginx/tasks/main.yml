@@ -1,0 +1,45 @@
+---
+
+- name: Install Nginx
+  apt: name={{ item }} state=present update_cache=yes
+  with_items:
+     - nginx
+     - apache2-utils
+     - python-passlib
+
+- name: copy certificates 
+  become: true
+  copy: src={{ item.src }} dest=/etc/ssl/{{ item.dest}}
+  with_items:
+     - { src: '{{ env }}_server.crt' , dest: 'certs/server.crt' }
+     - { src: '{{ env }}_server.key' , dest: 'private/server.key' }
+  notify: reload nginx
+
+- name: Ensure nginx is running
+  service: name=nginx state=started
+
+- name: remove default site
+  file: path=/etc/nginx/sites-enabled/default state=absent
+  notify: reload nginx
+
+- name: create user for kibana
+  shell: htpasswd -bc /etc/nginx/.htpasswd "{{ kibana_user }}" "{{ kibana_password }}" creates=/etc/nginx/.htpasswd
+  become: yes
+  notify: reload nginx
+
+- stat:
+    path: "roles/{{ role }}/files/nginx-files/nginx.conf"
+  register: nginx_conf_file_stat
+  delegate_to: localhost
+
+- name: put custom nginx.conf
+  become: true
+  template: src=roles/{{ role }}/files/nginx-files/nginx.conf dest=/etc/nginx/nginx.conf
+  notify: reload nginx
+  when: nginx_conf_file_stat.stat.exists
+
+
+- include: copy_vhosts.yml
+  when: copy_vhost_files
+
+- include: nginx-log-backup.yml

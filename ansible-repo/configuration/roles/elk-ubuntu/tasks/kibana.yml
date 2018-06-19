@@ -1,0 +1,25 @@
+
+- name: Add Kibana repository
+  apt_repository: repo="deb https://artifacts.elastic.co/packages/5.x/apt stable main" state=present
+
+- name: Installing  kibana package
+  apt: name=kibana state=present update_cache=yes
+
+
+#- name: Installing X-pack plugin for kibana
+ # command: "./kibana-plugin install x-pack"
+  #args:
+   # chdir: /usr/share/kibana/bin/
+
+
+- name: Restrict kibana to localhost 
+  lineinfile: 'dest=/etc/kibana/kibana.yml regexp=server.host line="server.host: {{ ansible_host }}"'
+
+
+- name: Start service kibana
+  service: name=kibana state=started enabled=yes
+  notify:
+     - restart kibana
+
+#- name: Make Service Persistance after reboot
+ # command: update-rc.d kibana defaults 96 9

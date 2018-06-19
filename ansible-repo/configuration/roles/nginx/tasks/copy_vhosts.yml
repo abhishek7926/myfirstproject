@@ -1,0 +1,17 @@
+- command: "ls roles/{{ role }}/files/nginx-files/vhost/"
+  register: dir_out
+  delegate_to: localhost
+
+- name: copy vhost files
+  template: src=roles/{{ role }}/files/nginx-files/vhost/{{ item }} dest=/etc/nginx/sites-available/{{ item }}
+  become: true
+  notify: reload nginx
+  with_items: "{{ dir_out.stdout_lines|default([]) }}"
+
+- name: make soft links in sites-enabled directory
+  file:
+    src: /etc/nginx/sites-available/{{ item }}
+    dest: /etc/nginx/sites-enabled/{{ item }}
+    state: link
+  notify: reload nginx
+  with_items: "{{ dir_out.stdout_lines|default([]) }}"

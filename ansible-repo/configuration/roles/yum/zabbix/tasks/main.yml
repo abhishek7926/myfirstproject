@@ -1,0 +1,100 @@
+---
+# tasks file for zabbix
+
+- name: Installing zabbix server dependencies ...
+  yum: name={{ item }} state=installed
+  with_items:
+      - httpd
+      - httpd-devel
+      - php
+      - php-cli
+      - php-common
+      - php-pear
+      - php-gd
+      - php-mysql
+      - php-xml
+      - MySQL-python
+
+- stat: path=/root/mysql-community-release-el7-5.noarch.rpm
+  register: mysqlPackageState
+
+- name: Installing zabbix server database repo ...
+  get_url:
+    url: http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
+    dest: /root/
+  when: mysqlPackageState.stat.exists == False
+
+- command: rpm -ivh /root/mysql-community-release-el7-5.noarch.rpm warn=no
+  when: mysqlPackageState.stat.exists == False
+
+- stat: path=/root/php-mbstring-5.4.16-36.3.el7_2.x86_64.rpm
+  register: phpPackageState
+
+- name: Installing zabbix php packages | mbstring ...
+  get_url:
+    url: ftp://rpmfind.net/linux/centos/7.2.1511/updates/x86_64/Packages/php-mbstring-5.4.16-36.3.el7_2.x86_64.rpm
+    dest: /root/
+  when: phpPackageState.stat.exists == False
+
+- command: rpm -Uvh /root/php-mbstring-5.4.16-36.3.el7_2.x86_64.rpm warn=no
+  when: phpPackageState.stat.exists == False
+
+- stat: path=/root/php-bcmath-5.4.16-36.3.el7_2.x86_64.rpm
+  register: phpbcPackageState
+
+- name: Installing zabbix php packages | bcmath...
+  get_url:
+     url: ftp://rpmfind.net/linux/centos/7.2.1511/updates/x86_64/Packages/php-bcmath-5.4.16-36.3.el7_2.x86_64.rpm
+     dest: /root/
+  when: phpbcPackageState.stat.exists == False
+
+- command: rpm -Uvh /root/php-bcmath-5.4.16-36.3.el7_2.x86_64.rpm
+  when: phpbcPackageState.stat.exists == False
+
+- name: Updating cache ...
+  yum: name=* state=latest
+
+- name: Installing zabbix server database ...
+  yum: name=mysql-server state=installed
+#  notify:
+#    - Start database
+
+- service: name=mysqld state=started
+
+- include: mysql_secure_installation.yml
+
+- name: Installing zabbix server ...
+  command: rpm -Uvh http://repo.zabbix.com/zabbix/3.0/rhel/7/x86_64/zabbix-release-3.0-1.el7.noarch.rpm warn=no
+
+- yum: name={{ item }}  state=present
+  with_items:
+      - zabbix-server-mysql
+      - zabbix-web-mysql
+
+- name: Configuring php setting ...
+  template: src=zabbix.conf.j2 dest=/etc/httpd/conf.modules.d/zabbix.conf owner=root group=root mode=0644
+#  notify:
+#    - Restarting apache
+
+- service: name=httpd state=restarted
+
+- name: Creating zabbix database ...
+  mysql_db: name=zabbix state=present
+
+- name: Specify GRANTS on database user ...
+  mysql_user: name=zabbix password={{ zabbix_database_password }} priv=zabbix.*:ALL,GRANT state=present
+
+- name: Importing database ...
+  shell: "zcat /usr/share/doc/zabbix-server-mysql-3*/create.sql.gz | mysql -uroot zabbix -p{{ mysql_root_password }}"
+
+- name: Adding zabbix configuration file ...
+  template: src=zabbix-server.conf.j2 dest=/etc/zabbix/zabbix_server.conf owner=root group=zabbix mode=0640
+#  notify:
+#    - Start zabbix-server
+
+- name: Configuring zabbix ui part ...
+  template: src=zabbix.conf.php.j2 dest=/etc/zabbix/web/zabbix.conf.php owner=apache group=apache mode=0644
+
+- service: name=zabbix-server state=started
+
+- include: zabbix_agent.yml 

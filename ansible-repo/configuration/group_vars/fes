@@ -1,0 +1,3 @@
+hostname: fes
+role: app-roles/fes
+ssl: false

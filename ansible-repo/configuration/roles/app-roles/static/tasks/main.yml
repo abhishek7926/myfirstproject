@@ -1,0 +1,11 @@
+- name: Create data dir
+  file: path="/data" state=directory mode="755"
+
+- name: Create mountable dir
+  file: path="/data/www-data" state=directory mode="755"
+
+- name: set mountpoints
+  mount: name=/data/www-data src=/dev/xvdf fstype=ext3 opts=defaults,nobootwait,comment=cloudconfig dump=0 passno=0 state=mounted
+
+- name: Updating index.html
+  copy: src=index.html dest=/var/www/html/index.html owner=root group=root mode=0644

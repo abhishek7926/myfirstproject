@@ -1,0 +1,5 @@
+dependencies:
+  - { role: web-monitoring}
+  - { role: tcp-monitoring}
+  - { role: queues-metrics}
+

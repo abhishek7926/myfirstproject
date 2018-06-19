@@ -1,0 +1,2 @@
+hostname: jenkins-ansible
+skip_ldap_client_installation: true

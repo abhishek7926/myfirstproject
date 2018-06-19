@@ -1,0 +1,4 @@
+hostname: interviewApp-admin-frontend
+component: interview-app-admin-web
+role: app-roles/interview-app-frontend
+ulimit: 10000

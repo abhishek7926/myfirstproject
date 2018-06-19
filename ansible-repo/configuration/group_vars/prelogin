@@ -1,0 +1,4 @@
+hostname: prelogin
+logfile_path:
+ - /var/log/*.log
+ - /home/mettl/*.log

@@ -1,0 +1,2 @@
+[zabbix-server]
+52.66.182.60 ansible_user=centos ansible_become=true

@@ -1,0 +1,2 @@
+hostname: reporting-metabase
+ulimit: unlimited

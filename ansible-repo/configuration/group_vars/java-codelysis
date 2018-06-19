@@ -1,0 +1,3 @@
+hostname: java-codelysis
+autoscaling: "true"
+

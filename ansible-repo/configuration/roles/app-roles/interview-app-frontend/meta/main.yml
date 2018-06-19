@@ -1,0 +1,5 @@
+dependencies:
+  - { role: mettl-app}
+  - { role: node}
+  - { role: nginx}
+  - { role: set-ulimit}

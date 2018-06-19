@@ -1,0 +1,48 @@
+[java-codelysis]
+172.16.1.218 ansible_user=ansible ansible_become=yes
+[ucl-code-project]
+172.16.7.67 ansible_user=ansible ansible_become=yes
+[ucl-codelysis-android]
+172.16.7.200 ansible_user=ansible ansible_become=yes
+[aui]
+172.16.1.19 ansible_user=ansible ansible_become=yes
+[scheduler-candidate-event]
+172.16.1.192 ansible_user=ansible ansible_become=yes
+[ucl-codelysis]
+172.16.7.191 ansible_user=ansible ansible_become=yes
+[coding-simulator]
+172.16.1.160 ansible_user=ansible ansible_become=yes
+[livefeed-server]
+172.16.5.227 ansible_user=ansible ansible_become=yes
+[proxy]
+172.16.1.219 ansible_user=ansible ansible_become=yes
+
+[online:children]
+aui
+coding-simulator
+scheduler-candidate-event
+ucl-codelysis-android
+ucl-code-project
+ucl-codelysis
+livefeed-server
+java-codelysis
+proxy
+
+[java-codelysis:vars]
+machine_specific_users= [{'username': 'manish-agrawal', 'role': 'admin'}]
+[aui:vars]
+machine_specific_users= [{'username': 'ruchi-narula', 'role': 'admin'},{'username': 'ghanshyam-agrawal', 'role': 'admin'},{'username': 'manish-agrawal', 'role': 'admin'}]
+[coding-simulator:vars]
+machine_specific_users= [{'username': 'manish-agrawal', 'role': 'admin'}]
+[livefeed-server:vars]
+machine_specific_users= [{'username': 'ghanshyam-agrawal', 'role': 'admin'}, {'username': 'nishant-kumar', 'role': 'admin'}, {'username': 'kapil-singhal', 'role': 'admin'}]
+[scheduler-candidate-event:vars]
+machine_specific_users= [{'username': 'ruchi-narula', 'role': 'admin'},{'username': 'guneet', 'role': 'admin'},{'username': 'romil-goyal', 'role': 'admin'}]
+[ucl-code-project:vars]
+machine_specific_users= [{'username': 'cfe-vikas', 'role': 'admin'}, {'username': 'manish-agrawal', 'role': 'admin'}]
+[ucl-codelysis-android:vars]
+machine_specific_users= [{'username': 'cfe-vikas', 'role': 'admin'}, {'username': 'manish-agrawal', 'role': 'admin'}]
+[ucl-codelysis:vars]
+machine_specific_users= [{'username': 'cfe-vikas', 'role': 'admin'}, {'username': 'manish-agrawal', 'role': 'admin'}]
+[proxy:vars]
+machine_specific_users= [{'username': 'shanky', 'role': 'admin'}]

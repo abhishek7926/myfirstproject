@@ -1,0 +1,44 @@
+---
+  - name: app_tomcat existence state
+    stat: path=/home/mettl/{{ volume }}/{{ tomcat_folder }}-tomcat
+    register: app_tomcat
+
+  # - name: setenv.sh existence state
+  #   stat: path=/home/mettl/{{ volume }}/{{ tomcat_folder }}-tomcat/bin/setenv.sh
+  #   register: setenv
+
+  - name: Download tomcat
+    get_url: url=https://archive.apache.org/dist/tomcat/tomcat-{{ tomcat_release }}/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz dest=/home/mettl/{{ volume }}/apache-tomcat-{{ tomcat_version }}.tar.gz  owner=mettl group=logreader
+    when: not app_tomcat.stat.exists
+
+  - name: Create default tomcat directory if app_tomcat does not exist
+    file: state=directory path=/home/mettl/{{ volume }}/apache-tomcat-{{ tomcat_version }}/ owner=mettl group=mettl recurse=yes
+    when: not app_tomcat.stat.exists
+
+  - name: Unarchive tomcat 
+    unarchive: src=/home/mettl/{{ volume }}/apache-tomcat-{{ tomcat_version }}.tar.gz dest=/home/mettl/{{ volume }}/ copy=no owner=mettl group=mettl 
+    when: not app_tomcat.stat.exists
+
+  - name: Move default tomcat to app tomcat
+    command: mv /home/mettl/{{ volume }}/apache-tomcat-{{ tomcat_version }} /home/mettl/{{ volume }}/{{ tomcat_folder }}-tomcat
+    when: not app_tomcat.stat.exists
+
+  - name: Create Catalina directory
+    file: state=directory path=/home/mettl/{{ volume }}/{{ tomcat_folder }}-tomcat/conf/Catalina/localhost owner=mettl group=mettl recurse=yes
+
+  - command: "ls roles/{{ role }}/files/tomcat-files/localhost/"
+    register: dir_out
+    delegate_to: localhost
+
+  - name : copy tomcat deployment descriptor xmls
+    template: src=roles/{{ role }}/files/tomcat-files/localhost/{{ item }} dest=/home/mettl/{{ volume }}/{{ tomcat_folder }}-tomcat/conf/Catalina/localhost/{{ item }}  owner=mettl group=mettl
+    with_items: "{{ dir_out.stdout_lines }}"
+
+  - name : copy setenv.sh
+    template: src=roles/{{ role }}/files/tomcat-files/setenv.sh dest=/home/mettl/{{ volume }}/{{ tomcat_folder }}-tomcat/bin/setenv.sh force=yes owner=mettl group=mettl
+
+  - name: Copying server.xml
+    template: src=roles/{{ role }}/files/tomcat-files/server.xml dest=/home/mettl/{{ volume }}/{{ tomcat_folder }}-tomcat/conf/server.xml owner=mettl group=mettl
+   # notify: restart tomcat    
+    
+  - include: logs-backup.yml

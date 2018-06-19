@@ -1,0 +1,3 @@
+hostname: intellisense
+role: app-roles/intellisense
+ssl: true

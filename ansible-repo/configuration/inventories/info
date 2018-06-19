@@ -1,0 +1,20 @@
+[english-simulator]
+english-simulator.infopvt ansible_user=ansible ansible_become=yes
+[feedback]
+feedback.infopvt ansible_user=ansible ansible_become=yes
+[test-notification]
+test-notification.infopvt ansible_user=ansible ansible_become=yes
+
+[info:children]
+english-simulator
+feedback
+test-notification
+
+[english-simulator:vars]
+machine_specific_users= [{'username': 'jalaj-khanna', 'role': 'admin'}, {'username': 'kapil-singhal', 'role': 'admin'}]
+
+[feedback:vars]
+machine_specific_users= [{'username': 'nevin-sunny', 'role': 'admin'},{'username': 'tarun-yaduvanshi', 'role': 'admin'}]
+
+[test-notification:vars]
+machine_specific_users= [{'username': 'nevin-sunny', 'role': 'admin'},{'username': 'tarun-yaduvanshi', 'role': 'admin'}]

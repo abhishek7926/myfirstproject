@@ -1,0 +1,19 @@
+- set_fact:
+    user_list_merged: []
+
+- set_fact:
+    user_list_merged: "{{ user_list_merged + global_users }}"
+  when: global_users is defined
+- set_fact:
+    user_list_merged: "{{ user_list_merged + machine_specific_users }}"
+  when: machine_specific_users is defined
+
+- name: Creating user {{ item.username }}
+  become: true
+  user: home=/home/{{ item.username }} name={{ item.username }} shell=/bin/bash state=present groups="{{ lookup('file', './roles/user_mgmt/files/role-specification/' + item.role) }}"
+  with_items: "{{ user_list_merged }}"
+
+- name: Add SSH key for user {{ item.username }}
+  become: true
+  authorized_key: user={{ item.username }} key="{{ lookup('file', './roles/user_mgmt/files/public-keys/'+item.username+'.pub') }}"
+  with_items: "{{ user_list_merged }}"

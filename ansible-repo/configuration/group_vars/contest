@@ -1,0 +1,9 @@
+hostname: contest
+tomcat_folder: contest
+tomcat_shutdown_port: 8031
+tomcat_connector_port: 8030
+artifact_name: contest
+logfile_path:
+ - /var/log/*.log
+ - /home/mettl/*.log
+

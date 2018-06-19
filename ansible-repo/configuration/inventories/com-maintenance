@@ -1,0 +1,15 @@
+[elk]
+elk.compvt ansible_user=ansible ansible_become=yes
+[zabbix]
+zabbix.compvt ansible_user=ansible ansible_become=yes
+[kafka]
+kafka.compvt ansible_user=ansible ansible_become=yes
+[jenkins]
+jenkins.compvt ansible_user=ansible ansible_become=yes
+
+
+[com:children]
+elk
+zabbix
+kafka
+jenkins

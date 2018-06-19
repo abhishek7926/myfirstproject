@@ -1,0 +1,8 @@
+java_version: 7
+tomcat_version: 7.0.40
+tomcat_release: 7
+ssl: true
+role: app-roles/mettl-apis
+artifact_name: mettl-apis 
+tomcat_folder: mettl-apis
+

@@ -1,0 +1,81 @@
+#- name: Changing filesystem to ext4
+#  filesystem:
+#    fstype: ext4
+#    dev: /dev/xvdc
+
+- name: Create docker mountable dir
+  file: path="/home/mettl/volume1/docker/volumes" state=directory mode="755" owner=mettl group=mettl
+
+- name: set mountpoints
+  mount: name=/home/mettl/volume1/docker/volumes src=/dev/xvdc fstype=ext4 opts=defaults,nofail,comment=cloudconfig dump=0 passno=0 state=present
+
+- name: Install forever global
+  npm:
+      name: "{{ item }}"
+      global: yes
+  with_items:
+    - forever
+
+- command: "uname -r"
+  register: kernel_release
+
+- command: "lsb_release -cs"
+  register: lsb_release
+
+- name: Install docker prerequiested
+  apt: name={{ item }} state=installed update_cache=yes
+  with_items:
+   - linux-image-extra-{{ kernel_release.stdout }}
+   - linux-image-extra-virtual
+   - apt-transport-https
+   - ca-certificates
+   - curl
+   - software-properties-common
+
+- name: Add apt-key for docker
+  apt_key: url=https://download.docker.com/linux/ubuntu/gpg state=present id=0EBFCD88
+
+- name: add apt repo for docker
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu {{ lsb_release.stdout }} stable
+    state: present
+
+- name: Install docker cli
+  apt: name=docker-ce state=installed update_cache=yes
+
+- name: add mettl user to docker group
+  user:
+    name: mettl
+    groups: docker
+    append: yes
+
+- name: remove docker-py
+  pip:
+    name: docker-py
+    state: absent
+
+- name: Install docker python module
+  pip:
+    name: "docker-compose==1.12.0"
+
+- name: create docker network
+  docker_network:
+    name: mettlucldockernetwork
+
+- name: log into docker hub registry
+  docker_login: email="pulldockerimages@mettl.com" password="BGEJ7qBmB3yZAdYV" registry_url="https://quay.io/v2/" username="pull_dockerimages"
+
+
+#- name: ensure an all languages container is running
+#  docker_container: name=all_languages_container state=present image="quay.io/dockerimages/mettluclcodelysis:{{ ucl_codelysis_docker_all_version }}" pull=true
+#
+#- name: ensure a swift container is running
+#  docker_container: name=swift_container state=present image="quay.io/dockerimages/swiftuclcodelysis:{{ ucl_codelysis_docker_swift_version }}" pull=true
+
+- name: pull docker base image
+  docker_image:
+    name: quay.io/dockerimages/rsimulators-{{ env }}:r_base_1.3
+    state: present
+
+
+

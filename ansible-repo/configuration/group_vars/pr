@@ -1,0 +1,11 @@
+hostname: pr
+logfile_path:
+ - /var/log/*.log
+ - /home/mettl/*.log
+tomcat_shutdown_port: 8081
+tomcat_connector_port: 9090
+setenv_content: ""
+apache_server_name: pr
+autoscaling: "true"
+
+

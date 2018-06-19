@@ -1,0 +1,6 @@
+---
+
+- name: install awscli
+  become: true
+  command: /tmp/awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws creates=/usr/local/bin/aws
+
